@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Android Security: The Forgetful Keystore
+title: "Android Security: The Forgetful Keystore"
 ---
 
 You've just moved in to a new house and have been given the master key for the front door. You only have one of these so you know you need to keep it safe. Your really paranoid so you hire an armed guard, whose sole job is to protect this key, in fact, this is all he has been trained to do and has a catchy slogan of "need to protect a key, its what I was born to do!". You install an extra lock on your front door as you feel the bodyguard isnt enough, this is a rough area anyway and who's going to make sure no-ones about to break in and steal all your crap. You return to your key guard only to be informed he has thrown the key away. You shout and scream at him but he just blankly says "I dont have it anymore, I didnt think it was important". You can't contain your anger "What the hell, your a jerk! You had one thing to do and you failed, this causes me a lot of problems, why didnt you tell me you might do this?! What do I do now?!"
