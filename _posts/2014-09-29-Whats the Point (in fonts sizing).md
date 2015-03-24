@@ -1,6 +1,6 @@
 ---
 layout: post
-title: An Overview to sizing in Points
+title: Whats the Point in font sizing?
 ---
 
 #TL;DR
