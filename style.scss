@@ -82,7 +82,15 @@ footer a {
     border-bottom: none;
 }
         
-    
+/* date */
+div.date{
+    background: $pink;
+    color:#fff;
+    padding:4px;
+    padding-top:6px;
+    padding-right:6px;
+    display: inline;
+}
     
 /* tables */    
 table {  background: #fff; border-collapse: collapse;} /* Make table wider */    
