@@ -121,7 +121,10 @@ strong, b {
   color: $darkRed; 
 }
     
-strong{}
+code {
+    color:$gray;
+    font-size: 80%;
+}
 
 img {
   max-width: 100%;
