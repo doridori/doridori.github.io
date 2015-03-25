@@ -18,14 +18,14 @@ html {
 }
 
 body {
-	background: $white;
-  font: 18px/1.4 $helvetica;
+  background: $white;
+  font: 16px/1.4 $helvetica;
   color: $darkGray;
 }
 
 .container {
   margin: 0 auto;
-  max-width: 740px;
+  max-width: 900px;
   padding: 0 10px;
   width: 100%;
 }
@@ -69,14 +69,23 @@ p {
 }
 
 a {
-  color: $blue;
+  color: #000;
   text-decoration: none;
+  border-bottom: 1px $darkRed dashed;
 	cursor: pointer;
-  &:hover, &:active {
-    color: $blue;
+  &:hover, &:active {    
+    border-bottom: 1px $darkRed solid;
   }
-}
+}            
+    
+/* tables */    
+table {  background: #fff} /* Make table wider */    
+td, th { border: 2px solid #fff; padding:6px; color:#555; font-size:12px; font-weight:normal;} /* Add borders to cells */
+tr:nth-child(odd){ background-color:#fff8ff; } 
+tr:nth-child(even)    { background-color:#ffeaff; } 
+th{background:$pink; color:#fff }
 
+/* lists */
 ul, ol {
   margin: 15px 0;
   padding-left: 30px;
@@ -103,8 +112,11 @@ em, i {
 }
 
 strong, b {
-  font-weight: bold;
+  font-weight: normal;        
+  color: $darkRed; 
 }
+    
+strong{}
 
 img {
   max-width: 100%;
@@ -254,10 +266,9 @@ nav {
 .post {
   blockquote {
     margin: 1.8em .8em;
-    border-left: 2px solid $gray;
+    border-left: 2px solid $lightGray;
     padding: 0.1em 1em;
-    color: $gray;
-    font-size: 22px;
+    color: $gray;    
     font-style: italic;
   }
 
