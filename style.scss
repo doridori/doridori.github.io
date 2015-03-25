@@ -83,12 +83,17 @@ footer a {
 }
         
     
+    
 /* tables */    
-table {  background: #fff} /* Make table wider */    
+table {  background: #fff; border-collapse: collapse;} /* Make table wider */    
 td, th { border: 2px solid #fff; padding:6px; color:#555; font-size:12px; font-weight:normal;} /* Add borders to cells */
 tr:nth-child(odd){ background-color:#fff8ff; } 
 tr:nth-child(even)    { background-color:#ffeaff; } 
 th{background:$pink; color:#fff }
+    
+/* gists */    
+div[data-gist-id] table{width:100%;}
+div[data-gist-id] table tr {background-color:#fff; border: solid 2px #0f0;}
 
 /* lists */
 ul, ol {

@@ -3,7 +3,7 @@ layout: post
 title: Whats the Point in font sizing?
 ---
 
-#TL;DR
+###TL;DR
 
 _The 'Point' unit of measurement has more than one value. Apple use their own point unit terminology. Android has a more complicated and powerful concept of density-independence. If using a design doc with pts you need to be aware of the docs dpi as on Android you need to map between this and the android baseline dpi. Quick conversion for Android __1pt = 1px = 1dp IF docDensity = 72dpi AND docResolution = 320x480px___
 
@@ -16,6 +16,7 @@ The approach I am using is
 	PtMultiplier * docPtSize = AndroidPx
 	AndroidPx = AndroidDp
 
+<br/>
 
 | PS doc dpi* | PS doc res | designing FOR Android density | PS Pt size | Formula            | Android Dp/Sp  |
 |-------------|------------|-------------------------------|------------|--------------------|----------------|
