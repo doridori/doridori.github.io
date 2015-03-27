@@ -122,3 +122,4 @@ Well thats it! When I go to approach testing on my next project this is pretty m
 #Interesting Links
 
 - Great talk from Droidcon London with some interesting ideas for maintaining app quality [Testing Applications At Facebook](https://skillsmatter.com/skillscasts/5630-testing-applications-at-facebook)
+- [How to write good tests](https://github.com/mockito/mockito/wiki/How-to-write-good-tests)
