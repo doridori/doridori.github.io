@@ -98,6 +98,7 @@ The better approach seems to be to either;
 - Use a **timeout** to wait for callbacks. 
     - Lots of people do this with `Thread.sleep` but this is a **bad idea**! Your tests will be slow and you will probably stop running them!
     - An alternative is to use the [`Mockito.timeout()`](http://docs.mockito.googlecode.com/hg/org/mockito/Mockito.html#timeout(int)) method which will wait up to the declared time for the expected behavior to happen. This is not as bad as `Thread.sleep` as it will only take a long time when it fails - which should not be the norm. Bear in mind, the documentation states _"Allows verifying with timeout. May be useful for testing in concurrent conditions. It feels this feature should be used rarely - figure out a better way of testing your multi-threaded system"_.
+    - Use [`PollingWait`](https://junit-toolbox.googlecode.com/git/javadoc/com/googlecode/junittoolbox/PollingWait.html) from the JUnit Toolbox.
 
 **RxJava** is a great one to check out as the base idea is to get away from the pains of asynchronous programming (think callback hell). One approach to look at here is [toBlocking()](https://github.com/ReactiveX/RxJava/wiki/Blocking-Observable-Operators). Below are some starting links for an intro to Rx
 
