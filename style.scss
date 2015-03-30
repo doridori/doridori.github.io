@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 30px;
-  border-bottom: 1px $pink solid;
+  border-bottom: 1px $lightGray solid;
   a {
     color: inherit;
   }
@@ -54,7 +54,7 @@ h1 {
 
 h2 {
   font-size: 24px;
-  border-bottom: 1px $pink solid;
+  border-bottom: 1px $lightGray solid;
 }
 
 h3 {
@@ -281,6 +281,9 @@ nav {
       color: $blue;
     }
   }
+  
+  h1 { border-bottom: none;}
+  h2 { border-bottom: none;}
 }
 
 //
