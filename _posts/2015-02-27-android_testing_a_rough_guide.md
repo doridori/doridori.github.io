@@ -29,9 +29,12 @@ _Edit: After starting this I listened to [Episode 1](http://fragmentedpodcast.co
 
 There are a number of ways to run your tests, the simplest first choice to me seems to run them on a device or emulator via a test apk (see below for emulator choices) rather than using something like [Roboelectic](http://robolectric.org/) (which lots of people do like and use) as I have heard too many people fall out of favor with it. 
 
+##JUnit 4
+
 The new [Android Testing Support Library](https://code.google.com/p/android-test-kit/) now supports JUnit 4 (yay) via the [`AndroidJUnitRunner`](https://code.google.com/p/android-test-kit/wiki/AndroidJUnitRunnerUserGuide) which allows for more expressive test declaration which is great. Using this you can write some of your tests against the JVM (if your not using Android classes in those tests). 
 
 - See [this post on the Android Tools](http://tools.android.com/tech-docs/unit-testing-support) site for how to set up for Android Studio 1.1+.
+- See the [Junit 4 wiki](https://github.com/junit-team/junit/wiki) on Github for how to use
 
 ##UI Automation
 
