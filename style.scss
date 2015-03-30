@@ -315,9 +315,10 @@ nav {
     font-size: 15px;
   }
   
-  h1 {border-bottom: 1px $lightGray solid;}
-  h2 {border-bottom: 1px $lightGray solid;}
+  h1 {border-bottom: 1px $pink solid;}
 }
+
+.posts .post h1 {border-bottom: none;}
 
 .wrapper-footer {
   margin-top: 50px;
