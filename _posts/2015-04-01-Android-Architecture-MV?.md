@@ -40,7 +40,7 @@ __SNAP QUIZ: What does the term `Controller` mean to you?__
 There seem to be a few general camps of thought relating to `MVC` architecture and Android
 
 1. "What's this MVC?"
-2. XML is the `View`, `Activity` / `Fragment` is the `Controller`s,  SQLite / in memory data is the `Model` 
+2. XML is the `View`, `Activity` / `Fragment` is the `Controller`,  SQLite / in memory data is the `Model` 
 3. `Activity` / `Fragment` is the `View`, some crazy class is the `Controller` with many mixed responsibilities, SQLite / in memory data is the `Model` 
 4. I use some open source library and guidelines to structure my app
 5. I have my own solution
