@@ -49,7 +49,7 @@ There seem to be a few general camps of thought relating to `MVC` architecture a
 
 #A brief overview of MV* Architectures
 
-I will get on to an approach that works well for me, but as a Primer a quick introduction to the MVC family of terms.
+I will get on to an approach that works well for me, but as a primer a quick introduction to the MVC family of terms.
 
 ##MVC (Model-View-Controller)
 
