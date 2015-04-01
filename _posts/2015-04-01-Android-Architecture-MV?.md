@@ -29,7 +29,7 @@ I admit, I would also include my past-self into this group, which is why I am he
 
 How has this come to be?
 
-<img src="/images/blog/droid_confused.png" alt="Confused Droid" />
+<img src="/images/blog/droid_confused_big.png" alt="Confused Droid" />
 
 #MV?, who's in control?
 
@@ -110,7 +110,7 @@ The above are the main ones you see around at present. I have come to the conclu
 
 #What Now?
 
-This post has outlined a few common architectural terms and is laying the way for me to talk about a pattern than I have found works for me that fixes the issues outlined at the beginning of this post. My next post will present this pattern.
+I have outlined a few common architectural terms and is laying the way for me to talk about a pattern than I have found works for me that fixes the issues outlined at the beginning of this post. My next post will present this pattern.
 
 #Down the rabbit hole (links)
 
