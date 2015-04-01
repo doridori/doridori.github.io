@@ -29,7 +29,7 @@ I admit, I would also include my past-self into this group, which is why I am he
 
 How has this come to be?
 
-<img src="/images/blog/droid_confused_big.jpg" alt="Confused Droid" />
+<img src="/images/blog/droid_confused.png" alt="Confused Droid" />
 
 #MV?, who's in control?
 
