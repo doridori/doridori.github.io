@@ -1,15 +1,21 @@
+---
+layout: post
+title: "Android Architecture: MV?"
+slug: "android-mv?"
+---
+
 The architecture of most Android-apps is a _mess_. 
 
 #The Problem
 
-I'm a contractor and I'm often brought on to projects have long sinced passed their first commit. I feel like I have had a good insight how to the average dev approaches Android app architecture from this, and also from open-source projects, android blog posts, the Android developer site and more. One thing that strikes me about ~99% of the code I see is that there is not much of a notion of a clean, overarching application architecture. By this I mean that people seem genuinly happy to shoehorn their code into `Activitys` & `Fragments` with the occasional class named something like `MyCrazyController`. Why is this an issue? The problem with this is that it results in
+I'm a contractor and I'm often brought on to projects have long since passed their first commit. I feel like I have had a good insight how to the average dev approaches Android app architecture from this, and also from open-source projects, android blog posts, the Android developer site and more. One thing that strikes me about ~99% of the code I see is that there is not much of a notion of a clean, overarching application architecture. By this I mean that people seem genuinely happy to shoehorn their code into `Activitys` & `Fragments` with the occasional class named something like `MyCrazyController`. Why is this an issue? The problem with this is that it results in
 
 - hard to test code
 - hard to read code
 - hard to refactor code
 - hard to reuse code
 - hard to handle-config changes code
-- **hard to write asyncronous code**
+- **hard to write asynchronous code**
 - hard to not create loads of edge-case code (i.e. its buggy)
 - hard to hand-over code
 
@@ -17,16 +23,18 @@ Its an easy thing to fall into doing because
 
 - ~99% of all Android examples are written in this way
 - It sort of works most of the time
-- there are framework classes (i.e. `Loaders`) and librarys (i.e. RoboSpice) around now to work around _some_ of the issues that manifest from using this stock approach. While I have used these approaches in the past I find they can make a code base more complicated than it nees to be.
+- there are framework classes (i.e. `Loaders`) and librarys (i.e. RoboSpice) around now to work around _some_ of the issues that manifest from using this stock approach. While I have used these approaches in the past I find they can make a code base more complicated than it needs to be.
 - People have got used to hearing that "Android is hard to test" or "just lock it to portrait" and "restart / reconnect to the web service call on rotation" and just think "well thats how it is"
 
 I admit, I would also include my past-self into this group, which is why I am here, attempting to atone for my coding sins and mine and others unknowingly devout following of the book of anti-patterns.
 
 How has this come to be?
 
+<img src="images/blog/droid_confused.png" alt="Confused Droid" />
+
 #MV?, who's in control?
 
-I belive a big part of this is that not much thought has gone into the actual generic app architecture approach that devs could use. In my opinion there is a vast lack of some sort of (and I use this term _extremely_ loosly) `Controller` for application components.
+I believe a big part of this is that not much thought has gone into the actual generic app architecture approach that devs could use. In my opinion there is a vast lack of some sort of (and I use this term _extremely_ loosely) `Controller` for application components.
 
 __SNAP QUIZ: What does the term `Controller` mean to you?__
 
@@ -35,10 +43,10 @@ There seem to be a few general camps of thought relating to `MVC` architecture a
 1. "What's this MVC?"
 2. XML is the `View`, `Activity` / `Fragment` is the `Controller`s,  SQLite / in memory data is the `Model` 
 3. `Activity` / `Fragment` is the `View`, some crazy class is the `Controller` with many mixed responsibilities, SQLite / in memory data is the `Model` 
-4. I use some open source library and guidlines to structure my app
+4. I use some open source library and guidelines to structure my app
 5. I have my own solution
 
-~98% of the apps I have seen fall into 1,2 & 3. Maybe my sample size is too small, or maybe people just dont have time to think about this stuff, either way, there is a lot of room for improvement here.
+~98% of the apps I have seen fall into 1,2 & 3. Maybe my sample size is too small, or maybe people just don't have time to think about this stuff, either way, there is a lot of room for improvement here.
 
 #A brief overview of MV* Architectures
 
@@ -52,14 +60,14 @@ First things first. The term MVC is in my opinion _highly subjective_ and _highl
 
 > Take Model-View-Controller as an example. It's often referred to as a pattern, but I don't find it terribly useful to think of it as a pattern because it contains quite a few different ideas. Different people reading about MVC in different places take different ideas from it and describe these as 'MVC'. If this doesn't cause enough confusion you then get the effect of misunderstandings of MVC that develop through a system of Chinese whispers. (From [GUI Architectures](http://martinfowler.com/eaaDev/uiArchs.html))
 
-Reading up on the history of MVC, by the fact it was invented in the 70's at the time when UI stuff was in its infancy its not surprising it has taken on many differnt faces over the years when encountering new tech stacks and frameworks. 
+Reading up on the history of MVC, by the fact it was invented in the 70's at the time when UI stuff was in its infancy its not surprising it has taken on many different faces over the years when encountering new tech stacks and frameworks. 
 
 `MVC` can be interpreted in two ways it seems
 
-1. (less-often) An over-arching term, which is a superset of all MV* architectures that seperate some View from some Model and other middle-ish layer than may or may not communicated with the View & Model components directly. 
+1. (less-often) An over-arching term, which is a superset of all MV* architectures that separate some View from some Model and other middle-ish layer than may or may not communicated with the View & Model components directly. 
 2. (more-often) A slightly more concrete notion of a pattern that relates the M V and C components in a **triangular relationship** which does not allow the user to interact with the View directly but only via a View and / or Controller. View displays the Model and Model is manipulated via the Controller. 
 
-Unfortunatly in practise I feel (from code I have audited) is that some devs feel like naming a class `Controller` is enough to ensure 'good' architecture, even if that controller class breaks every rule in the book of OOP (ok, I'm thinking of one project only here, but this is also the only project I saw where the dev even attempted to pull the 'controller code' outide of the `Activity`) including leaking views via static references in the Controller code.
+Unfortunately in practice I feel (from code I have audited) is that some devs feel like naming a class `Controller` is enough to ensure 'good' architecture, even if that controller class breaks every rule in the book of OOP (ok, I'm thinking of one project only here, but this is also the only project I saw where the dev even attempted to pull the 'controller code' outside of the `Activity`) including leaking views via static references in the Controller code.
 
 Anyhow, my advise would be not to actually think about MVC very much. IMHO its too abstract and therefore loses one of the major powers of design-patterns in the first place, which is to quickly convey a structural concept between developers. It is likely to cause more confusion than a more explicit term.
 
@@ -67,7 +75,7 @@ Anyhow, my advise would be not to actually think about MVC very much. IMHO its t
 
 [Wiki link](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) 
 
-MVP is again quite loose. Even from its inception people had differnt ideas of what responsibilities the `Presenter` component had.
+MVP is again quite loose. Even from its inception people had different ideas of what responsibilities the `Presenter` component had.
 
 > One of the variations in thinking about MVP is the degree to which the presenter controls the widgets in the view. On one hand there is the case where all view logic is left in the view and the presenter doesn't get involved in deciding how to render the model. This style is the one implied by Potel. The direction behind Bower and McGlashan was what I'm calling Supervising Controller, where the view handles a good deal of the view logic that can be described declaratively and the presenter then comes in to handle more complex cases. 
 
@@ -85,15 +93,15 @@ For more info I would recommend you check out another Martin Fowler article [Ret
 
 [Wiki link](http://en.wikipedia.org/wiki/Model_View_ViewModel)
 
-This is a popular one in the Microsoft (& Xamarin) world. The thing that all MVVM architectures have in common is...data-binding! In a nutshell the ViewModel can define the binding between Views and data properties and if bound two ways then changes to the view update the model and changes to the model update the view, pretty much for free. There are some MVVM librarys for Android, but I have never played with them, or spoken to anyone who has. If you intrested your can check out [RoboBinding](http://robobinding.github.io/RoboBinding/).
+This is a popular one in the Microsoft (& Xamarin) world. The thing that all MVVM architectures have in common is...data-binding! In a nutshell the ViewModel can define the binding between Views and data properties and if bound two ways then changes to the view update the model and changes to the model update the view, pretty much for free. There are some MVVM librarys for Android, but I have never played with them, or spoken to anyone who has. If you interested your can check out [RoboBinding](http://robobinding.github.io/RoboBinding/).
 
 ##MVA (Model-View-Adapter)
 
 [Wiki link](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93adapter)
 
-This one is intresting as its pretty simple. This is like a linear MVC (the same as MVP above), meaning that there is no communication bewteen the `View` and the `Model`, the `Adapter` sits in-between them like a burger in a bun.
+This one is interesting as its pretty simple. This is like a linear MVC (the same as MVP above), meaning that there is no communication between the `View` and the `Model`, the `Adapter` sits in-between them like a burger in a bun.
 
-From my own reading this seems like it can easily be the same as an MVP pattern if the `Presentor`/`Adapater` isnt storing much `View` state. As you can see, its all a bit of a gray area!
+From my own reading this seems like it can easily be the same as an MVP pattern if the `Presenter`/`Adapater` isn't storing much `View` state. As you can see, its all a bit of a gray area!
 
 See [MODEL-VIEW-ADAPTER](https://www.palantir.com/2009/04/model-view-adapter/) for more.
 
@@ -107,7 +115,7 @@ This post has outlined a few common architectural terms and is laying the way fo
 
 #Down the rabbit hole (links)
 
-While MV* approaches are often talked about, the following are also used on Android and the subject of the occasional dicsussion.
+While MV* approaches are often talked about, the following are also used on Android and the subject of the occasional discussion.
 
 - [Hexagonal Architecture (Ports & Adapters)](http://alistair.cockburn.us/Hexagonal+architecture)
 - [Clean Architecture](http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html) (_contains some good links itself_)
@@ -120,7 +128,7 @@ And some related links
 
 #Appendix 1: iOS ViewControllers
 
-I have extremly limited iOS exposure but from poking around it seems that the iOS version of MVC is closer to MVP as the Controller directly manipulates the Views and also contains 'traditional' controller logic (even though posts and docs say its MVA). Would be intrested to hear an iOS devs take on this. Quite a lot of resposibilities which it seems earnt the title of [Massive View Controller](https://twitter.com/Colin_Campbell/status/293167951132098560).
+I have extremely limited iOS exposure but from poking around it seems that the iOS version of MVC is closer to MVP as the Controller directly manipulates the Views and also contains 'traditional' controller logic (even though posts and docs say its MVA). Would be interested to hear an iOS devs take on this. Quite a lot of responsibilities which it seems earnt the title of [Massive View Controller](https://twitter.com/Colin_Campbell/status/293167951132098560).
 
 - [Model View Whatever](http://khanlou.com/2014/03/model-view-whatever/)
 - [Apples MVC guidelines](https://developer.apple.com/library/ios/documentation/General/Conceptual/CocoaEncyclopedia/Model-View-Controller/Model-View-Controller.html)
