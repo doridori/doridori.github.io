@@ -55,7 +55,7 @@ I will get on to an approach that works well for me, but as a primer a quick int
 
 [Wiki link](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
 
-First things first. The term MVC is in my opinion _highly subjective_ and _highly abstract_. The pain point seems to be around the definition of `Controller`. Really its more of a _concept_ that a _design pattern_. Put simply and by someone (Martin Fowler) who knows a bucketload more than myself
+First things first. **The term MVC is in my opinion _highly subjective_ and _highly abstract_.** The pain point seems to be around the definition of `Controller`. Really its more of a _concept_ that a _design pattern_. Put simply and by someone (Martin Fowler) who knows a bucketload more than myself
 
 > Take Model-View-Controller as an example. It's often referred to as a pattern, but I don't find it terribly useful to think of it as a pattern because it contains quite a few different ideas. Different people reading about MVC in different places take different ideas from it and describe these as 'MVC'. If this doesn't cause enough confusion you then get the effect of misunderstandings of MVC that develop through a system of Chinese whispers. (From [GUI Architectures](http://martinfowler.com/eaaDev/uiArchs.html))
 
