@@ -116,7 +116,7 @@ I have outlined a few common architectural terms and is laying the way for me to
 
 While MV* approaches are often talked about, the following are also used on Android and the subject of the occasional discussion.
 
-- [Hexagonal Architecture (Ports & Adapters)](http://alistair.cockburn.us/Hexagonal+architecture)
+- [Hexagonal Architecture (Ports & Adapters)](http://alistair.cockburn.us/Hexagonal+architecture) _very intresting but have heard it can lead to many classes and lots going on even for simple apps, looks like may be good for larger projects_
 - [Clean Architecture](http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html) (_contains some good links itself_)
 - [Presentation Model](http://martinfowler.com/eaaDev/PresentationModel.html) (_agree with opening but do not recreate view interface in code as it will need V->PM Observer sync whereas flow makes more sense most of the time in Android land_) 
 - [GUI Architectures](http://martinfowler.com/eaaDev/uiArchs.html)
