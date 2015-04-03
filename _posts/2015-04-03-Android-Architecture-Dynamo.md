@@ -34,34 +34,9 @@ _I spoke about this is the first part of [this brain dump of a blog post](http:/
 
 It will reduce your `Activity`, `Fragment` and `View` classes to dealing with View behaviour and States only via a simple interface, for example
 
-```java 
-public ComputationActivity
-{
-	...
+<div data-gist-id="1d0fb22ef6c4edee8d3c" data-gist-file="ComputationActivity_state.java">ComputationActivity_state.java</div>
 
-
-	@Override
-	public void onState(ComputationDynamo.UninitializedState state)
-	{
-	    mResultTxt.setText("Ready & waiting");
-	}
-
-	@Override
-	public void onState(ComputationDynamo.PerformingComputationState state)
-	{
-	    mResultTxt.setText("Thinking...");
-	    mGoButton.setEnabled(false);
-	}
-
-	@Override
-	public void onState(ComputationDynamo.ComputationFinishedState state)
-	{
-	    mResultTxt.setText("I think its "+state.getResult()+"!");
-	    mGoButton.setText("Compute another!");
-	    mGoButton.setEnabled(true);
-	}
-}
-```
+Check [`Dynamo`](https://github.com/doridori/Dynamo) out. 
 
 Enjoy!
 
