@@ -14,7 +14,7 @@ This post is really a short intro to a small library + Wiki I have created. This
 
 Plus, I feel sorry for new Android devs who turn are turning up later to the party and are overwhealmed by the Android ecosystem and need to get up to speed quickly on what these issues are before even getting to the point of thinking about potential solutions. Some of the issues addressed by this approach are solved by fantastic existing libraries, but again, I think for a large chunk of devs these can be difficult concepts to grasp and get running with. These are mentioned in the projects wiki for further reading.
 
-In my experience at least there are two core ideas around the center of most apps codebases. From the codebases I have seen & inherited both ideas seem to have few brain cycles spent on them.
+In my experience at least there are two core ideas around the center of most apps codebases. From the codebases I have seen & inherited both ideas seem to have too few brain cycles spent on them.
 
 #1. State
 
