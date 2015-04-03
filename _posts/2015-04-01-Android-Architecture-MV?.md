@@ -121,10 +121,6 @@ While MV* approaches are often talked about, the following are also used on Andr
 - [Presentation Model](http://martinfowler.com/eaaDev/PresentationModel.html) (_agree with opening but do not recreate view interface in code as it will need V->PM Observer sync whereas flow makes more sense most of the time in Android land_) 
 - [GUI Architectures](http://martinfowler.com/eaaDev/uiArchs.html)
 
-And some related links
-
-- [Model View Whatever](http://khanlou.com/2014/03/model-view-whatever/)
-
 #Appendix 1: iOS ViewControllers
 
 I have extremely limited iOS exposure but from poking around it seems that the iOS version of MVC is closer to MVP as the Controller directly manipulates the Views and also contains 'traditional' controller logic (even though posts and docs say its MVA). Would be interested to hear an iOS devs take on this. Quite a lot of responsibilities which it seems earnt the title of [Massive View Controller](https://twitter.com/Colin_Campbell/status/293167951132098560).
