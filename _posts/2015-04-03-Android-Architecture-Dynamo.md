@@ -28,7 +28,7 @@ _I spoke about this is the first part of [this brain dump of a blog post](http:/
 
 #Introducing Dynamo
 
-<img src="https://github.com/doridori/Dynamo/blob/master/gfx/DynamoDroid.png" alt="dynamo droid"/>
+<img src="https://github.com/doridori/doridori.github.io/blob/master/images/blog/DynamoDroid.png?raw=true" alt="dynamo droid"/>
 
 [`Dynamo`](https://github.com/doridori/Dynamo) is a small library and wiki I have created to show my approach to an Android architecure that works with these two bug-spawning-hair-loss-inducing areas. 
 
