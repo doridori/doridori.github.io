@@ -10,11 +10,11 @@ This is post #2 of my very short Android Architecture series (can two be a serie
  1. A brief outline of the problems when defaulting to stock Android architecture.
  2. An overview of common general architectural concepts. 
 
-This post is really a short intro to a small library + Wiki I have created. This library fills an architectural hole which I see in the Android dev world. There is no unified approach to generic Android app architecture and this creates a vacuum which sucks in well meaning devs and results is messy code bases strewn across the land. 
+This post is really a short intro to a small library + Wiki I have created. This library fills an architectural hole which I see in the Android dev world. There is no unified approach to generic Android app architecture and this creates a vacuum which sucks in well meaning devs and results is messy codebases strewn across the land. 
 
-Plus, I feel sorry for new Android devs who turn are turning up later to the party and are overwhealmed by the Android ecosystem and need to get up to speed quickly on what these issues are before even getting to the point of thinking about potential solutions. Some of the issues address by this approach are solved by fantastic existing librarys but again, I think for a large chunk of devs these can be difficult concepts to grasp and get running with. These are mentioned in the projects wiki for further reading.
+Plus, I feel sorry for new Android devs who turn are turning up later to the party and are overwhealmed by the Android ecosystem and need to get up to speed quickly on what these issues are before even getting to the point of thinking about potential solutions. Some of the issues addressed by this approach are solved by fantastic existing libraries, but again, I think for a large chunk of devs these can be difficult concepts to grasp and get running with. These are mentioned in the projects wiki for further reading.
 
-In my experience at least there are two core ideas around the center of most apps codebases. From the code-bases I have seen & inherited both of which have little or no thought applyed to them.
+In my experience at least there are two core ideas around the center of most apps codebases. From the codebases I have seen & inherited both ideas seem to have few brain cycles spent on them.
 
 #1. State
 
