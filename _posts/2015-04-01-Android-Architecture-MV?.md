@@ -110,7 +110,9 @@ The above are the main ones you see around at present. I have come to the conclu
 
 #What Now?
 
-I have outlined a few common architectural terms and is laying the way for me to talk about a pattern than I have found works for me that fixes the issues outlined at the beginning of this post. My next post will present this pattern.
+I have outlined a few common architectural terms and is laying the way for me to talk about a pattern than I have found works for me that fixes the issues outlined at the beginning of this post. 
+
+Check out my next post [Android Architecture: Introducing Dynamo](http://doridori.github.io/Android-Architecture-Dynamo/)
 
 #Down the rabbit hole (links)
 
