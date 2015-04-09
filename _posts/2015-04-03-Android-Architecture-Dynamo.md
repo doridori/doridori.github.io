@@ -22,7 +22,7 @@ Most apps and views are *state-based* however the speggetti-level that captures 
 
 #2. Asynchronous code
 
-Pretty much every app involves some asyncronous code. Pretty much every app allows this to touch the Android lifecycle. This _always_ leads to sadness.
+Pretty much every app involves some asynchronous code. Pretty much every app allows this to touch the Android lifecycle. This _always_ leads to sadness.
 
 _I spoke about this in the first part of [this brain dump of a blog post](http://doridori.github.io/Android%20App%20Architecture-%20Lifecycle%20Events%20and%20Asynchronicity/)_
 
