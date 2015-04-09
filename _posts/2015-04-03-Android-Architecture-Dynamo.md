@@ -10,7 +10,7 @@ This is post #2 of my very short Android Architecture series (can two be a serie
  1. A brief outline of the problems when defaulting to stock Android architecture.
  2. An overview of common general architectural concepts. 
 
-This post is really a short intro to a small library + Wiki I have created. This library fills an architectural hole which I see in the Android dev world. There is no unified approach to generic Android app architecture and this creates a vacuum which sucks in well meaning devs and results is messy codebases strewn across the land. 
+This post is really a short intro to a small library + Wiki I have created. This library fills an architectural hole which I see in the Android dev world. There is no unified approach to generic Android app architecture and this creates a vacuum which sucks in well meaning devs and results is messy codebases strewn across the land. It is also my reponse to the many MVP blog posts out there, which have really helped me think about this issue but also I have my own take on. 
 
 Plus, I feel sorry for new Android devs who are turning up later to the party and are overwhealmed by the Android ecosystem and need to get up to speed quickly on what these issues are before even getting to the point of thinking about potential solutions. Some of the issues addressed by this approach are solved by fantastic existing libraries, but again, I think for a large chunk of devs these can be difficult concepts to grasp and get running with. These are mentioned in the projects wiki for further reading.
 
