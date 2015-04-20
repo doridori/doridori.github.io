@@ -112,7 +112,7 @@ The better approach seems to be to either;
 
 ##MVP
 
-I will cover this more in another post but adopting a good separation between the views and app life-cycle (I would include `Activitiess` and `Fragments` in the _View_ camp) and your Controllers / Presenters / do-stuff-thingys makes things a heck of a lot easier to test. Check out [An Investigation into Flow and Mortar](http://www.bignerdranch.com/blog/an-investigation-into-flow-and-mortar/) for an overview of Squares approach to this separation. 
+Adopting a good separation between the views and app life-cycle (I would include `Activities` and `Fragments` in the _View_ camp) and your Controllers / Presenters / do-stuff-thingys makes things a heck of a lot easier to test. Check out my [Dynamo](https://github.com/doridori/Dynamo) lib for my take on this seperation. 
 
 #Test Devices
 
