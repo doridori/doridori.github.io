@@ -115,7 +115,7 @@ Knowing the above I see a few potential solutions
 
 2. If your requirement is to have strong encryption using the keystore and losing the encrypted data is ok - then you can detect the above exceptions mentioned and have some form of re-inititialisation for those cases. Target 4.3+. Remember to check the device has the required security settings before generating the keyPair.
 
-3. Look at another was of storing key data, for example generating one from a users input. This will not suit all applications of course. Target any platform version.
+3. Look at another way of storing key data, for example generating one from a users input. This will not suit all applications of course. Target any platform version.
 
 I hope that this sheds some light on this slightly confusing behaviour! As always, any thoughts / comments welcome.
 
