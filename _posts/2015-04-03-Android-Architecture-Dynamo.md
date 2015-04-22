@@ -36,6 +36,8 @@ It will reduce your `Activity`, `Fragment` and `View` classes to dealing with Vi
 
 <div data-gist-id="1d0fb22ef6c4edee8d3c" data-gist-file="ComputationActivity_state.java">ComputationActivity_state.java</div>
 
+Its a simple approach to decouple your UI from the core app logic which results in easy to understand and test code.
+
 Check [`Dynamo`](https://github.com/doridori/Dynamo) out. 
 
 Enjoy!
