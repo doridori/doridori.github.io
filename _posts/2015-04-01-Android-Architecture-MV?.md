@@ -92,7 +92,10 @@ For more info I would recommend you check out another Martin Fowler article [Ret
 
 [Wiki link](http://en.wikipedia.org/wiki/Model_View_ViewModel)
 
-This is a popular one in the Microsoft (& Xamarin) world. The thing that all MVVM architectures have in common is...data-binding! In a nutshell the ViewModel can define the binding between Views and data properties and if bound two ways then changes to the view update the model and changes to the model update the view, pretty much for free. There are some MVVM librarys for Android, but I have never played with them, or spoken to anyone who has. If you interested your can check out [RoboBinding](http://robobinding.github.io/RoboBinding/).
+This is a popular one in the Microsoft (& Xamarin) world. The thing that all MVVM architectures have in common is...data-binding! In a nutshell the ViewModel can define the binding between Views and data properties and if bound two ways then changes to the view update the model and changes to the model update the view, pretty much for free. There are some MVVM librarys for Android, but I have never played with them, or spoken to anyone who has. If you interested your can check out 
+
+- [RoboBinding](http://robobinding.github.io/RoboBinding/).
+- [Anvil](http://zserge.com/blog/anvil-2.html)
 
 ##MVA (Model-View-Adapter)
 
