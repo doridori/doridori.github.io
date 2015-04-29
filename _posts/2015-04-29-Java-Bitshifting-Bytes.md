@@ -16,10 +16,13 @@ This means you have to write casting code such as
 
 `byte b = (byte) (b ^ 8);` or `b ^= 8` which does the former under-the-hood.
 
+```
+testCode
+```
+
 This is not too bad really. But the pain starts when working with signed numbers together with `int` promotion. For example
 
 ```
-
 byte aByte = -112; //0b1001_0000
 
 byte bByte = (byte) (aByte >> 4); //would expect 0b1111_1001 (-7)
@@ -29,10 +32,13 @@ System.out.println(bByte);
 byte cByte = (byte) (aByte >>> 4); //would expect 0b0000_1001 (9)
 System.out.println(cByte);
 //-7
-
 ```
 
 For `bByte` we would expect the result to be `0b1111_1001` as the right [Arithmetic shift](http://en.wikipedia.org/wiki/Arithmetic_shift) operator `>>` fills the left bit depending on the left most (sign) bit (which is `1` when negative ala [2's complement](http://en.wikipedia.org/wiki/Two%27s_complement)) so the result is as expected.
+
+```
+testCode
+```
 
 However for `cByte` we would expect the result to be `0b0000_1001` as the right [Logical shift](http://en.wikipedia.org/wiki/Logical_shift) operator `>>>` () should fill the left most bit with `0`, but we still get `-7`! Why is this happening?
 
