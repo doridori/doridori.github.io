@@ -28,10 +28,10 @@ byte aByte = -112; //0b1001_0000
 
 ```
 byte aByte = -112; //0b1001_0000
-
+ 
 byte bByte = (byte) (aByte >> 4); //would expect 0b1111_1001 (-7)
 System.out.println(bByte); //-7
-
+ 
 byte cByte = (byte) (aByte >>> 4); //would expect 0b0000_1001 (9)
 System.out.println(cByte); //-7
 ```
