@@ -26,8 +26,6 @@ byte aByte = -112; //0b1001_0000
 byte aByte = -112; //0b1001_0000
 
 byte bByte = (byte) (aByte >> 4); 
-
-System.out.println(bByte); 
 ```
 
 ```
