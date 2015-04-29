@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Android: Robospice with OkHttp
+title: "Android: Robospice with OkHttp"
 ---
 
 What is Robospice?
