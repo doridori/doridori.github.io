@@ -20,7 +20,6 @@ This is not too bad really. But the pain starts when working with signed numbers
 
 <div data-gist-id="387bdce2ed4ad2b95efe" data-gist-file="ex1.java">ex1.java</div>
 
-
 For `bByte` we would expect the result to be `0b1111_1001` as the right [Arithmetic shift](http://en.wikipedia.org/wiki/Arithmetic_shift) operator `>>` fills the left bit depending on the left most (sign) bit (which is `1` when negative ala [2's complement](http://en.wikipedia.org/wiki/Two%27s_complement)) so the result is as expected.
 
 However for `cByte` we would expect the result to be `0b0000_1001` as the right [Logical shift](http://en.wikipedia.org/wiki/Logical_shift) operator `>>>` () should fill the left most bit with `0`, but we still get `-7`! Why is this happening?
@@ -39,11 +38,7 @@ So how can we perform `>>>` operations and get the "intuitive" result of `0b0000
 
 The answer is to mask the bitwise result before casting back down to `byte`. We can do this with `& 0xFF`. This works by persevering only the last 8 bits of the promotioned-to `int` only, and dropping all the extra `1` bits.When casting down we then get the result we are looking for. I.e. 
 
-```
-byte dByte = (byte) ((aByte & 0xFF) >>> 4); //we get 0b0000_1001 (9)
-System.out.println(dByte);
-//9
-```
+<div data-gist-id="387bdce2ed4ad2b95efe" data-gist-file="ex2.java">ex2.java</div>
 
 This is a bit clunky but a valuable technique if you are encountering unexpected results from your bitshifts!
 
