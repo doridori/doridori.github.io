@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Connectivity Receiver
+title: "Android: Connectivity Receiver"
 ---
 
 Here is a small snippit of how I handle Connectivity within some the applications I work on. A lot of apps dont seem to handle loss of connection correctly IMHO by either not showing a relevant error message or informing the user that there is an issue. Depending on the type of application, especially one that is meant to have a persistant network connection it can be useful to show some form of visual feedback when this is not the case. 
