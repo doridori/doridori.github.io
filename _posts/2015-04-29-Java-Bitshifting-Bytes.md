@@ -34,7 +34,7 @@ Due to [how casting works when casting down](http://stackoverflow.com/a/2458526/
 
 So how can we perform `>>>` operations and get the "intuitive" result of `0b0000_1001`?
 
-> Note: This is useful as to be able to do as Java does not have an unsigned byte type the above kind of operation would let you use a java `byte` in place of another languages `unsigned byte` type. This can useful when porting code, for example, if you want to replicate a `ubyte >> 4` call then the below will be useful.
+_Note: This is useful as to be able to do as Java does not have an unsigned byte type the above kind of operation would let you use a java `byte` in place of another languages `unsigned byte` type. This can useful when porting code, for example, if you want to replicate a `ubyte >> 4` call then the below will be useful._
 
 The answer is to mask the bitwise result before casting back down to `byte`. We can do this with `& 0xFF`. This works by persevering only the last 8 bits of the promotioned-to `int` only, and dropping all the extra `1` bits.When casting down we then get the result we are looking for. I.e. 
 
