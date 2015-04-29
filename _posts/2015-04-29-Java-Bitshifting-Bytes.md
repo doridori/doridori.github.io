@@ -18,7 +18,7 @@ This means you have to write casting code such as
 
 This is not too bad really. But the pain starts when working with signed numbers together with `int` promotion. For example
 
-```java
+```
 byte aByte = -112; //0b1001_0000
 
 byte bByte = (byte) (aByte >> 4); //would expect 0b1111_1001 (-7)
@@ -48,7 +48,7 @@ So how can we perform `>>>` operations and get the "intuitive" result of `0b0000
 
 The answer is to mask the bitwise result before casting back down to `byte`. We can do this with `& 0xFF`. This works by persevering only the last 8 bits of the promotioned-to `int` only, and dropping all the extra `1` bits.When casting down we then get the result we are looking for. I.e. 
 
-```java
+```
 byte dByte = (byte) ((aByte & 0xFF) >>> 4); //we get 0b0000_1001 (9)
 System.out.println(dByte);
 //9
