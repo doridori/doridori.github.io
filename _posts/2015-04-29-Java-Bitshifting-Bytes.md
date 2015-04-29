@@ -22,9 +22,9 @@ This is not too bad really. But the pain starts when working with signed numbers
 
 For `bByte` we would expect the result to be `0b1111_1001` as the right [Arithmetic shift](http://en.wikipedia.org/wiki/Arithmetic_shift) operator `>>` fills the left bit depending on the left most (sign) bit (which is `1` when negative ala [2's complement](http://en.wikipedia.org/wiki/Two%27s_complement)) so the result is as expected.
 
-However for `cByte` we would expect the result to be `0b0000_1001` as the right [Logical shift](http://en.wikipedia.org/wiki/Logical_shift) operator `>>>` () should fill the left most bit with `0`, but we still get `-7`! Why is this happening?
+However for `cByte` we would expect the result to be `0b0000_1001` as the right [Logical shift](http://en.wikipedia.org/wiki/Logical_shift) operator `>>>` should fill the left most bit with `0`, but we still get `-7`! Why is this happening?
 
-Well due to the auto int promotion, when the `aByte` is promoted to an `int`, the left most bits of that int are all `1`s. In binary form this is
+Well due to the auto int promotion (as a result of using any bitwise operator), when the `aByte` is promoted to an `int`, the left most bits of that int are all `1`s. In binary form this is
 
 `0b1111_1111_1111_1111_1111_1111_1001_0000` before the shift
 
