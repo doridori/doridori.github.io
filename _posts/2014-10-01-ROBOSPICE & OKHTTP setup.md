@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Using Robospice with OkHttp on Android
+title: Android: Robospice with OkHttp
 ---
 
 What is Robospice?
