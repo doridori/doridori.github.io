@@ -37,6 +37,18 @@ System.out.println(cByte);
 For `bByte` we would expect the result to be `0b1111_1001` as the right [Arithmetic shift](http://en.wikipedia.org/wiki/Arithmetic_shift) operator `>>` fills the left bit depending on the left most (sign) bit (which is `1` when negative ala [2's complement](http://en.wikipedia.org/wiki/Two%27s_complement)) so the result is as expected.
 
 ```
+byte aByte = -112; //0b1001_0000
+
+byte bByte = (byte) (aByte >> 4); //would expect 0b1111_1001 (-7)
+System.out.println(bByte);
+//-7
+
+byte cByte = (byte) (aByte >>> 4); //would expect 0b0000_1001 (9)
+System.out.println(cByte);
+//-7
+```
+
+```
 testCode
 ```
 
