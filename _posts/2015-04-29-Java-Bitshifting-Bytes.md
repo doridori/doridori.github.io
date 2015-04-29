@@ -3,7 +3,7 @@ layout: post
 title: "Java: Bitshifting bytes"
 ---
 
-**<TL;DR> When bitshifting a `byte` use a `& 0xFF` mask**
+**\<TL;DR> When bitshifting a `byte` use a `& 0xFF` mask**
 
 Working at the bit level in Java can be very frustrating. This is for two reasons
 
