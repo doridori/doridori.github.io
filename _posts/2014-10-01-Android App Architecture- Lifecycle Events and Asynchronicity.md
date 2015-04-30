@@ -41,6 +41,12 @@ I have seen retained fragments being used to try and fix this issue, as it can m
 
 Loaders are good for local DB work but not great for networking due to restarting unfinished requests (As shown in [this Robospice motivations](https://camo.githubusercontent.com/db2f449c1862af4b74400546d12f956328cac131/68747470733a2f2f7261772e6769746875622e636f6d2f6f63746f2d6f6e6c696e652f726f626f73706963652f6d61737465722f6766782f526f626f53706963652d496e666f47726170686963732e706e67) diagram - more on this later). 
 
+I also dont like how:
+
+1. They used to be buggy and some edge case bahaviour would result in no callbacks on config-change
+2. They create a relationship between loading of data and the Activities lifecycle
+3. You cant just lift the loader out into a contextless class
+
 ##An OK fix #4 : Eventbus
 
 This is a halfway house - its an ok solution but does not tick all my boxes. The idea is that an async request is made and the result is communicated via an event bus. This does work well for config-change scenarios but generally not-so-much when the activity was killed when the result was returned and then recreated. 
