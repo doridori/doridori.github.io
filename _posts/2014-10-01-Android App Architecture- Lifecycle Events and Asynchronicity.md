@@ -3,7 +3,7 @@ layout: post
 title: "Android App Architecture: Lifecycle Events and Asynchronicity"
 ---
 
-> Edit: This blog post is now deprecated. It was a bit of a brain dump which prompted my to write up my approach starting [here](http://doridori.github.io/Android-Architecture-MV%3F/)
+> Edit: This blog post is now deprecated. It was a bit of a brain dump which prompted me to write up my approach starting [here](http://doridori.github.io/Android-Architecture-MV%3F/)
 
 > Edit: The day after this post Square published a post called [Advocating Against Android Fragments](http://corner.squareup.com/2014/10/advocating-against-android-fragments.html) which covers a similar approach also using `Presenters`. Defo worth a read!
 
