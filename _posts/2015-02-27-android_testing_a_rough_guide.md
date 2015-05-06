@@ -31,7 +31,9 @@ There are a number of ways to run your tests, the simplest first choice to me se
 
 ###JUnit 4
 
-The new [Android Testing Support Library](https://code.google.com/p/android-test-kit/) now supports JUnit 4 (yay) via the [`AndroidJUnitRunner`](https://code.google.com/p/android-test-kit/wiki/AndroidJUnitRunnerUserGuide) which allows for more expressive test declaration which is great. Using this you can write some of your tests against the JVM (if your not using Android classes in those tests). 
+The new [Android Testing Support Library](https://code.google.com/p/android-test-kit/) now supports JUnit 4 (yay) via the [`AndroidJUnitRunner`](https://code.google.com/p/android-test-kit/wiki/AndroidJUnitRunnerUserGuide) which allows for more expressive test declaration, which is great. Using this you can write some of your tests against the JVM, and android.jar has its `final`s stripped so you can mock out with `Mockito`.
+
+Normal android tests can live in the `app/src/androidTest/java` folder and java tests in `app/src/test/java`
 
 You can also create standalone java projects (say in IntelliJ) and write speedy tests with JUnit 4 and then have your main app consume your own lib projects. Will write a guide on doing this soon :)
 
