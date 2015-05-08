@@ -44,6 +44,11 @@ Andorid device tests now support Junit 4 via the new [Android Testing Support Li
 - See the [Junit 4 wiki](https://github.com/junit-team/junit/wiki) on Github for general how-to
 - Check out [the example project](https://github.com/googlesamples/android-testing/blob/master/testrunner/AndroidJunitRunnerSample/app/build.gradle) from the Test team for a working JUnit 4 support implementation.
 
+As a minimum if you want to just use JUnit 4 for tests running on Android but dont want to mock out android.jar then using the `AndroidJUnitRunner` should be enough. The minimum setup I used for this was to add to `gradle.build`
+
+- `dependencies { ... androidTestCompile 'com.android.support.test:runner:0.2' }`
+- `defaultConfig { ... testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner" }`
+
 As an aside, you can also create standalone java projects (say in IntelliJ) and write speedy tests with JUnit 4 and then have your main app consume your own lib projects. Will write a guide on doing this soon :)
 
 ##UI Automation (Espresso)
