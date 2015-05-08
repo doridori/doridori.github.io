@@ -45,9 +45,11 @@ As an aside, you can also create standalone java projects (say in IntelliJ) and 
 - See [this post on the Android Tools](http://tools.android.com/tech-docs/unit-testing-support) site for how to set up for Android Studio 1.1+.
 - See the [Junit 4 wiki](https://github.com/junit-team/junit/wiki) on Github for how to use
 
-##UI Automation
+##UI Automation (Espresso)
 
 Lots of solutions out there but I think the best bet currently is [Espresso](https://code.google.com/p/android-test-kit/wiki/Espresso). This is direct from Google and has just hit 2.0 so a great time to start using if your not already. The only bugbear with it is the [`IdlingResource`](https://code.google.com/p/android-test-kit/wiki/EspressoSamples#Using_registerIdlingResource_to_synchronize_with_custom_resourc-c)s imho but with the right architectural choice you shouldn't have to actually mess with these that often. For me this replaces (and improves upon) Robotium.
+
+[Here](https://code.google.com/p/android-test-kit/wiki/EspressoSetupInstructions) is a setup guide for using Espresso. This has been updated since I last looked with instructions on disabling UI animations as part of your tests, which is good for reducing test flakiness.
 
 ##CI servers
 
