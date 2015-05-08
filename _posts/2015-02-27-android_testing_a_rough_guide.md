@@ -29,7 +29,7 @@ _Edit: After starting this I listened to [Episode 1](http://fragmentedpodcast.co
 
 There are a number of ways to run your tests, the simplest first choice to me seems to run them on a device or emulator via a test apk (see below for emulator choices) rather than using something like [Roboelectic](http://robolectric.org/) (which lots of people do like and use) as I have heard too many people fall out of favor with it. 
 
-###JUnit 4
+##JUnit 4
 
 Tests on Android live in two places:
 
