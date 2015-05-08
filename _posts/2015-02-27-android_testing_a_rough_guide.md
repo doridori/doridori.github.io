@@ -40,7 +40,7 @@ JVM tests could use JUnit 4 already (afaik).
 
 Andorid device tests now support Junit 4 via the new [Android Testing Support Library](https://code.google.com/p/android-test-kit/) and  [`AndroidJUnitRunner`](https://code.google.com/p/android-test-kit/wiki/AndroidJUnitRunnerUserGuide) which allows for more expressive test declaration, which is great. You can now execute more tests on the JVM as the android.jar has its `final`s stripped so you can mock out with `Mockito`.
 
-- See [this post on the Android Tools](http://tools.android.com/tech-docs/unit-testing-support) site for how to set up JUnit 4 for `androidTest` for Android Studio 1.1+ and the mocked `android.jar`.
+- See [this post on the Android Tools](http://tools.android.com/tech-docs/unit-testing-support) site for how to set up JUnit 4 for `androidTest` for Android Studio 1.1+ and the mocked `android.jar` and therefore run tests on the JVM this way.
 - See the [Junit 4 wiki](https://github.com/junit-team/junit/wiki) on Github for general how-to
 - Check out [the example project](https://github.com/googlesamples/android-testing/blob/master/testrunner/AndroidJunitRunnerSample/app/build.gradle) from the Test team for a working JUnit 4 support implementation.
 
