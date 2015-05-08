@@ -69,9 +69,13 @@ I have not used CI servers much but there are a good amount of options here. I w
 
 From talking to people Travis would be my first choice (if I didn't have to pay personally for closed-source) otherwise one of the free ones (ship or greenhouse).
 
+Also, check out [Rultor](http://doc.rultor.com/) which can be intergrating with many different setups
+
 ##GIT
 
 Version control is a given, and Git is the go-to for most. Combined with a CI server you can run your test suite on commit / pull requests / pushes and make sure no-one is breaking code!
+
+
 
 ##Mocking
 
