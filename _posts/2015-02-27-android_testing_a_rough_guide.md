@@ -55,7 +55,9 @@ As an aside, you can also create standalone java projects (say in IntelliJ) and 
 
 Lots of solutions out there but I think the best bet currently is [Espresso](https://code.google.com/p/android-test-kit/wiki/Espresso). This is direct from Google and has just hit 2.0 so a great time to start using if your not already. The only bugbear with it is the [`IdlingResource`](https://code.google.com/p/android-test-kit/wiki/EspressoSamples#Using_registerIdlingResource_to_synchronize_with_custom_resourc-c)s imho but with the right architectural choice you shouldn't have to actually mess with these that often. For me this replaces (and improves upon) Robotium.
 
-[Here](https://code.google.com/p/android-test-kit/wiki/EspressoSetupInstructions) is a setup guide for using Espresso. This has been updated since I last looked with instructions on disabling UI animations as part of your tests, which is good for reducing test flakiness.
+- [Here](https://code.google.com/p/android-test-kit/wiki/EspressoSetupInstructions) is a setup guide for using Espresso. This has been updated since I last looked with instructions on disabling UI animations as part of your tests, which is good for reducing test flakiness.
+- [Espresso: Custom Idling Resource](http://blog.sqisland.com/2015/04/espresso-custom-idling-resource.html)
+
 
 ##CI servers
 
@@ -118,7 +120,7 @@ The better approach seems to be to either;
 	- If using **`Retrofit`** for your api methods you can [swap out the Executors](http://stackoverflow.com/questions/23142437/) so it runs synchronously. Combine this with loading data from the `MockWebServer` and its can be a nice approach.
 	- If using **`Dagger`** you can easily swap out your async components at test time with synchronous mocks. The code inside the async ops can be tested separately.
 - Use a framework that **auto-waits** for any running worker `Threads` or `Executors` to finish.
-	- If using **`Espresso`** to execute your UI-tests, this will utilize the `IdlingResource` interface which you can plug into your async code, which causes Espresso to wait for your async operations to finish before continuing with the test. This works out of the box for stock `AsyncTasks` but for more interesting threaded behavior you may need to implement this interface directly.
+	- If using **`Espresso`** to execute your UI-tests, this will utilize the `IdlingResource` interface which you can plug into your async code, which causes Espresso to wait for your async operations to finish before continuing with the test. This works out of the box for stock `AsyncTasks` but for more interesting threaded behavior you may need to implement this interface directly (see example [here](http://blog.sqisland.com/2015/04/espresso-custom-idling-resource.html)).
 - Use a **timeout** to wait for callbacks. 
     - Lots of people do this with `Thread.sleep` but this is a **bad idea**! Your tests will be slow and you will probably stop running them!
     - An alternative is to use the [`Mockito.timeout()`](http://docs.mockito.googlecode.com/hg/org/mockito/Mockito.html#timeout(int)) method which will wait up to the declared time for the expected behavior to happen. This is not as bad as `Thread.sleep` as it will only take a long time when it fails - which should not be the norm. Bear in mind, the documentation states _"Allows verifying with timeout. May be useful for testing in concurrent conditions. It feels this feature should be used rarely - figure out a better way of testing your multi-threaded system"_.
