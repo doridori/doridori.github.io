@@ -58,6 +58,7 @@ Lots of solutions out there but I think the best bet currently is [Espresso](htt
 - [Here](https://code.google.com/p/android-test-kit/wiki/EspressoSetupInstructions) is a setup guide for using Espresso. This has been updated since I last looked with instructions on disabling UI animations as part of your tests, which is good for reducing test flakiness.
 - [Espresso: Custom Idling Resource](http://blog.sqisland.com/2015/04/espresso-custom-idling-resource.html)
 - [Android Developers Backstage: Episode 25: Espresso](http://androidbackstage.blogspot.co.uk/2015/04/episode-25-espresso.html?utm_source=Android+Weekly&utm_campaign=3b56c3e34b-Android_Weekly_150&utm_medium=email&utm_term=0_4eb677ad19-3b56c3e34b-337253633)
+- - [Espresso Cheat Sheet](https://raw.githubusercontent.com/googlesamples/android-testing/master/downloads/espresso-cheat-sheet-2.1.0.png)
 
 ##CI servers
 
