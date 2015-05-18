@@ -150,3 +150,5 @@ Well thats it! When I go to approach testing on my next project this is pretty m
 - Great talk from Droidcon London with some interesting ideas for maintaining app quality [Testing Applications At Facebook](https://skillsmatter.com/skillscasts/5630-testing-applications-at-facebook)
 - [How to write good tests](https://github.com/mockito/mockito/wiki/How-to-write-good-tests)
 - [WHY ANDROID UNIT TESTING IS SO HARD (PT 1)](http://philosophicalhacker.com/2015/04/17/why-android-unit-testing-is-so-hard-pt-1/)
+- [What's new in Android Testing Droidcon Italy 2015](https://docs.google.com/presentation/d/1EtFKPluGiuxZcr4W_cAziEY_--wbY_1otw44XEBv7JA/edit#slide=id.g98a986571_0_0)
+- [Android Developers Backstage: Episode 25: Espresso](http://androidbackstage.blogspot.co.uk/2015/04/episode-25-espresso.html?utm_source=Android+Weekly&utm_campaign=3b56c3e34b-Android_Weekly_150&utm_medium=email&utm_term=0_4eb677ad19-3b56c3e34b-337253633)
