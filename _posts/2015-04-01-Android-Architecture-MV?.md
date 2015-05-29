@@ -97,7 +97,7 @@ This is a popular one in the Microsoft (& Xamarin) world. The thing that all MVV
 - [RoboBinding](http://robobinding.github.io/RoboBinding/).
 - [Anvil](http://zserge.com/blog/anvil-2.html)
 
-EDIT (29/05/15): IO15 announced a new [data-binding lib](http://developer.android.com/tools/data-binding/guide.html)
+_EDIT (29/05/15)_: IO15 announced a new [data-binding lib](http://developer.android.com/tools/data-binding/guide.html)
 
 ##MVA (Model-View-Adapter)
 
