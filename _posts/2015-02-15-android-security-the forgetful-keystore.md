@@ -39,7 +39,7 @@ Reading the [related android bug-tracker list](https://code.google.com/p/android
 
 Its worth noting that when creating a key with [`KeyPairGeneratorSpec.Builder.setEncryptionRequired()`](http://developer.android.com/reference/android/security/KeyPairGeneratorSpec.Builder.html#setEncryptionRequired()) its required that the device have a device-lock set (as this is used as part of the keying material). If you do `setEncryptionRequired()` and one isnt, you get a friendly `java.lang.IllegalStateException: Android keystore must be in initialized and unlocked state if encryption is required` so you need to manually ensure that something is set. Use a Device Admin Policy or refer to StackOverflow for this one :). The great [Android Security Cookbook](https://www.packtpub.com/application-development/android-security-cookbook) has a recipie for using the Device Admin Policy.
 
-If you do get into the position of having a wiped keystore I have seen this manafest in two ways (in my initial testing):
+If you do get into the position of having a wiped keystore I have seen this manifest in two ways (in my initial testing):
 
 1. Most of the time ~98% in my original testing the key data _AND_ alias is wiped - giveng a `InvalidKeyException` at point of use. 
 2. A small amount of the time ~2% the key data is lost but the alias is _not_ giving `IllegalArgException`
