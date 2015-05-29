@@ -3,6 +3,8 @@ layout: post
 title: "Android Security: The Forgetful Keystore"
 ---
 
+**EDIT:** This post needs to be updated with M preview data. They have mentioned that _Keys which do not require encryption at rest will no longer be deleted when secure lock screen is disabled or reset (for example, by the user or a Device Administrator). Keys which require encryption at rest will be deleted during these events._ It will be interested to run the below tests on the M preview.
+
 You've just moved in to a new house and have been given the master key for the front door. You only have one of these so you know you need to keep it safe. Your really paranoid so you hire an armed guard, whose sole job is to protect this key, in fact, this is all he has been trained to do and has a catchy slogan of "need to protect a key, its what I was born to do!". You install an extra lock on your front door as you feel the bodyguard isnt enough, this is a rough area anyway and who's going to make sure no-ones about to break in and steal all your crap. You return to your key guard only to be informed he has thrown the key away. You shout and scream at him but he just blankly says "I dont have it anymore, I didnt think it was important". You can't contain your anger "What the hell, your a jerk! You had one thing to do and you failed, this causes me a lot of problems, why didnt you tell me you might do this?! What do I do now?!"
 
 Ok, stories arnt my strong point. The point is, this is how I feel when using the Android `Keystore` to protect my private encryption key, it drives me a bit nuts. I really appreciate the effort thats gone into it but its still frustrating when your on a deadline, documentation is lacking, and something isn't working as it should 
@@ -127,4 +129,5 @@ I hope that this sheds some light on this slightly confusing behaviour! As alway
 - Nikolay Elenkov blog 2012 [Jelly Bean hardware-backed credential storage](http://nelenkov.blogspot.jp/2012/07/jelly-bean-hardware-backed-credential.html)
 - Nikolay Elenkov's great book [Android Security Internals](http://www.nostarch.com/androidsecurity)
 - [Android keystore key leakage between security domains](http://jbp.io/2014/04/07/android-keystore-leak/)
+- [Android Keystore System](https://developer.android.com/training/articles/keystore.html) _EDIT: (29/05/15)_
 
