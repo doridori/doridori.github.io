@@ -99,6 +99,8 @@ This is a popular one in the Microsoft (& Xamarin) world. The thing that all MVV
 
 _EDIT (29/05/15)_: IO15 announced a new [data-binding lib](http://developer.android.com/tools/data-binding/guide.html)
 
+- [MVVM on Android: What You Need to Know](http://www.willowtreeapps.com/blog/mvvm-on-android-what-you-need-to-know/)
+
 ##MVA (Model-View-Adapter)
 
 [Wiki link](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93adapter)
