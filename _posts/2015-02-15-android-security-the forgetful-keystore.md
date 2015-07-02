@@ -80,6 +80,8 @@ Once a keypair has been generated the system will not let you revert to NONE unl
  
 More N/As on this one as `.setEncryptionRequired()` will throw if you try to create a keypair with a NONE state.
 
+**EDIT** It seems that there are still issues on 5 when using non-primary user accounts, which seems to behave like older OS versions and will still wipe the keystore :( See [this bug](https://code.google.com/p/android/issues/detail?id=61989#c21)
+
 ##Nexus 7 | 4.4.4
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
@@ -117,11 +119,13 @@ Sad face.
 
 Knowing the above I see a few potential solutions
 
-1. If your requirement is to have strong encryption using the keystore and losing the encrypted data is a no-no - targeting L+ (5+) seems like the only choice, using `.setEncryptionRequired()`
+1. If your requirement is to have strong encryption using the keystore and losing the encrypted data is a no-no - targeting L+ (5+) seems like the only choice, using `.setEncryptionRequired()`. However be warned that this is no guarentee that it will always work as this seems to still be broken for non-primary user accounts.
 
 2. If your requirement is to have strong encryption using the keystore and losing the encrypted data is ok - then you can detect the above exceptions mentioned and have some form of re-inititialisation for those cases. Target 4.3+. Remember to check the device has the required security settings before generating the keyPair.
 
 3. Look at another way of storing key data, for example generating one from a users input. This will not suit all applications of course. Target any platform version.
+
+If you are planning on using the system keystore for Lollipop (5) or below then you need to have a way to recover from the keystore being lost / corrupt. This will be easier for some that others but being aware of the issue is a first step!
 
 I hope that this sheds some light on this slightly confusing behaviour! As always, any thoughts / comments welcome.
 
