@@ -37,12 +37,13 @@ Currently this can happen when the device security settings (device-lock) are ch
 
 Reading the [related android bug-tracker list](https://code.google.com/p/android/issues/list?can=1&q=KeyPairGeneratorSpec&colspec=ID+Type+Status+Owner+Summary+Stars&cells=tiles) some cry 'its a bug' and others 'its a feature'. If its a feature documentation is much needed, if a bug then fixes are welcome. From this point the most I can do it outline what I have seen so as to enable others to work around it / be aware.
 
-Its worth noting that when creating a key with [`KeyPairGeneratorSpec.Builder.setEncryptionRequired()`](http://developer.android.com/reference/android/security/KeyPairGeneratorSpec.Builder.html#setEncryptionRequired()) its required that the device have a device-lock set (as this is used as part of the keying material). If you do `setEncryptionRequired()` and one isnt, you get a friendly `java.lang.IllegalStateException: Android keystore must be in initialized and unlocked state if encryption is required` so you need to manually ensure that something is set. Check out [my SO answer](http://stackoverflow.com/a/27801128/236743) for an approach to use here :). The great [Android Security Cookbook](https://www.packtpub.com/application-development/android-security-cookbook) has a recipie for using the Device Admin Policy.
-
 If you do get into the position of having a wiped keystore I have seen this manifest in two ways (in my initial testing):
 
 1. Most of the time ~98% in my original testing the key data _AND_ alias is wiped - giveng a `InvalidKeyException` at point of use. 
 2. A small amount of the time ~2% the key data is lost but the alias is _not_ giving `IllegalArgException`
+
+#Requiring a device lock
+
 
 #Behaviour Matrix
 
