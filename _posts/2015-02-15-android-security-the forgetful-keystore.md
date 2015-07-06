@@ -44,17 +44,7 @@ If you do get into the position of having a wiped keystore I have seen this mani
 
 See below for the `InvalidKeyException` source.
 
-```
-System.err  W  java.security.InvalidKeyException: javax.crypto.BadPaddingException: error:0407106B:rsa routines:RSA_padding_check_PKCS1_type_2:block type is not 02
-W      at com.android.org.conscrypt.OpenSSLCipherRSA.engineUnwrap(OpenSSLCipherRSA.java:340)
-W      at javax.crypto.Cipher.unwrap(Cipher.java:1409)
-...<some app specific code>
-W  Caused by: javax.crypto.BadPaddingException: error:0407106B:rsa routines:RSA_padding_check_PKCS1_type_2:block type is not 02
-W      at com.android.org.conscrypt.NativeCrypto.RSA_private_decrypt(Native Method)
-W      at com.android.org.conscrypt.OpenSSLCipherRSA.engineDoFinal(OpenSSLCipherRSA.java:273)
-W      at com.android.org.conscrypt.OpenSSLCipherRSA.engineUnwrap(OpenSSLCipherRSA.java:325)
-W      ... 23 more
-```
+<div data-gist-id="cfe0fca74a9c05fc6a57" data-gist-file="InvalidKeyException">InvalidKeyException Example</div>
 
 From the above you can see it's not just a silent fail yielding an empty keystore but an undocumented-exception-throwing fail which requires you to reset the alias ([Keystore.deleteEntry()](https://developer.android.com/reference/java/security/KeyStore.html#deleteEntry(java.lang.String))).
 
