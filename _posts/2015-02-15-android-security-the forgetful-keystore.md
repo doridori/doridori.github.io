@@ -42,7 +42,7 @@ If you do get into the position of having a wiped keystore I have seen this mani
 1. Most of the time ~98% in my original testing the key data _AND_ alias is wiped - giveng a `InvalidKeyException` at point of use. 
 2. A small amount of the time ~2% the key data is lost but the alias is _not_ giving `IllegalArgException`
 
-From the above you can see it's not just a silent fail yielding an empty keystore but an undocumented-exception-throwing fail which requires you to reset the alias.
+From the above you can see it's not just a silent fail yielding an empty keystore but an undocumented-exception-throwing fail which requires you to reset the alias ([Keystore.deleteEntry()](https://developer.android.com/reference/java/security/KeyStore.html#deleteEntry(java.lang.String))).
 
 #Device locks & `.setEncryptionRequired()`
 
