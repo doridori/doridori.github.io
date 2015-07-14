@@ -5,7 +5,7 @@ title: "Android Architecture: Introducing Dynamo"
 
 Welcome, welcome. Come in, it looks mighty cold out there. The code is laying heavy across the hills, disorder rules the day and the nights are long. We yearn for a day where the suns shines forth once more.
 
-This is post #2 of my very short Android Architecture series (can two be a series?). Post #1 was a primer for this post. It contained
+This is post #2 of my very short Android Architecture series (can two be a series?). [Post #1](http://doridori.github.io/Android-Architecture-MV%3F/) was a primer for this post. It contained
 
  1. A brief outline of the problems when defaulting to stock Android architecture.
  2. An overview of common general architectural concepts. 
