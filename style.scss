@@ -99,7 +99,7 @@ div.date{
     
 /* tables */    
 table {  background: #fff; border-collapse: collapse;} /* Make table wider */    
-td, th { border: 2px solid #fff; padding:6px; color:#555; font-size:12px; font-weight:normal;} /* Add borders to cells */
+td, th { border: 0px solid #fff; padding:6px; color:#555; font-size:12px; font-weight:normal;} /* Add borders to cells */
 tr:nth-child(odd){ background-color:#fff8ff; } 
 tr:nth-child(even)    { background-color:#ffeaff; } 
 th{background:$pink; color:#fff }
