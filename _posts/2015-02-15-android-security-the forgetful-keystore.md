@@ -147,3 +147,8 @@ I hope that this sheds some light on this slightly confusing behaviour! As alway
 - [Android keystore key leakage between security domains](http://jbp.io/2014/04/07/android-keystore-leak/)
 - [Android Keystore System](https://developer.android.com/training/articles/keystore.html) _EDIT: (29/05/15)_
 
+#Using the Keystore to encrypt your SharedPrefs
+
+- [Android secure shared preferences](https://medium.com/@vashisthg/android-secure-shared-preferences-10f8356a4c2b) 
+
+
