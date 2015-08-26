@@ -7,7 +7,7 @@ You've just moved in to a new house and have been given the master key for the f
 
 Ok, stories arnt my strong point. The point is, this is how I feel when using the Android `Keystore` to protect my private encryption key, it drives me a bit nuts. I really appreciate the effort thats gone into it but its still frustrating when your on a deadline, documentation is lacking, and something isn't working as it should 
 
-I have been working on some apps with a high security requirement, and one of the requirements is to take advantage of the best level of security offered by the platform. For our case this includes utilising the system `Keystore` to store an asymmetric key pair. One can then use this for encryption/decryption directly or use it to encrypt an symettric key (like AES) which can then be used to encrypt your plaintext ([or your SharedPrefs](https://medium.com/@vashisthg/android-secure-shared-preferences-10f8356a4c2b)), which is much faster than using the asymmetric directly. 
+I have been working on some apps with a high security requirement, and one of the requirements is to take advantage of the best level of security offered by the platform. For our case this includes utilising the system `Keystore` to store an asymmetric key pair. One can then use this for encryption/decryption directly or use it to encrypt an symettric key (like AES) which can then be used directly to encrypt your plaintext (or fed into something like [java-aes-crypto](https://github.com/tozny/java-aes-crypto)), which is much faster than using the asymmetric directly. 
 
 Lots of people seem to use encryption in the wild but they hard code the key or store is as plaintext or obfuscated. None of which are recommended.
 
