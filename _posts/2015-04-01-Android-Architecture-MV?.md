@@ -92,9 +92,11 @@ For more info I would recommend you check out another Martin Fowler article [Ret
 
 [Wiki link](http://en.wikipedia.org/wiki/Model_View_ViewModel)
 
-This is a popular one in the Microsoft (& Xamarin) world. The thing that all MVVM architectures have in common is...data-binding! In a nutshell the ViewModel can define the binding between Views and data properties and if bound two ways then changes to the view update the model and changes to the model update the view, pretty much for free.
+This is a popular one in the Microsoft (& Xamarin) world. The thing that all MVVM architectures have in common is **binding**! 
 
-Another concept of MVVM is _Commands_ - which is binding of operations (rather than data) to views. See [Commands in MVVM](http://www.codeproject.com/Articles/274982/Commands-in-MVVM) for more info.
+This can be Data-binding, which in a nutshell means the ViewModel can define the binding between Views and data propertie. If bound two ways then changes to the view update the model and changes to the model update the view, pretty much for free.
+
+Or this can be Operation-binding in the form of _Commands_. See [Commands in MVVM](http://www.codeproject.com/Articles/274982/Commands-in-MVVM) for more info.
 
 There are some MVVM librarys for Android, but I have never played with them, or spoken to anyone who has. If you interested your can check out 
 
