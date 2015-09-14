@@ -135,6 +135,7 @@ While MV* approaches are often talked about, the following are also used on Andr
 - [Clean Architecture](http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html) (_contains some good links itself_)
 - [Presentation Model](http://martinfowler.com/eaaDev/PresentationModel.html) (_agree with opening but do not recreate view interface in code as it will need V->PM Observer sync whereas flow makes more sense most of the time in Android land_) 
 - [GUI Architectures](http://martinfowler.com/eaaDev/uiArchs.html)
+- [A simple guide for MVC, MVP and MVVM on Android projects](https://medium.com/android-news/android-architecture-2f12e1c7d4db) Published many moons later but a good read
 
 #Appendix 1: iOS ViewControllers
 
