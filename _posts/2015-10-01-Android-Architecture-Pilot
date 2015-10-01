@@ -1,4 +1,7 @@
-Android Architecture: Introducing Pilot
+---
+layout: post
+title: "Android Architecture: Introducing Pilot"
+---
 
 #Motivation
 
@@ -88,4 +91,4 @@ So, hope thats enough motavations before the main event.
 
 ![](https://raw.githubusercontent.com/doridori/Pilot/master/gfx/pilot_mascot.png)
 
-Please continue reading via the repos README.
+Please continue reading via the repos [README](https://github.com/doridori/Pilot).
