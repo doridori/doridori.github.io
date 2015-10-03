@@ -3,6 +3,8 @@ layout: post
 title: "Android Architecture: Introducing Pilot"
 ---
 
+An abstract application stack for Android
+
 #Motivation
 
 There are some common questions that keep popping up on the interwebs around the current collective thought on Android Architecture. Some of these questions are:
