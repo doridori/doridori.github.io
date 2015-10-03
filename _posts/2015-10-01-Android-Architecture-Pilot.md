@@ -12,7 +12,7 @@ There are some common questions that keep popping up on the interwebs around the
 3. How can I scope data within my application?
 4. What architecture chould I use to support a View only based architecture (or a mix of Fragments / Views) ?
 
-The above questions are not easy ones to address and by no means am I suggesting the below is the only solution to these common issues. I have started using a simple abstract application stack which for the kind of applications I have been developing allows a clean & structured base for them to sit on top off. 
+The above questions are not easy ones to address and by no means am I suggesting the below is the only solution to these common issues. I have started using a simple abstract application stack which for the kind of applications I have been developing allows a clean & structured base for them to sit on top of. 
 
 This post and supporting repo is definitely a work-in-progress but Im hoping it will spark some discussion which can be fed back into the project so it's something that is useful to others also. I have been tempted to not write anything about this until I have answered all the pending questions I have myself but I feel more may be gained by publishing early and often.
 
