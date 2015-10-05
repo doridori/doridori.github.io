@@ -12,7 +12,7 @@ There are some common questions that keep popping up on the interwebs around the
 1. What approach can I use to handle my Presenters Lifecycle?
 2. How can Presenters control the flow of an application?
 3. How can I scope data within my application?
-4. What architecture chould I use to support a View only based architecture (or a mix of Fragments / Views) ?
+4. What architecture could I use to support a View only based architecture (or a mix of Fragments / Views) ?
 
 The above questions are not easy ones to address and by no means am I suggesting the below is the only solution to these common issues. I have started using a simple abstract application stack which for the kind of applications I have been developing allows a clean & structured base for them to sit on top of. 
 
