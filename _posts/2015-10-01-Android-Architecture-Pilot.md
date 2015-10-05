@@ -18,6 +18,8 @@ The above questions are not easy ones to address and by no means am I suggesting
 
 This post and supporting repo is definitely a work-in-progress but Im hoping it will spark some discussion which can be fed back into the project so it's something that is useful to others also. I have been tempted to not write anything about this until I have answered all the pending questions I have myself but I feel more may be gained by publishing early and often.
 
+It is probably worth mentioning that if you are not currently using some kind of Presenter / Controller / distinct view logic abstraction in your application at present you probably will not have come across (or asked yourself) some of these questions. The same goes for Dagger (& Dagger Custom Scopes) and `View` only view implementations. If you have been playing with some of this stuff you may find the below more applicable.
+
 In this post I will briefly expand on the above questions and introduce the project.
 
 
