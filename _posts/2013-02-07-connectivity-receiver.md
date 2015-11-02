@@ -7,7 +7,7 @@ Here is a small snippit of how I handle Connectivity within some the application
 
 The below is based upon [Determining and Monitoring the Connectivity Status](http://developer.android.com/training/monitoring-device-state/connectivity-monitoring.html)
 
-The `ConnectivityReceiver` helper class I use can be found [on github](https://github.com/doridori/AndroidUtilDump/blob/master/android/AndroidUtilDump/src/couk/doridori/android/lib/io/ConnectivityReceiver.java).
+The `ConnectivityReceiver` helper class I use can be found [on github](https://github.com/doridori/AndroidUtils/blob/master/App/src/main/java/com/doridori/lib/io/ConnectivityReceiver.java).
 
 The javadoc pretty much says it all but points to note are
 
