@@ -148,7 +148,7 @@ I hope that this sheds some light on this slightly confusing behaviour! As alway
 - [Android Keystore System](https://developer.android.com/training/articles/keystore.html) _EDIT: (29/05/15)_
 - [Android `Vault` Example](https://github.com/android/platform_development/tree/master/samples/Vault)
 
-#Marshmallow fingerprint api update
+#UPDATE: Marshmallow fingerprint api
 
 Since Android 6.0 keys can be stored which require authentication via fingerprint before they can be used. Note the below in regards to lifetime of such keys.
 
