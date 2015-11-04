@@ -139,7 +139,7 @@ I hope that this sheds some light on this slightly confusing behaviour! As alway
 
 #Further reading on the `Keystore` (& `KeyChain`)
 
-- Check out the [Android docs for Keystore](http://developer.android.com/reference/java/security/KeyStore.html)
+- Check out the [Android docs for Keystore](http://developer.android.com/reference/java/security/KeyStore.html) and the [training article](http://developer.android.com/training/articles/keystore.html)
 - Android developer blog post 2012 "[Unifying Key Store Access in ICS](http://android-developers.blogspot.co.uk/2012/03/unifying-key-store-access-in-ics.html)"
 - Nikolay Elenkov blog 2011 [ICS Credential Storage Implementation](http://nelenkov.blogspot.jp/2011/11/ics-credential-storage-implementation.html)
 - Nikolay Elenkov blog 2012 [Jelly Bean hardware-backed credential storage](http://nelenkov.blogspot.jp/2012/07/jelly-bean-hardware-backed-credential.html)
