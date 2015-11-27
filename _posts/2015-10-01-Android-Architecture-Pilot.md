@@ -81,11 +81,9 @@ There is also a security based motivation here as some secure applications need 
 
 Ideally the solution would be that regardless of the data handling technique we use (DI or no-DI) we had an easy way to add / remove / access / cleanup scoped data. Also regarding the security concern that data is automatically cleared based upon certain app specific state transitions, so a missed clear call wouldnt leak any data.
 
-##4. What architecture chould I use to support a View only based architecture (or a mix of Fragments / Views)
+##4. What architecture chould I use to support a View only based architecture
 
-View only approaches are also in fashion at present (as they were before Fragments even existed) and any solution we use needs to be able to work with `Fragments` &  `View` as there is no point in a solution that only works for a subset of possible view implementatons as its an unneeded limitation.
-
-However there are some special concerns when it comes to View only arhcitecture, and for me this mainly lies around lifecycle callbacks. 
+View only approaches are also in fashion at present (as they were before Fragments even existed) and there are some special concerns when it comes to View only architecture, and for me this mainly lies around lifecycle callbacks. 
 
 Ideally the proposed solution would work with Views or Fragments and allow the presenter to have some notion of a simplified application lifecycle. This in turn would allow Views to react to simple lifecycle events without using EventBuses, but you may find the View suddenly does not care about the lifecycle if the presenter already knows about the lifecycle change.
 
