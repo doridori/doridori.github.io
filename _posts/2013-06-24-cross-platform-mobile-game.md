@@ -13,7 +13,7 @@ I have written a few simple 2d games before, some more successful than others (o
 
 These are just my first impressions after a quick look at the below so will not be a detailed comparison. I know I have left many out but these looked like the most promising from my research.
 
-#My Requirements
+# My Requirements
 
 - Support as many platforms as possible (Android and iOS a must)
 - Not be really expensive - ideally for me thats not really more than a few hundred dollars a year
@@ -24,7 +24,7 @@ These are just my first impressions after a quick look at the below so will not 
 - Stable
 - I would like to learn some OpenGL so am not looking for pure abstraction of the graphics layer either
 
-#Potential candidates
+# Potential candidates
 
 - Corona
 - Marmalade (plus Marmalade Quick)
@@ -42,10 +42,10 @@ A quick rundown of things I have heard about the above.
 
 * * *
 
-##Corona
+## Corona
 <http://www.coronalabs.com/products/corona-sdk/>
 
-###Good
+### Good
 
 - Very quick to get up and running
 - FREE for Android / iOS / Kindle / Nook. See <http://www.coronalabs.com/store/>
@@ -54,14 +54,14 @@ A quick rundown of things I have heard about the above.
 - There is a free version which could be used for RAD dev.
 - Physics: Box2D (people say is bloated)
 
-###Bad
+### Bad
 
 - If something is not supported then your a bit stuck (unless you have the top tier account type I think)
 - Anecdotally people on line are saying bugs take a long time to fix
 - 9mb min app size
 - [Some](http://pushpoke.com/2013/02/why-did-we-choose-gideros/) people say lacks in performance
 
-###Overall
+### Overall
 
 Seems good for getting up and running quickly - I cant see any great games made with it but good for first timers I reckon.
 
@@ -72,7 +72,7 @@ Seems good for getting up and running quickly - I cant see any great games made 
 ## Marmalade (plus Quick)
 <http://www.madewithmarmalade.com/>
 
-###Good
+### Good
 
 - Quick uses Lua, Core uses C++
 - Quick is a good code swapping RAD environment
@@ -81,16 +81,16 @@ Seems good for getting up and running quickly - I cant see any great games made 
 - Can use Cocos2d-x or IwGame on top of this 
 - Some good games made with this (Draw Something, Cut The Rope, others..)
 
-###Bad
+### Bad
 
 - Some people complain docs are not great and support also lacks.
 - I remember when this was Airplay and none of the apps made with it would work on my phone they would just crash out iOS style and disappear! I also had this experience with Draw Something a lot. However its hard to tell if this is the framework or the developers.
 
-###Overall
+### Overall
 
 I may try this one out - powerful and can be extended. I would prefer it was open source (Quick is but the Core isn't) so the community could bug fix. My reservations may be based on out of date experiences so I should give it a shot really.
 
-###Further Research
+### Further Research
 
 **Others Experiences:** Looking into this some more I found [these slides](http://www.slideshare.net/Nekuromento/marmalade-bittersweet-experience-17211067) from Mad Hat Games which seems to reinforce my worries. This is from March 2013 and says the same stuff others have said - the stand-outs for me are the bugs going unfixed for months and sdk regressions - eep! This seems to be related to working in C++ but considering Quick sits on top of this it does not fill me with confidence.
 
@@ -106,7 +106,7 @@ Ok fair enough I dont know the nature of the bugs and how reasonable the complai
 
 I imagine that someday that the management will realise what they need to do and start offering support and proper regression testing - but until that day this just feels too risky - especially as its not open source so you cant just fix yourself - a real shame.
 
-###Hello World
+### Hello World
 
 Well I installed it and the RAD component Quick, and I cant even create my HelloWorld project, I just get a blank error dialog (well thats useful!). I reinstalled everything making sure I hadent missed any steps and stil the same issue. I try and run the samples and I just get a 'failed' message with nothing on the console/log or trace window. This sucks a little. I also just received 2 emails from them as there newsletter has messed up. From the above research and my own attempts to run it I really get the feeling their QA process in minimal. I [posted a question](https://devnet.madewithmarmalade.com/questions/13581/error-when-creating-new-project-using-quick.html) on the 'Answers' site to find out whats going on and 3 days later still no answer to what should be a pretty simple issue. I guess I shouldnt be suprised from what I have read. Pretty poor dev practise that led to a blank dialog box IMO! As means I cant trial/use it at all it its pretty crappy.
 
@@ -114,12 +114,12 @@ Well I installed it and the RAD component Quick, and I cant even create my Hello
 
 * * *
 
-##LibGdx
+## LibGdx
 <http://libgdx.badlogicgames.com/>
 
 _EDIT: I didnt really look into this much as its Java based and I mentioned above that I wanted to learn a new language as well so its sort of tainted my view here maybe! I had another look into this and Im really impressed and it has moved up in my estimations by a long way. Also they have redone their website since I started writing this post and it looks much nicer / more accessible_
 
-###Good
+### Good
 
 - Windows, Linux, Mac OS X, Android, iOS and HTML5 (WebGL)
 - OPEN SOURCE
@@ -136,7 +136,7 @@ _EDIT: I didnt really look into this much as its Java based and I mentioned abov
 - Proper [bug tracker](https://code.google.com/p/libgdx/issues/list)
 - Android 1.6+
 
-###Bad
+### Bad
 
 - __Personal one__ but I want to something other than Java for a while
 - No RAD component as far as I can see (as Java based). A compile required each run? As its not mobile-only this can be on the desktop which is going to be faster than mobile only at least - no packaging and installing each cycle
@@ -144,7 +144,7 @@ _EDIT: I didnt really look into this much as its Java based and I mentioned abov
 - Slightly restricted Java API usage for iOS
 - iOS support is paid ($299 a year). Again see below.
 
-###Overall
+### Overall
 
 Im sure this is good for lots of people but an alarm bell rings in my mind when I come across a cross platform Java framework. Maybe this stems from the issues I had when writing a game Applet and getting it to work everywhere and the issues I had with JVMs accross platforms, this was partly to do with running inside a browser however. This could be rubbish however as obviously Java was built for cross platform. Once bitten I guess. I realise this could be irrational so may give it a go at some point.
 
@@ -154,17 +154,17 @@ The framework is free (thanks guys!) but costs $299 a year to support iOS via <d
 
 I want to do something other than Java for a while! Defo something I will have a go with in the future.
 
-###Related Links
+### Related Links
 - [Is libgdx usable for 2d games?](http://stackoverflow.com/questions/10335423/is-libgdx-usable-for-2d-games)
 - [LibGDX, Legends of Yore and getting to iOS (again)](http://www.cokeandcode.com/main/libgdx-legends-of-yore-and-getting-to-ios-again/)
 
 
 * * *
 
-##Loom
+## Loom
 <http://theengine.co/loom>
 
-###Good
+### Good
 
 - Code *and* asset hotswapping
 - $40 a month
@@ -173,14 +173,14 @@ I want to do something other than Java for a while! Defo something I will have a
 - Integrated unit test framework
 - Empty loom app only 2mb
 
-###Bad
+### Bad
 
 - I personally dont like the fact they have their own scripting lang (mix of Lua / C# / AS3 / JS) - i dont want to have to learn one lang for one framework. I imagine I could just use Lua however so maybe this is a silly comment.
 - The [language docs](http://theengine.co/wiki/loomscript_language_reference) are incomplete and as it's their own lang it will quite hard to work it out without docs! 
 - Android 3.2 and up - cuts out 40% of market (2013/07)
 - API docs are sparse
 
-###Other
+### Other
 
 - Game Framework: Smash/PushButton Engine
 - UI lib using LML/CSS
@@ -188,7 +188,7 @@ I want to do something other than Java for a while! Defo something I will have a
 - Audio: Simple implementation [so far](http://theengine.co/forums/loom-with-loomscript/topics/the-api-discussion-thread-sound-audio-cocosdenshion-simpleaudioengine)
 - OpenGL:
 
-###Overall
+### Overall
 
 They are a relatively new company it seems and I worry about building on top of their platform and then they disappear. I guess this is an issue with anyone who is not open sourcing the engine / environment. 
 
@@ -198,10 +198,10 @@ They are a relatively new company it seems and I worry about building on top of 
 
 * * *
 
-##Unity
+## Unity
 <http://unity3d.com/>
 
-###Good
+### Good
 
 - Very established and stable
 - [Lots (and lots) of impressive games](http://unity3d.com/gallery/made-with-unity/game-list). Some mobile and 2D, for example Bad Piggies.
@@ -215,18 +215,18 @@ They are a relatively new company it seems and I worry about building on top of 
 - Has an Asset store for tools / textures etc
 
 
-###Bad
+### Bad
 
 - min 10mb app size for non-pro accounts
 - Some features are pro account only (which is _really_ expensive for my needs at $4.5k)
 - (a personal one) I dont like using / learning UIs! I would much rather work in my normal IDE than learn a busy interface. Hopefully Unity's will be well thought out. I think I will not be using a lot of features as going for 2D and low performance mobile devices so I wonder how much clutter there will be.
 - (another personal one) I am an Android dev really and I use IntelliJ - Unity uses C# and comes with the MonoDevelop IDE. Annoyingly I cant use IntelliJ for C# and I dont really want to switch IDE!
 
-###Languages
+### Languages
 
 - C# (most used), JS, Boo Script (least used)
 
-###Further Research
+### Further Research
 
 Im turned off by this as it seems to be for 3D primarily. Some people say they have success building 2d games but a lot more say its overkill using unity for 2d. I also feel that learning to use Unity will not give me as much transferable knowledge / skills as some other framework / engines (this maybe unfounded). If I was going 3D this would be my first port of call for sure.
 
@@ -244,21 +244,21 @@ I also just went to a free Unity workshop yesterday (which was good timing as I 
 
 * * *
 
-##PlayN
+## PlayN
 <https://code.google.com/p/playn/>
 
 PlayN is cool - it was used for the Angry Birds in Chrome stuff a few years ago at Google IO and is also being used by King.com in Europe.
 
-###Good
+### Good
 
 - Open Source
 - A few big names use this
 
-###Bad
+### Bad
 
 - Like LibGdx this is is Java and supports iOS via MonoTouch (personal unfounded irrational distrust here!)
 
-###Overall
+### Overall
 
 This looks pretty cool - I guess it does not excite me as much due to it being in Java which I have been using for years do I wont be learning as much new stuff. Will keep this is mind though and defo keep an eye on it.
 
@@ -266,10 +266,10 @@ This looks pretty cool - I guess it does not excite me as much due to it being i
 
 * * *
 
-##Gideros
+## Gideros
 <http://www.giderosmobile.com/>
 
-###Good
+### Good
 
 - Cheap (Free even!)
 - I see a lot of people talking about this one with positive things to say
@@ -283,18 +283,18 @@ This looks pretty cool - I guess it does not excite me as much due to it being i
 - Docs look pretty comprehensive
 - Android: 2.2+ ([~98.5%](http://developer.android.com/about/dashboards/index.html) at time of writing)
 
-###Bad
+### Bad
 
 - Android & iOS only (Windows 8 & phone & OUYA on roadmap)
 - Closed source
 - Limited functionality similar to Corona? (hinted at [here](https://news.ycombinator.com/item?id=3986124))
 - Still on OpenGL 1.1 (25/06/13)
 
-###Overall
+### Overall
 
 This looks interesting. I cant see any really impressive stuff made with it but maybe worth a deeper look. 
 
-###Further Research
+### Further Research
 
 Run by a small Turkish company. General vibe on the web is good. They seem to have a lot on their [roadmap](http://giderosmobile.com/roadmap) which is great and you have access to their [labs](http://giderosmobile.com/labs) also.
 
@@ -312,10 +312,10 @@ I have played for a day so far with this one and am **really impressed**. I have
 
 * * *
 
-##MOAI
+## MOAI
 <http://getmoai.com/>
 
-###Good
+### Good
 
 - Lua & C++
 - Open source
@@ -334,12 +334,12 @@ I have played for a day so far with this one and am **really impressed**. I have
 
 Taken from <http://getmoai.com/wiki/index.php?title=Moai_Project_Setup>
 
-###BAD
+### BAD
 
 - Some people say a little more work to get up and running than something like Corona.
 - The forum has activity but seems a little quiet - I can see the last activity was 4 days ago on the whole forum! They do however offer [paid support](http://getmoai.com/pricing.html)
 
-###Overall
+### Overall
 
 Seems like there may be no RAD component but this may bot be as issue as maybe be very quick to get new Lua code up and running as no compile needed. DoubleFine are working on some RAD tools for this (called 2HB) which they said they will open source over the new year or so.
 
@@ -351,7 +351,7 @@ While I really want to use Moai I do worry as a one-man-band I may end up spendi
 
 Even if I dont use this at the moment I will keep an eye on it to see what DoubleFine add to the mix. Its definitly a great starting point just have to see if it catches on a bit more and develops more of a community.
 
-###More
+### More
 
 - [Moai: First Impressions](http://dev.ionous.net/2012/07/moai-first-impressions.html)
 - [Hanappe](https://github.com/makotok/Hanappe) game framework (community [likes](http://getmoai.com/forums/hanappe-framework-t707/))
@@ -361,12 +361,12 @@ Even if I dont use this at the moment I will keep an eye on it to see what Doubl
 
 * * *
 
-##Coscos2D-x
+## Coscos2D-x
 <http://www.cocos2d-x.org/>
 
 A cross platform port of the Cocos2d framework on iOS.
 
-###Good
+### Good
 
 - [Supports C++ / Lua / JS](http://www.cocos2d-x.org/projects/cocos2d-x/wiki/Supported_Platforms_and_Programming_Languages)
 - Supports Lua using [OpenQuick](http://www.cocos2d-x.org/news/88) (same code that Marmalade Quick is build upon)
@@ -377,14 +377,14 @@ A cross platform port of the Cocos2d framework on iOS.
 - Looks flexible. Have access to source and can code at C++ level so should be able to do most things
 - [Supports most platforms](http://www.cocos2d-x.org/projects/cocos2d-x/wiki/Supported_Platforms_and_Programming_Languages)
 
-###Bad
+### Bad
 
 - I have also read this is a bit messy to work work and not as nice as Cocos2D.
 - Most people seem to use with Marmalade - so inherits all the good / bad points from there
 - OpenGL ES 1.1 (Some may see this as a good thing)
 - Not sure if can be used for RAD development - even though supports Lua bindings dont know if is as simple as things like Gideros / Corona / Quick. 
 
-###Notes
+### Notes
 
 As far as I understand it this is mainly implemented in C++ and can be used natively on most platforms. I think for an individual like me I would use in on top of Marmalade - but it seems I would be doing this mostly in C++. I should look into why some choose to use this as a layer on top of marmalade and some dont, I think its so you dont need to mess around with native bindings and so on. Someone told me they used this and then switched to Unity and found that much easier to work with. 
 
@@ -393,7 +393,7 @@ I need to look into this one a bit more...It looks good but I want something I c
 - [Interesting article about using Cocos2d](http://www.cocos2d-iphone.org/badland-a-cocos2d-iphone-game/) (not x) with links for lots of 3rd party pool for game dev. 
 - [Cocos2d-X by Example Beginner's Guide](http://www.amazon.co.uk/gp/product/178216734X) _I just bought this so should be able to update this with more info soon!_
 
-#Summary
+# Summary
 
 From the above (and my requirements and existing language skills) I think the following look most viable for me at present.
 
@@ -406,7 +406,7 @@ From the above (and my requirements and existing language skills) I think the fo
 
 _UPDATE:_ I was hoping to to finish this comparison and research with a game engine in mind I can commit my time too but I think thats was maybe wishful thinking. Like programming languages there is not one tool that is best for every job so I guess it really depends on the fundamental requirement for using it. I think my two main requirements are Rapid Application Development (RAD) and a stable, reliable and flexible framework. At the moment Im now leaning towards using <del>Corona</del> Gideros for my rapid prototyping and then _maybe_ Unity for any actual releases if I need more platforms or features, but this may not be needed. Bit of a pain as its two frameworks but I cant see a better solution at the moment (unless I find the RAD speed in Unity compares to that of Corona)
 
-##Related Reading
+## Related Reading
 
 - [Battle of the Lua Game Engines: Corona vs. Gideros vs. Love vs. Moai](http://www.gamefromscratch.com/post/2012/09/21/Battle-of-the-Lua-Game-Engines-Corona-vs-Gideros-vs-Love-vs-Moai.aspx)
 - [SDL Layer](http://wiki.libsdl.org/moin.fcg/Introduction) _Not really related but an interesting x-platform lib ([more...](http://gamedevgeek.com/tutorials/getting-started-with-sdl/))_
