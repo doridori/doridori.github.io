@@ -11,25 +11,25 @@ I have been working on some apps with a high security requirement, and one of th
 
 Lots of people seem to use encryption in the wild but they hard code the key or store is as plaintext or obfuscated. None of which are recommended.
 
-#Why is the `Keystore` good for storing keys?
+# Why is the `Keystore` good for storing keys?
 
 Good question! The Keystore can hold its keys is two ways. 
 
-##Software
+## Software
 
 Key access is stored on the file system with access given via the OS, only allowing an app with the creating apps UID to access. This is bascially how Android file-permissions work in general. Stuff like this is the first to go on rooted devices as afaik `su` can adopt any UID.
 
-##Hardware
+## Hardware
 
 I think the Nexus 4 was the first device to offer this, with APIs available from 4.3+.
 
 > "Android also now supports hardware-backed storage for your KeyChain credentials, providing more security by making the keys unavailable for extraction. That is, once keys are in a hardware-backed key store (Secure Element, TPM, or TrustZone), they can be used for cryptographic operations but the private key material cannot be exported. Even the OS kernel cannot access this key material. While not all Android-powered devices support storage on hardware, you can check at runtime if hardware-backed storage is available by calling KeyChain.IsBoundKeyAlgorithm()" from [Release notes for 4.3](https://developer.android.com/about/versions/android-4.3.html#Security)
 
-##API
+## API
 
 The api method im using to generate the key pair uses `KeyPairGeneratorSpec` which was added in 4.3 (18). There were ways to use this stuff before then (see Nikolays blog links below) but im going to ignore that for now.
 
-#The Problem
+# The Problem
 
 "This sounds great" I hear you cry. Well yes it is, until the Keystore-stored-key becomes inaccessible, leaving you with a useless steaming pile-o-bits™.
 
@@ -48,11 +48,11 @@ See below for the `InvalidKeyException` source.
 
 From the above you can see it's not just a silent fail yielding an empty keystore but an undocumented-exception-throwing fail which requires you to reset the alias ([Keystore.deleteEntry()](https://developer.android.com/reference/java/security/KeyStore.html#deleteEntry(java.lang.String))).
 
-#Device locks & `.setEncryptionRequired()`
+# Device locks & `.setEncryptionRequired()`
 
 Its worth noting that when creating a key with [`KeyPairGeneratorSpec.Builder.setEncryptionRequired()`](http://developer.android.com/reference/android/security/KeyPairGeneratorSpec.Builder.html#setEncryptionRequired()) its required that the device have a device-lock set (as this is used as part of the keying material). If you do `setEncryptionRequired()` and one isnt, you get a friendly `java.lang.IllegalStateException: Android keystore must be in initialized and unlocked state if encryption is required` so you need to manually ensure that something is set. Check out [my SO answer](http://stackoverflow.com/a/27801128/236743) for an approach to use here :). The great [Android Security Cookbook](https://www.packtpub.com/application-development/android-security-cookbook) has a recipie for using the Device Admin Policy.
 
-#Behaviour Matrix
+# Behaviour Matrix
 
 As mentioned above different OSs and differnt transitions between device-lock states can wipe the keystore. 
 
@@ -66,7 +66,7 @@ See the tests below. T = Pass, F = Fail. Some cells are blank as I didnt test th
 
 _It will be interesting to run the below tests on the M preview._
 
-##Nexus 4 | 5.0.1
+## Nexus 4 | 5.0.1
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
 |--------------------|------|-----|------|---------|
@@ -90,7 +90,7 @@ More N/As on this one as `.setEncryptionRequired()` will throw if you try to cre
 
 **EDIT** It seems that there are still issues on 5 when using non-primary user accounts, which seems to behave like older OS versions and will still wipe the keystore :( See [this bug](https://code.google.com/p/android/issues/detail?id=61989#c21)
 
-##Nexus 7 | 4.4.4
+## Nexus 7 | 4.4.4
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
 |--------------------|------|-----|------|---------|
@@ -112,7 +112,7 @@ More N/As on this one as `.setEncryptionRequired()` will throw if you try to cre
 
 Like 5.* generating the key pair with NONE set will just throw
  
-##Genymotion Emulator | 4.3
+## Genymotion Emulator | 4.3
 
 | to ↓        from > | SLIDE | PIN | PASS | PATTERN |
 |--------------------|-------|-----|------|---------|
@@ -123,7 +123,7 @@ Like 5.* generating the key pair with NONE set will just throw
 
 Sad face.
  
-#Conclusion
+# Conclusion
 
 Knowing the above I see a few potential solutions
 
@@ -137,7 +137,7 @@ If you are planning on using the system keystore for Lollipop (5) or below then 
 
 I hope that this sheds some light on this slightly confusing behaviour! As always, any thoughts / comments welcome.
 
-#Further reading on the `Keystore` (& `KeyChain`)
+# Further reading on the `Keystore` (& `KeyChain`)
 
 - Check out the [Android docs for Keystore](http://developer.android.com/reference/java/security/KeyStore.html) and the [training article](http://developer.android.com/training/articles/keystore.html)
 - Android developer blog post 2012 "[Unifying Key Store Access in ICS](http://android-developers.blogspot.co.uk/2012/03/unifying-key-store-access-in-ics.html)"
@@ -148,9 +148,9 @@ I hope that this sheds some light on this slightly confusing behaviour! As alway
 - [Android Keystore System](https://developer.android.com/training/articles/keystore.html) _EDIT: (29/05/15)_
 - [Android `Vault` Example](https://github.com/android/platform_development/tree/master/samples/Vault)
 
-#UPDATE: Marshmallow 6 changes
+# UPDATE: Marshmallow 6 changes
 
-##Fingerprint api
+## Fingerprint api
 
 Since Android 6.0 keys can be stored which require authentication via fingerprint before they can be used. Note the below in regards to lifetime of such keys.
 
@@ -159,11 +159,11 @@ This authorization applies only to secret key and private key operations. Public
 
 Taken from [KeyGenParameterSpec.Builder.setUserAuthenticationRequired(...)](http://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder.html#setUserAuthenticationRequired(boolean))
 
-##`allowBackups=true` 
+## `allowBackups=true` 
 
 It's interesting that `allowBackups=true` (which it is by default) does not delete `KeyStore` backed keys on app uninstall. This led to me reinstalling an application with had fingerprint auth backed keys, which I could no longer access. Need to research this one a bit more. I recommend setting  `allowBackups=false` anyhow if your working with this stuff.
 
-##Unencrypted keys no longer deleted
+## Unencrypted keys no longer deleted
 
 > Keys which do not require encryption at rest will no longer be deleted when secure lock screen is disabled or reset (for example, by the user or a Device Administrator). Keys which require encryption at rest will be deleted during these events.
 
