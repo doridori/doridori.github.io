@@ -159,7 +159,7 @@ This authorization applies only to secret key and private key operations. Public
 
 Taken from [KeyGenParameterSpec.Builder.setUserAuthenticationRequired(...)](http://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder.html#setUserAuthenticationRequired(boolean))
 
-##`allowBackups=true` bug
+##`allowBackups=true` 
 
 It's interesting that `allowBackups=true` (which it is by default) does not delete `KeyStore` backed keys on app uninstall. This led to me reinstalling an application with had fingerprint auth backed keys, which I could no longer access. Need to research this one a bit more. I recommend setting  `allowBackups=false` anyhow if your working with this stuff.
 
