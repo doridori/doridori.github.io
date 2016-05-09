@@ -24,7 +24,7 @@ It is probably worth mentioning that if you are not currently using some kind of
 In this post I will briefly expand on the above questions and introduce the project.
 
 
-#Preliminaries
+# Preliminaries
 
 ##A Note on terminology
 
