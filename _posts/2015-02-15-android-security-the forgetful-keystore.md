@@ -148,7 +148,9 @@ I hope that this sheds some light on this slightly confusing behaviour! As alway
 - [Android Keystore System](https://developer.android.com/training/articles/keystore.html) _EDIT: (29/05/15)_
 - [Android `Vault` Example](https://github.com/android/platform_development/tree/master/samples/Vault)
 
-#UPDATE: Marshmallow fingerprint api
+#UPDATE: Marshmallow 6 changes
+
+##Fingerprint api
 
 Since Android 6.0 keys can be stored which require authentication via fingerprint before they can be used. Note the below in regards to lifetime of such keys.
 
@@ -157,4 +159,12 @@ This authorization applies only to secret key and private key operations. Public
 
 Taken from [KeyGenParameterSpec.Builder.setUserAuthenticationRequired(...)](http://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder.html#setUserAuthenticationRequired(boolean))
 
+##`allowBackups=true` bug
+
 It's interesting that `allowBackups=true` (which it is by default) does not delete `KeyStore` backed keys on app uninstall. This led to me reinstalling an application with had fingerprint auth backed keys, which I could no longer access. Need to research this one a bit more. I recommend setting  `allowBackups=false` anyhow if your working with this stuff.
+
+##Unencrypted keys no longer deleted
+
+> Keys which do not require encryption at rest will no longer be deleted when secure lock screen is disabled or reset (for example, by the user or a Device Administrator). Keys which require encryption at rest will be deleted during these events.
+
+From [http://developer.android.com/about/versions/marshmallow/android-6.0-changes.html#behavior-keystore](http://developer.android.com/about/versions/marshmallow/android-6.0-changes.html#behavior-keystore)
