@@ -16,17 +16,17 @@ Plus, I feel sorry for new Android devs who are turning up later to the party an
 
 In my experience at least there are two core ideas around the center of most apps codebases. From the codebases I have seen & inherited both ideas seem to have too few brain cycles spent on them.
 
-#1. State
+# 1. State
 
 Most apps and views are *state-based* however the speggetti-level that captures the state logic is generally very high.
 
-#2. Asynchronous code
+# 2. Asynchronous code
 
 Pretty much every app involves some asynchronous code. Pretty much every app allows this to touch the Android lifecycle. This _always_ leads to sadness.
 
 _I spoke about this in the first part of [this brain dump of a blog post](http://doridori.github.io/Android%20App%20Architecture-%20Lifecycle%20Events%20and%20Asynchronicity/)_
 
-#Introducing Dynamo
+# Introducing Dynamo
 
 <img src="https://github.com/doridori/doridori.github.io/blob/master/images/blog/DynamoDroid.png?raw=true" alt="dynamo droid"/>
 
