@@ -5,7 +5,7 @@ title: "Android Architecture: MV?"
 
 The architecture of most Android-apps is a _mess_. 
 
-#The Problem
+# The Problem
 
 I'm a contractor and I'm often brought on to projects have long since passed their first commit. I feel like I have had a good insight how to the average dev approaches Android app architecture from this, and also from open-source projects, android blog posts, the Android developer site and more. One thing that strikes me about ~99% of the code I see is that there is not much of a notion of a clean, overarching application architecture. By this I mean that people seem genuinely happy to shoehorn their code into `Activitys` & `Fragments` with the occasional class named something like `MyCrazyController`. Why is this an issue? The problem with this is that it results in
 
@@ -31,7 +31,7 @@ How has this come to be?
 
 <img src="/images/blog/droid_confused.png" alt="Confused Droid" />
 
-#MV?, who's in control?
+# MV?, who's in control?
 
 I believe a big part of this is that not much thought has gone into the actual generic app architecture approach that devs could use. In my opinion there is a vast lack of some sort of (and I use this term _extremely_ loosely) `Controller` for application components.
 
@@ -47,11 +47,11 @@ There seem to be a few general camps of thought relating to `MVC` architecture a
 
 ~98% of the apps I have seen fall into 1,2 & 3. Maybe my sample size is too small, or maybe people just don't have time to think about this stuff, either way, there is a lot of room for improvement here.
 
-#A brief overview of MV* Architectures
+# A brief overview of MV* Architectures
 
 My next post will introduce an approach that works well for me. The rest of this post will outline the MV~ family of terms. The goal of this is to show that they are ambigous and should serve only as a rough starting point in discussion, and are certainly not anything close to a design pattern.
 
-##MVC (Model-View-Controller)
+## MVC (Model-View-Controller)
 
 [Wiki link](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
 
@@ -70,7 +70,7 @@ Unfortunately in practice I feel (from code I have audited) is that some devs fe
 
 Anyhow, my advise would be not to actually think about MVC very much. IMHO its too abstract and therefore loses one of the major powers of design-patterns in the first place, which is to quickly convey a structural concept between developers. It is likely to cause more confusion than a more explicit term.
 
-##MVP (Model-View-Presenter)
+## MVP (Model-View-Presenter)
 
 [Wiki link](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) 
 
@@ -88,7 +88,7 @@ For more info I would recommend you check out another Martin Fowler article [Ret
 
 
 
-##MVVM (Model-View-ViewModel)
+## MVVM (Model-View-ViewModel)
 
 [Wiki link](http://en.wikipedia.org/wiki/Model_View_ViewModel)
 
@@ -107,7 +107,7 @@ _EDIT (29/05/15)_: IO15 announced a new [data-binding lib](http://developer.andr
 
 - [MVVM on Android: What You Need to Know](http://www.willowtreeapps.com/blog/mvvm-on-android-what-you-need-to-know/)
 
-##MVA (Model-View-Adapter)
+## MVA (Model-View-Adapter)
 
 [Wiki link](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93adapter)
 
@@ -117,17 +117,17 @@ From my own reading this seems like it can easily be the same as an MVP pattern 
 
 See [MODEL-VIEW-ADAPTER](https://www.palantir.com/2009/04/model-view-adapter/) for more.
 
-##MV*
+## MV*
 
 The above are the main ones you see around at present. I have come to the conclusion that whenever you hear about MV* to actually look at how the existing code or framework is actually doing the things above, to get a handle on whats really going on.
 
-#What Now?
+# What Now?
 
 I have outlined a few common architectural terms and is laying the way for me to talk about a pattern than I have found works for me that fixes the issues outlined at the beginning of this post. 
 
 Check out my next post [Android Architecture: Introducing Dynamo](http://doridori.github.io/Android-Architecture-Dynamo/)
 
-#Down the rabbit hole (links)
+# Down the rabbit hole (links)
 
 While MV* approaches are often talked about, the following are also used on Android and the subject of the occasional discussion.
 
@@ -137,7 +137,7 @@ While MV* approaches are often talked about, the following are also used on Andr
 - [GUI Architectures](http://martinfowler.com/eaaDev/uiArchs.html)
 - [A simple guide for MVC, MVP and MVVM on Android projects](https://medium.com/android-news/android-architecture-2f12e1c7d4db) Published many moons later but a good read
 
-#Appendix 1: iOS ViewControllers
+# Appendix 1: iOS ViewControllers
 
 I have extremely limited iOS exposure but from poking around it seems that the iOS version of MVC is closer to MVP as the Controller directly manipulates the Views and also contains 'traditional' controller logic (even though posts and docs say its MVA). Would be interested to hear an iOS devs take on this. Quite a lot of responsibilities which it seems earnt the title of [Massive View Controller](https://twitter.com/Colin_Campbell/status/293167951132098560).
 
