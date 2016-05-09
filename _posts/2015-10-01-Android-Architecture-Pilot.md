@@ -5,8 +5,7 @@ title: "Android Architecture: Introducing Pilot"
 
 An abstract application stack for Android
 
-
-#Motivation
+# Motivation
 
 There are some common questions that keep popping up on the interwebs around the current collective thought on Android Architecture. Some of these questions are:
 
@@ -26,7 +25,7 @@ In this post I will briefly expand on the above questions and introduce the proj
 
 # Preliminaries
 
-##A Note on terminology
+## A Note on terminology
 
 **Presenters** are all the rage in the Android world at present. Some call them Presenters, Controllers, ViewModels, PassiveView etc and they are used as part of MVC, MVP, MVVM (with DataBinding), MVA etc and all these terms overlap and have differnt meanings and implementations depending on who you talk to. The one thing they all have in common is pulling out from the view all the interesting stuff thats not to do with direct rendering of pixels and more about the application workings, states and asyncronous functionality. These architectures are great as they enable seperation of concerns and therefore easy testability and can be read about elsewhere. Throughout this post I will use these terms interchangably as one of the ideas of Pilot is not to force one kind of view/logic seperation.
 
@@ -34,28 +33,28 @@ In this post I will briefly expand on the above questions and introduce the proj
 
 If I mean a subclass of `android.view.View` I will use an upper-case **View** else if I mean the view layer (could be view or fragment) then a lower-case **view**.
 
-##A Note on dependencies
+## A Note on dependencies
 
 I have tried to keep dependency use to a minimum when thinking about this solution as in my mind a lib works best when it does not force the use of any approach outside of its primary concern. By all means Pilot will work with Dagger and RxJava but just as easily without.
 
-##A Note on Morter and Flow
+## A Note on Morter and Flow
 
 Morter and Flow is definitely a big part of the inspiration for Pilot and is created by developers a lot cleverer than me by a mile. The reason I did not use those two complementry libs to address the issues that are listed at the top of the post is down to one thing - I felt they were too complicated. Whenever I started to read though the docs, example projects and some excellent blog posts on it (like [Using Flow & Mortar](https://realm.io/news/using-flow-mortar/) and [An Investigation into Flow and Mortar](https://www.bignerdranch.com/blog/an-investigation-into-flow-and-mortar/)) I always ended up feeling like there was too much congitive load to hook it all together. Plus, I like trying to solve a problem myself :p
 
-##A Note on RxJava
+## A Note on RxJava
 
 As hinted at above Pilots aims are orthagonal to RxJava so its not baked into this lib anywhere. It can be used inside your controllers or even as the bridge between controllers and your view objects.
 
 
-#Motivations Expanded
+# Motivations Expanded
 
-##1. What approach should I use to handle my Presenters Lifecycle?
+## 1. What approach should I use to handle my Presenters Lifecycle?
 
 With the above in mind there is always a lot of discussion around how to handle the lifecycle of all these controller logic objects. Solutions are usually having them as part of a singleton so they live forever, manually creating and removing them based upon per view / fragment / activity logic so they survive config changes but not other events, recreating on config changes and just relying on GC or using 3rd party libs like Morter and Flow. For me all of these approaches have a drawback which may be poor memory managment (Singletons) or too complicated (Morter & flow). Also libs I have seen which partly address this issue always seem to force other contraints on the integrator like using RxJava or Dagger.
 
 Ideally a solution here would allow us to control the lifecycle of our application controllers as a **distinct entity** and no longer have the lifecycle logic distributed thoughout the mire of view classes. I want to be able to implement custom lifecycle logic on an abstracted stack. 
 
-##2. How can Presenters control the flow of an application?
+## 2. How can Presenters control the flow of an application?
 
 Good question! A common one I have been seeing asked online and one that is often left unanswed. The default approach to this is something like:
 
@@ -70,7 +69,7 @@ This is ok, but not great and often results in transitions being hooked into a C
 
 Ideally a solution for this would allow us to have Presenter-to-Presenter instantiation and leave the test-restraining views out of the question (plus this may save of some plumbing callbacks). For me a Controller should handle the States of an application and the view should just reflect the current state. This concept makes sense in a controller-to-view relationship just as much as an app-to-controller-stack relationship.
 
-##3. How can I scope data within my application?
+## 3. How can I scope data within my application?
 
 Another good one!
 
@@ -82,7 +81,7 @@ There is also a security based motivation here as some secure applications need 
 
 Ideally the solution would be that regardless of the data handling technique we use (DI or no-DI) we had an easy way to add / remove / access / cleanup scoped data. Also regarding the security concern that data is automatically cleared based upon certain app specific state transitions, so a missed clear call wouldnt leak any data.
 
-##4. What architecture chould I use to support a `View` only based approach
+## 4. What architecture chould I use to support a `View` only based approach
 
 View only approaches are also in fashion at present (as they were before Fragments even existed) and there are some special concerns when it comes to View only architecture, and for me this mainly lies around lifecycle callbacks. 
 
@@ -90,7 +89,7 @@ Ideally the proposed solution would work with Views or Fragments and allow the p
 
 So, hope thats enough motavations before the main event.
 
-#Introducing Pilot
+# Introducing Pilot
 
 ![](https://raw.githubusercontent.com/doridori/Pilot/master/gfx/pilot_mascot.png)
 
