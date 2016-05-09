@@ -42,7 +42,7 @@ The answer is to mask the bitwise result before casting back down to `byte`. We 
 
 This is a bit clunky but a valuable technique if you are encountering unexpected results from your bitshifts!
 
-##Links
+## Links
 
 - [A Curse on Java Bitwise Operators!](http://henkelmann.eu/2011/02/24/a_curse_on_java_bitwise_operators)
 - [Bitwise operators in java only for integer and long?](http://stackoverflow.com/a/20577639/236743)
