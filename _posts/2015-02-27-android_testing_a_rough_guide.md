@@ -13,23 +13,23 @@ Every project I work on has a different testing strategy, and each time I learn 
 
 Im _not_ going to talk much (or at all) about _how_ you use the tools, otherwise this post would be huge. This is more on a jumping off point for further exploration :) It there is something you want more info on, investigate it, write a post about it, and I can link to it here!
 
-#Why test?
+# Why test?
 
 Automated testing and TDD is one of those things in software development that some love and some hate (actually, what _isn't_ like that in dev?!). Regardless of what side of the fence your on there is one thing thats hard to argue against, writing tests forces you to think about your software architecture. I think actually this is main thing I like about it, but probably not its biggest advantage. 
 
-#Testing on Android
+# Testing on Android
 
 In the past I have felt like we were short-changed in the Android world when it comes to testing, compared to other languages or frameworks that have been designed from the start to ease the path of testing (i.e. RoR). But the tools are improving all the time which is fantastic. 
 
 _Edit: After starting this I listened to [Episode 1](http://fragmentedpodcast.com/episodes/1/) of the new [Fragmented podcast](http://fragmentedpodcast.com/), which is interesting as they echo my thoughts here exactly!_
 
-#Tooling
+# Tooling
       
-##Test Frameworks
+## Test Frameworks
 
 There are a number of ways to run your tests, the simplest first choice to me seems to run them on a device or emulator via a test apk (see below for emulator choices) rather than using something like [Roboelectic](http://robolectric.org/) (which lots of people do like and use) as I have heard too many people fall out of favor with it. 
 
-##JUnit 4
+## JUnit 4
 
 Tests on Android live in two places:
 
@@ -51,7 +51,7 @@ As a minimum if you want to just use JUnit 4 for tests running on Android but do
 
 As an aside, you can also create standalone java projects (say in IntelliJ) and write speedy tests with JUnit 4 and then have your main app consume your own lib projects. Will write a guide on doing this soon :)
 
-##UI Automation (Espresso)
+## UI Automation (Espresso)
 
 Lots of solutions out there but I think the best bet currently is [Espresso](https://code.google.com/p/android-test-kit/wiki/Espresso). This is direct from Google and has just hit 2.0 so a great time to start using if your not already. The only bugbear with it is the [`IdlingResource`](https://code.google.com/p/android-test-kit/wiki/EspressoSamples#Using_registerIdlingResource_to_synchronize_with_custom_resourc-c)s imho but with the right architectural choice you shouldn't have to actually mess with these that often. For me this replaces (and improves upon) Robotium.
 
@@ -60,7 +60,7 @@ Lots of solutions out there but I think the best bet currently is [Espresso](htt
 - [Android Developers Backstage: Episode 25: Espresso](http://androidbackstage.blogspot.co.uk/2015/04/episode-25-espresso.html?utm_source=Android+Weekly&utm_campaign=3b56c3e34b-Android_Weekly_150&utm_medium=email&utm_term=0_4eb677ad19-3b56c3e34b-337253633)
 - - [Espresso Cheat Sheet](https://raw.githubusercontent.com/googlesamples/android-testing/master/downloads/espresso-cheat-sheet-2.1.0.png)
 
-##CI servers
+## CI servers
 
 I have not used CI servers much but there are a good amount of options here. I wont compare them as thats a whole post in itself. Some are free, some are hosted, everyone will have their own requirements here.
 
@@ -74,13 +74,13 @@ From talking to people Travis would be my first choice (if I didn't have to pay 
 
 Also, check out [Rultor](http://doc.rultor.com/) which can be intergrating with many different setups
 
-##GIT
+## GIT
 
 Version control is a given, and Git is the go-to for most. Combined with a CI server you can run your test suite on commit / pull requests / pushes and make sure no-one is breaking code!
 
 
 
-##Mocking
+## Mocking
 
 These tools can be used to write your actual tests and are much recommended
 
@@ -89,7 +89,7 @@ These tools can be used to write your actual tests and are much recommended
     - See the [github project](https://github.com/square/okhttp/tree/master/mockwebserver) for more
     - See [a post I wrote](http://systemdotrun.blogspot.co.uk/2014/11/android-testing-with-dagger-retrofit.html) about using MockWebServer with Dagger and Retrofit
 
-##Emulators
+## Emulators
 
 [Genymotion](https://www.genymotion.com/#!/) - Android emulator on steroids!
 
@@ -97,15 +97,15 @@ These tools can be used to write your actual tests and are much recommended
 
 So we have the tools, but what concepts will help you write clean code which is each to test? Again here is a ultra-high-level intro!
 
-##Inversion Of Control (IoC) and Dependency Injection
+## Inversion Of Control (IoC) and Dependency Injection
 
-A common approach for writing decoupled code - which is what you want pretty much all the time but especially when your writing isolated tests. Helps to break down your dependencies. I pretty much use [Dagger](http://square.github.io/dagger/) to achieve this aim.
+A common approach for writing decoupled code - which is what you want pretty much all the time but especially when your writing isolated tests. Helps to break down your dependencies. I pretty much use [Dagger](http://square.github.io/dagger/) to acheive this aim.
 
-##4 Simple Rules
+## 4 Simple Rules
 
 Ok, so more of a general programming one this one, but I would recommend [this book](https://leanpub.com/4rulesofsimpledesign) to make you think about simplifying your code, which as you guessed it, will help you test your code!
 
-##Coping With Asynchronous Code
+## Coping With Asynchronous Code
 
 One of the things that is not-so-simple when writing Android tests is how to test your asynchronous code. This causes problems in a normal test-case as by default a test will not wait for the async callback so the test will exit (and may pass or fail depending on your test code) and then your async callback may happen and actually case another test to fail. 
 
@@ -132,21 +132,21 @@ The better approach seems to be to either;
 - [RxJava and Android: Just What the Doctor Ordered](http://markhudnall.com/2013/10/15/rxjava-and-android/)
 - [Learning RxJava With Android by Example](http://nerds.weddingpartyapp.com/tech/2014/09/15/learning-rxjava-with-android-by-example/)
 
-##MVP
+## MVP
 
 Adopting a good separation between the views and app life-cycle (I would include `Activities` and `Fragments` in the _View_ camp) and your Controllers / Presenters / do-stuff-thingys makes things a heck of a lot easier to test. Check out my [Dynamo](https://github.com/doridori/Dynamo) lib for my take on this seperation. 
 
-#Test Devices
+# Test Devices
 
 So, as you all know, in the Android world we have the joy of [well over 10k device models](http://opensignal.com/reports/2014/android-fragmentation/) and debugging those device specific issues aint easy. Generally I have been able to get my hands on the device thats causing an issue, or its repeatable on the emulator or another similar device. I have not used any test clouds up to this point so would be interesting to hear any recommendations.
 
 Some companies build their own test-suite for the most popular devices, I am yet to come across a good blog post outlining peoples solutions here. If you were to go this route I would check out [Spoon](https://github.com/square/spoon). A google talk I saw a while back seemed to recommend against this approach as the speaker claimed ~98% of all bugs are due to programmer error or the framework itself so focusing time on spinning up emulator configs is more worth while.
 
-#Conclusion
+# Conclusion
 
 Well thats it! When I go to approach testing on my next project this is pretty much the approach I will use. Would be great as always to hear any others experiences or responses :)
 
-#Interesting Links
+# Interesting Links
 
 - Great talk from Droidcon London with some interesting ideas for maintaining app quality [Testing Applications At Facebook](https://skillsmatter.com/skillscasts/5630-testing-applications-at-facebook)
 - [How to write good tests](https://github.com/mockito/mockito/wiki/How-to-write-good-tests)
