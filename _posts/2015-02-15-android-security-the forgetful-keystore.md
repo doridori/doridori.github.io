@@ -82,7 +82,7 @@ From [http://developer.android.com/about/versions/marshmallow/android-6.0-change
 
 **`.setEncryptionRequired()`**
 
-**It seems there has actually been a regression from the improvments made in L regarding not allowing the user to corrupt the `KeyStore` contents by not allowing lock screen removal when using `.setEncryptionRequired()`. ** ε(´סּ︵סּ`)з
+**It seems there has actually been a regression from the improvements made in L regarding not allowing the user to corrupt the `KeyStore` contents by not allowing lock screen removal when using `.setEncryptionRequired()`. ** ε(´סּ︵סּ`)з
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
 |--------------------|------|-----|------|---------|
@@ -102,7 +102,7 @@ More N/As on this one as `.setEncryptionRequired()` will throw if you try to cre
 | PASS               | **F**|     | T    | T       |
 | PATTERN            | T    | T   |      |         |
 
-Once a keypair has been generated the system will not let you revert to NONE unless the app has been deleted / the pair removed hence the N/A. This looks like 
+Once a keypair has been generated the system will not let you revert to NONE (regardless of if the `KeyStore` is encrypted or not) unless the app has been deleted / the pair removed hence the N/A. This looks like 
 
 [![Disabled NONE options](https://raw.githubusercontent.com/doridori/doridori.github.io/master/images/blog/keystore_lock_disabled.jpg)]
 
@@ -117,7 +117,7 @@ Once a keypair has been generated the system will not let you revert to NONE unl
  
 More N/As on this one as `.setEncryptionRequired()` will throw if you try to create a keypair with a NONE state. 
 
-The user will not be able to revery to NONE until selecting 'Clear Credentials' from the security menu. On my N5 uninstalling the test app did not allow setting to NONE until a manual clear.
+The user will not be able to revert to NONE until selecting 'Clear Credentials' from the security menu. On my N5 uninstalling the test app did not allow setting to NONE until a manual clear.
 
 **EDIT** It seems that there are still issues on 5 when using non-primary user accounts, which seems to behave like older OS versions and will still wipe the keystore :( See [this bug](https://code.google.com/p/android/issues/detail?id=61989#c21)
 
