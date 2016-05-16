@@ -78,7 +78,7 @@ See the tests below. T = Pass, F = Fail. Some cells are blank as I didnt test th
 
 **`.setEncryptionRequired()`**
 
-It seems there has actually been a regression from the improvments made in L regarding not allowing the user to corrupt the `KeyStore` contents by not allowing lock screen removal. See the quote from Google below and the test results. ε(´סּ︵סּ`)з
+**It seems there has actually been a regression from the improvments made in L regarding not allowing the user to corrupt the `KeyStore` contents by not allowing lock screen removal. See the quote from Google below and the test results.** ε(´סּ︵סּ`)з
 
 > "Keys which do not require encryption at rest will no longer be deleted when secure lock screen is disabled or reset (for example, by the user or a Device Administrator). Keys which require encryption at rest will be deleted during these events.
 
