@@ -88,7 +88,7 @@ From [http://developer.android.com/about/versions/marshmallow/android-6.0-change
 
 **`.setEncryptionRequired()`**
 
-**It seems there has actually been a regression from the improvements made in L regarding not allowing the user to corrupt the `KeyStore` contents by not allowing lock screen removal when using `.setEncryptionRequired()`. ** ε(´סּ︵סּ`)з
+It seems there has actually been a regression from the improvements made in L regarding not allowing the user to corrupt the `KeyStore` contents by not allowing lock screen removal when using `.setEncryptionRequired()`. ε(´סּ︵סּ`)з
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
 |--------------------|------|-----|------|---------|
