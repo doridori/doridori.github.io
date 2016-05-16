@@ -60,13 +60,27 @@ I have written a small test app and run this on a few devices and emulator to se
 
 See the tests below. T = Pass, F = Fail. Some cells are blank as I didnt test that combo - but there is enough there too see the pattern in each case :)
 
-**EDIT 29/05/15:** _This post needs to be updated with M preview data. They have mentioned that_ 
+**EDIT 16/05/16:** _It will be interesting to run the below tests on the N preview._
 
-> Keys which do not require encryption at rest will no longer be deleted when secure lock screen is disabled or reset (for example, by the user or a Device Administrator). Keys which require encryption at rest will be deleted during these events. [link](https://developer.android.com/preview/behavior-changes.html#behavior-keystore)
+## Nexus 5 | M-6.0-23
 
-_It will be interesting to run the below tests on the M preview._
+| to ↓        from > | NONE | PIN | PASS | PATTERN |
+|--------------------|------|-----|------|---------|
+| NONE               |  N/A |     |  T   |   T     |
+| PIN                |  T   |  T  |  T   |         |
+| PASS               |      |  T  |      |   T     |
+| PATTERN            |  T   |  T  |      |         |
 
-## Nexus 4 | 5.0.1
+**`.setEncryptionRequired()`**
+
+| to ↓        from > | NONE | PIN | PASS | PATTERN |
+|--------------------|------|-----|------|---------|
+| NONE               |   |     |     |        |
+| PIN                |    |    |     |         |
+| PASS               |      |    |      |        |
+| PATTERN            |     |    |      |         |
+
+## Nexus 4 | L-5.0.1-21
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
 |--------------------|------|-----|------|---------|
@@ -90,7 +104,7 @@ More N/As on this one as `.setEncryptionRequired()` will throw if you try to cre
 
 **EDIT** It seems that there are still issues on 5 when using non-primary user accounts, which seems to behave like older OS versions and will still wipe the keystore :( See [this bug](https://code.google.com/p/android/issues/detail?id=61989#c21)
 
-## Nexus 7 | 4.4.4
+## Nexus 7 | K-4.4.4-19
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
 |--------------------|------|-----|------|---------|
@@ -112,7 +126,7 @@ More N/As on this one as `.setEncryptionRequired()` will throw if you try to cre
 
 Like 5.* generating the key pair with NONE set will just throw
  
-## Genymotion Emulator | 4.3
+## Genymotion Emulator | JB-4.3-18
 
 | to ↓        from > | SLIDE | PIN | PASS | PATTERN |
 |--------------------|-------|-----|------|---------|
