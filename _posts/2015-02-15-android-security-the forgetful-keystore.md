@@ -166,9 +166,12 @@ Knowing the above I see a few potential solutions
 
 1. <del>If your requirement is to have strong encryption using the keystore and losing the encrypted data is a no-no - targeting L+ (5+) seems like the only choice, using `.setEncryptionRequired()`. However be warned that this is no guarentee that it will always work as this seems to still be broken for non-primary user accounts.</del> This is no longer true due to the regression mentioned above in M-6-23. 
 
-2. If your requirement is to have strong encryption using the keystore and losing the encrypted data is ok - then you can detect the above exceptions mentioned and have some form of re-inititialisation for those cases. Target 4.3+. Remember to check the device has the required lock-screen security settings (as mentioned above) before generating the keyPair. Checking for the exceptions at point of key unwrap and notifing the user whilst clearing any key aliases is a simple enough approach for most.
+2. If your requirement is to have strong encryption using the keystore and losing the encrypted data is ok - then you can detect the above exceptions mentioned and have some form of re-inititialisation for those cases. Target 4.3+. Remember to check the device has the required lock-screen security settings (as mentioned above) before generating the keyPair. Checking for the exceptions at point of key unwrap and notifing the user whilst clearing any key aliases is a simple enough approach for most. Keep in mind if supporting the fingerprint sensor to auth access to your keys you will lose them when a new finger is enrolled anyway.
 
 3. Look at another way of storing key data, for example generating one from a users input. This will not suit all applications of course. Target any platform version. Check out [java-aes-crypto](https://github.com/tozny/java-aes-crypto) for a really sweet and easy to use key generator which can be used with arbritary password input.
+
+4. Dont encrypt the `KeyStore` and target 6.0+ and dont support fingerprint. Cross your fingers and hope the behaviour does not change again. Hope (or check for) hardware storage. Understand the user may have a software store only and may get exploited with keys being obtained by some nefarious character. 
+
 
 If you are planning on using the system keystore for Lollipop (5) or below then you need to have a way to recover from the keystore being lost / corrupt. This will be easier for some that others but being aware of the issue is a first step!
 
