@@ -80,10 +80,12 @@ See the tests below. T = Pass, F = Fail. Some cells are blank as I didnt test th
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
 |--------------------|------|-----|------|---------|
-| NONE               |   |     |     |        |
-| PIN                |    |    |     |         |
-| PASS               |      |    |      |        |
-| PATTERN            |     |    |      |         |
+| NONE               |  N/A |**F**|**F** |         |
+| PIN                |  N/A | T   |  T   |         |
+| PASS               |  N/A | T   |      |   T     |
+| PATTERN            |  N/A | T   |  T   |         |
+
+More N/As on this one as `.setEncryptionRequired()` will throw if you try to create a keypair with a NONE state.
 
 ## Nexus 4 | L-5.0.1-21
 
