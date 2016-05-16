@@ -57,6 +57,10 @@ Its worth noting that when creating a key with [`KeyPairGeneratorSpec.Builder.se
 
 so you need to manually ensure that something is set. Check out [my SO answer](http://stackoverflow.com/a/27801128/236743) for an approach to use here :). The great [Android Security Cookbook](https://www.packtpub.com/application-development/android-security-cookbook) has a recipie for using the Device Admin Policy.
 
+# `allowBackups=true` 
+
+It's interesting that `allowBackups=true` (which it is by default) does not delete `KeyStore` backed keys on app uninstall. This led to me reinstalling an application with had fingerprint auth backed keys, which I could no longer access. Need to research this one a bit more. I recommend setting  `allowBackups=false` anyhow if your working with this stuff.
+
 # Behaviour Matrix
 
 As mentioned above different OSs and differnt transitions between device-lock states can wipe the keystore. 
@@ -67,7 +71,9 @@ See the tests below. T = Pass, F = Fail. Some cells are blank as I didnt test th
 
 **EDIT 16/05/16:** _It will be interesting to run the below tests on the N preview._
 
-## Nexus 5 | M-6.0-23
+## M-6.0-23 | Nexus 5
+
+M introduced some changes here explicitly:
 
 > "Keys which do not require encryption at rest will no longer be deleted when secure lock screen is disabled or reset (for example, by the user or a Device Administrator). Keys which require encryption at rest will be deleted during these events.
 
@@ -93,7 +99,7 @@ From [http://developer.android.com/about/versions/marshmallow/android-6.0-change
 
 More N/As on this one as `.setEncryptionRequired()` will throw if you try to create a keypair with a NONE state.
 
-## Nexus 4 | L-5.0.1-21
+## L-5.0.1-21 | Nexus 4
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
 |--------------------|------|-----|------|---------|
@@ -121,7 +127,7 @@ The user will not be able to revert to NONE until selecting 'Clear Credentials' 
 
 **EDIT** It seems that there are still issues on 5 when using non-primary user accounts, which seems to behave like older OS versions and will still wipe the keystore :( See [this bug](https://code.google.com/p/android/issues/detail?id=61989#c21)
 
-## Nexus 7 | K-4.4.4-19
+## K-4.4.4-19 | Nexus 7
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
 |--------------------|------|-----|------|---------|
@@ -143,7 +149,7 @@ The user will not be able to revert to NONE until selecting 'Clear Credentials' 
 
 Like 5.* generating the key pair with NONE set will just throw
  
-## Genymotion Emulator | JB-4.3-18
+## JB-4.3-18 | Genymotion Emulator 
 
 | to ↓        from > | SLIDE | PIN | PASS | PATTERN |
 |--------------------|-------|-----|------|---------|
@@ -179,23 +185,13 @@ I hope that this sheds some light on this slightly confusing behaviour! As alway
 - [Android Keystore System](https://developer.android.com/training/articles/keystore.html) _EDIT: (29/05/15)_
 - [Android `Vault` Example](https://github.com/android/platform_development/tree/master/samples/Vault)
 
-# UPDATE: Marshmallow 6 changes
+# Appenix: Fingerprint api
 
-## Fingerprint api
-
-Since Android 6.0 keys can be stored which require authentication via fingerprint before they can be used. Note the below in regards to lifetime of such keys.
+Since Android M-6-23 keys can be stored which require authentication via fingerprint before they can be used. Note the below in regards to lifetime of such keys.
 
 > The key will become irreversibly invalidated once the secure lock screen is disabled (reconfigured to None, Swipe or other mode which does not authenticate the user) or when the secure lock screen is forcibly reset (e.g., by a Device Administrator). Additionally, if the key requires that user authentication takes place for every use of the key, it is also irreversibly invalidated once a new fingerprint is enrolled or once\ no more fingerprints are enrolled. Attempts to initialize cryptographic operations using such keys will throw KeyPermanentlyInvalidatedException.
 This authorization applies only to secret key and private key operations. Public key operations are not restricted.
 
-Taken from [KeyGenParameterSpec.Builder.setUserAuthenticationRequired(...)](http://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder.html#setUserAuthenticationRequired(boolean))
+Taken from [KeyGenParameterSpec.Builder.setUserAuthenticationRequired(...)](http://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder.html#setUserAuthenticationRequired(boolean)). 
 
-## `allowBackups=true` 
-
-It's interesting that `allowBackups=true` (which it is by default) does not delete `KeyStore` backed keys on app uninstall. This led to me reinstalling an application with had fingerprint auth backed keys, which I could no longer access. Need to research this one a bit more. I recommend setting  `allowBackups=false` anyhow if your working with this stuff.
-
-## Unencrypted keys no longer deleted
-
-> Keys which do not require encryption at rest will no longer be deleted when secure lock screen is disabled or reset (for example, by the user or a Device Administrator). Keys which require encryption at rest will be deleted during these events.
-
-From [http://developer.android.com/about/versions/marshmallow/android-6.0-changes.html#behavior-keystore](http://developer.android.com/about/versions/marshmallow/android-6.0-changes.html#behavior-keystore)
+This means that losing keys will always be an inevitabilty if using Fingerprint on 6. 
