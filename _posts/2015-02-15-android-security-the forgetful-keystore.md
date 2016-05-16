@@ -69,6 +69,10 @@ See the tests below. T = Pass, F = Fail. Some cells are blank as I didnt test th
 
 ## Nexus 5 | M-6.0-23
 
+> "Keys which do not require encryption at rest will no longer be deleted when secure lock screen is disabled or reset (for example, by the user or a Device Administrator). Keys which require encryption at rest will be deleted during these events.
+
+From [http://developer.android.com/about/versions/marshmallow/android-6.0-changes.html#behavior-keystore](http://developer.android.com/about/versions/marshmallow/android-6.0-changes.html#behavior-keystore)
+
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
 |--------------------|------|-----|------|---------|
 | NONE               |  N/A |     |  T   |   T     |
@@ -78,9 +82,7 @@ See the tests below. T = Pass, F = Fail. Some cells are blank as I didnt test th
 
 **`.setEncryptionRequired()`**
 
-**It seems there has actually been a regression from the improvments made in L regarding not allowing the user to corrupt the `KeyStore` contents by not allowing lock screen removal. See the quote from Google below and the test results.** ε(´סּ︵סּ`)з
-
-> "Keys which do not require encryption at rest will no longer be deleted when secure lock screen is disabled or reset (for example, by the user or a Device Administrator). Keys which require encryption at rest will be deleted during these events.
+**It seems there has actually been a regression from the improvments made in L regarding not allowing the user to corrupt the `KeyStore` contents by not allowing lock screen removal when using `.setEncryptionRequired()`. ** ε(´סּ︵סּ`)з
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
 |--------------------|------|-----|------|---------|
