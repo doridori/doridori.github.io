@@ -48,7 +48,7 @@ See below for the `InvalidKeyException` source.
 
 From the above you can see it's not just a silent fail yielding an empty keystore but an undocumented-exception-throwing fail which requires you to reset the alias ([Keystore.deleteEntry()](https://developer.android.com/reference/java/security/KeyStore.html#deleteEntry(java.lang.String))).
 
-# Device locks & `.setEncryptionRequired()`
+## Device locks & `.setEncryptionRequired()`
 
 Its worth noting that when creating a key with [`KeyPairGeneratorSpec.Builder.setEncryptionRequired()`](http://developer.android.com/reference/android/security/KeyPairGeneratorSpec.Builder.html#setEncryptionRequired()) its required that the device have a device-lock set (as this is used as part of the keying material). If you do `setEncryptionRequired()` and one isnt, you get a friendly
 
@@ -57,7 +57,7 @@ Its worth noting that when creating a key with [`KeyPairGeneratorSpec.Builder.se
 
 so you need to manually ensure that something is set. Check out [my SO answer](http://stackoverflow.com/a/27801128/236743) for an approach to use here :). The great [Android Security Cookbook](https://www.packtpub.com/application-development/android-security-cookbook) has a recipie for using the Device Admin Policy.
 
-# `allowBackups=true` 
+## `allowBackups=true` 
 
 It's interesting that `allowBackups=true` (which it is by default) does not delete `KeyStore` backed keys on app uninstall. This led to me reinstalling an application with had fingerprint auth backed keys, which I could no longer access. Need to research this one a bit more. I recommend setting  `allowBackups=false` anyhow if your working with this stuff.
 
