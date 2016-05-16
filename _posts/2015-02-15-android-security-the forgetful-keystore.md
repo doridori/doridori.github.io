@@ -100,7 +100,9 @@ More N/As on this one as `.setEncryptionRequired()` will throw if you try to cre
 | PASS               | **F**|     | T    | T       |
 | PATTERN            | T    | T   |      |         |
 
-Once a keypair has been generated the system will not let you revert to NONE unless the app has been deleted / the pair removed hence the N/A
+Once a keypair has been generated the system will not let you revert to NONE unless the app has been deleted / the pair removed hence the N/A. This looks like 
+
+[![Disabled NONE options](https://raw.githubusercontent.com/doridori/doridori.github.io/master/images/blog/keystore_lock_disabled.jpg)]
 
 **`.setEncryptionRequired()`**
 
@@ -111,7 +113,9 @@ Once a keypair has been generated the system will not let you revert to NONE unl
 | PASS               | N/A  | T   | T    | T       |
 | PATTERN            | N/A  | T   | T    | T       |
  
-More N/As on this one as `.setEncryptionRequired()` will throw if you try to create a keypair with a NONE state.
+More N/As on this one as `.setEncryptionRequired()` will throw if you try to create a keypair with a NONE state. 
+
+The user will not be able to revery to NONE until selecting 'Clear Credentials' from the security menu. On my N5 uninstalling the test app did not allow setting to NONE until a manual clear.
 
 **EDIT** It seems that there are still issues on 5 when using non-primary user accounts, which seems to behave like older OS versions and will still wipe the keystore :( See [this bug](https://code.google.com/p/android/issues/detail?id=61989#c21)
 
