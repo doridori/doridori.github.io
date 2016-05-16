@@ -52,8 +52,8 @@ From the above you can see it's not just a silent fail yielding an empty keystor
 
 Its worth noting that when creating a key with [`KeyPairGeneratorSpec.Builder.setEncryptionRequired()`](http://developer.android.com/reference/android/security/KeyPairGeneratorSpec.Builder.html#setEncryptionRequired()) its required that the device have a device-lock set (as this is used as part of the keying material). If you do `setEncryptionRequired()` and one isnt, you get a friendly
 
-- < M-6-23 `java.lang.IllegalStateException: Android keystore must be in initialized and unlocked state if encryption is required` 
-- >= M-6-23 `java.lang.IllegalStateException: Encryption at rest using secure lock screen credential requested for key pair, but the user has not yet entered the credential`
+- Pre M-6-23 `java.lang.IllegalStateException: Android keystore must be in initialized and unlocked state if encryption is required` 
+- Post M-6-23 `java.lang.IllegalStateException: Encryption at rest using secure lock screen credential requested for key pair, but the user has not yet entered the credential`
 
 so you need to manually ensure that something is set. Check out [my SO answer](http://stackoverflow.com/a/27801128/236743) for an approach to use here :). The great [Android Security Cookbook](https://www.packtpub.com/application-development/android-security-cookbook) has a recipie for using the Device Admin Policy.
 
