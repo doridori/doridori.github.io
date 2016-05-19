@@ -3,7 +3,7 @@ layout: post
 title: "Android Architecture: MV?"
 ---
 
-How does the MV* ways of thinking relate to Android?
+How do the MV* ways of thinking relate to Android?
 
 # The Problem
 
