@@ -3,11 +3,11 @@ layout: post
 title: "Android Architecture: MV?"
 ---
 
-How do the MV* ways of thinking relate to Android?
+How do the MV? ways of thinking relate to Android? Why is this now such a popular way of thinking for Android architecture?
 
 # The Problem
 
-I'm a contractor and I'm often brought on to projects have long since passed their first commit. I feel like I have had a good insight how to the average dev approaches Android app architecture from this, and also from open-source projects, android blog posts, the Android developer site and more. One thing that strikes me about ~99% of the code I see is that there is not much of a notion of a clean, overarching application architecture. By this I mean that people seem genuinely happy to shoehorn their code into `Activitys` & `Fragments` with the occasional class named something like `MyCrazyController`. Why is this an issue? The problem with this is that it results in
+I'm a contractor and I'm often brought on to projects have long since passed their first commit. I feel like I have had a good insight how to the average dev approaches Android app architecture from this, and also from open-source projects, android blog posts, the Android developer site and more. One thing that strikes me about most of the code I see is that there is not much of a notion of a clean, overarching application architecture. By this I mean that people seem genuinely happy to shoehorn their code into `Activitys` & `Fragments` with the occasional class named something like `MyCrazyController`. Why is this an issue? The problem with this is that it results in
 
 - hard to test code
 - hard to read code
