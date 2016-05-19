@@ -3,7 +3,7 @@ layout: post
 title: "Android Architecture: MV?"
 ---
 
-The architecture of most Android-apps is a _mess_. 
+How does the MV* ways of thinking relate to Android?
 
 # The Problem
 
