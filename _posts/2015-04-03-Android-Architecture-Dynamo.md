@@ -3,6 +3,8 @@ layout: post
 title: "Android Architecture: Introducing Dynamo"
 ---
 
+**_Dynamo has been superseded by [Pilot](http://doridori.github.io/Android-Architecture-Pilot/)_**
+
 Welcome, welcome. Come in, it looks mighty cold out there. The code is laying heavy across the hills, disorder rules the day and the nights are long. We yearn for a day where the suns shines forth once more.
 
 This is post #2 of my very short Android Architecture series (can two be a series?). [Post #1](http://doridori.github.io/Android-Architecture-MV%3F/) was a primer for this post. It contained
@@ -18,7 +20,7 @@ In my experience at least there are two core ideas around the center of most app
 
 # 1. State
 
-Most apps and views are *state-based* however the speggetti-level that captures the state logic is generally very high.
+Most apps and views are *state-based* however the spaghetti-level that captures the state logic is generally very high.
 
 # 2. Asynchronous code
 
