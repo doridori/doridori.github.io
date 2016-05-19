@@ -3,7 +3,7 @@ layout: post
 title: "Android Security: The Forgetful Keystore"
 ---
 
-_**Updated 16/05/2016**_
+_**Updated 19/05/2016**_
 
 You've just moved in to a new house and have been given the master key for the front door. You only have one of these so you know you need to keep it safe. Your really paranoid so you hire an armed guard, whose sole job is to protect this key, in fact, this is all he has been trained to do and has a catchy slogan of "need to protect a key, its what I was born to do!". You install an extra lock on your front door as you feel the bodyguard isnt enough, this is a rough area anyway and who's going to make sure no-ones about to break in and steal all your crap. You return to your key guard only to be informed he has thrown the key away. You shout and scream at him but he just blankly says "I dont have it anymore, I didnt think it was important". You can't contain your anger "What the hell, your a jerk! You had one thing to do and you failed, this causes me a lot of problems, why didnt you tell me you might do this?! What do I do now?!"
 
@@ -72,6 +72,26 @@ I have written a small test app and run this on a few devices and emulator to se
 See the tests below. T = Pass, F = Fail. Some cells are blank as I didnt test that combo - but there is enough there too see the pattern in each case :)
 
 **EDIT 16/05/16:** _It will be interesting to run the below tests on the N preview._
+
+## N Preview 3 | qemu-system-x86_64 (Emulator 2.0)
+
+| to ↓        from > | NONE | PIN | PASS | PATTERN |
+|--------------------|------|-----|------|---------|
+| NONE               |  N/A |  T  |  T   |         |
+| PIN                |  T   |     |  T   |   T     |
+| PASS               |  T   |  T  |      |         |
+| PATTERN            |  T   |     |      |         |
+
+**`.setEncryptionRequired()`**
+
+| to ↓        from > | NONE | PIN | PASS | PATTERN |
+|--------------------|------|-----|------|---------|
+| NONE               |  N/A |**F**|      |  **F**  |
+| PIN                |  N/A |  T  |      |         |
+| PASS               |  N/A |  T  |      |         |
+| PATTERN            |  N/A |     |  T   |         |
+
+More N/As on this one as `.setEncryptionRequired()` will throw if you try to create a keypair with a NONE state.
 
 ## M-6.0-23 | Nexus 5
 
