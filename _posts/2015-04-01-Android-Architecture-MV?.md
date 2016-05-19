@@ -3,7 +3,7 @@ layout: post
 title: "Android Architecture: MV?"
 ---
 
-How do the MV? ways of thinking relate to Android? Why is this now such a popular way of thinking for Android architecture?
+How do the MV? ways of thinking relate to Android? Why is this now such a popular way of thinking about Android architecture?
 
 # The Problem
 
