@@ -5,7 +5,7 @@ title: "Gradle: Guide to versions (+Android)"
 
 When using Gradle I always forget where to look to make sure I'm taking advantage of the latest core and android plugin versions for my project. 
 
-Some of the below can be done via Android Studio but I like knowing how stuff works outside the IDE :)
+Some of the below can be done via Android Studio but I like knowing how to do stuff without the IDE :)
 
 #  Core Gradle
 
