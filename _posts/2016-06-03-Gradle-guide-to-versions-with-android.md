@@ -21,7 +21,9 @@ I use `brew` and for initial installation use `brew install gradle` and to updat
 
 You should always run commands via the Gradle Wrapper (`gradlew`) so you have deterministic builds, regardless of the Gradle core version thats installed on the current build machine.
 
-You can check the wrapper version by running `gradlew --version`. You can update it by editing the `gradle-wrapper.properties` `distributionUrl` or by defining a wrapper task (Recommended as the format of the properties file can change) with
+You can check the wrapper version by running `gradlew --version`. 
+
+You can update it by editing the `gradle-wrapper.properties` `distributionUrl` or by defining a wrapper task (Recommended as the format of the properties file can change) with
 
 ```gradle
 task wrapper(type: Wrapper) {
