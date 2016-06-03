@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Gradle: Guide to versions with Android"
+title: "Gradle: Guide to versions (+Android)"
 ---
 
 When using Gradle I always forget where to look to make sure I'm taking advantage of the latest core and android plugin versions for my project. 
@@ -19,7 +19,7 @@ I use `brew` and for initial installation use `brew install gradle` and to updat
 
 ## Core Gradle Android Wrapper
 
-You should always run commands via the Gradle Wrapper (`gradlew`) so you have deterministic builds, regardless of the Gradle core version thats installed on the current build machine.
+You should always run commands via the Gradle Wrapper (`gradlew`) so you have deterministic builds, regardless of the Gradle core version that's installed on the current build machine.
 
 You can check the wrapper version by running `gradlew --version`. 
 
