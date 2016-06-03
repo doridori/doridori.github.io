@@ -5,7 +5,7 @@ title: "Gradle: Guide to versions with Android"
 
 When using Gradle I always forget where to look to make sure I'm taking advantage of the latest core and android plugin versions for my project. 
 
-#Core Gradle
+#  Core Gradle
 
 - [gradle.org] [View latest versions release notes](https://docs.gradle.org/current/release-notes)
 - [gradle.org] [View docs for older Gradle versions](http://gradle.org/gradle-download/)
@@ -17,7 +17,7 @@ You can check the version of Gradle installed on your system with `gradle --vers
 
 I use `brew` and for initial installation use `brew install gradle` and to update `brew update && brew upgrade gradle`.
 
-##Core Gradle Android Wrapper
+## Core Gradle Android Wrapper
 
 You should always run commands via the Gradle Wrapper (`gradlew`) so you have deterministic builds, regardless of the Gradle core version thats installed on the current build machine.
 
@@ -31,7 +31,7 @@ task wrapper(type: Wrapper) {
 
 and calling `gradle wrapper`.
 
-#Gradle Android Plugin
+# Gradle Android Plugin
 
 The Gradle Android plugin major.minor version tracks the build tools versioning.
 
