@@ -1,8 +1,11 @@
-#Gradle: Guide to versions with Android
+---
+layout: post
+title: "Gradle: Guide to versions with Android"
+---
 
 When using Gradle I always forget where to look to make sure I'm taking advantage of the latest core and android plugin versions for my project. 
 
-##Core Gradle
+#Core Gradle
 
 - [gradle.org] [View latest versions release notes](https://docs.gradle.org/current/release-notes)
 - [gradle.org] [View docs for older Gradle versions](http://gradle.org/gradle-download/)
@@ -28,7 +31,7 @@ task wrapper(type: Wrapper) {
 
 and calling `gradle wrapper`.
 
-##Gradle Android Plugin
+#Gradle Android Plugin
 
 The Gradle Android plugin major.minor version tracks the build tools versioning.
 
