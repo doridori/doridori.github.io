@@ -13,7 +13,7 @@ When using Gradle I always forget where to look to make sure I'm taking advantag
 
 You can check the version of Gradle installed on your system with `gradle --version`. 
 
-##Installation & Updating
+## Installation & Updating
 
 I use `brew` and for initial installation use `brew install gradle` and to update `brew update && brew upgrade gradle`.
 
