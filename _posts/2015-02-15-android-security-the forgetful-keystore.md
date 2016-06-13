@@ -3,7 +3,7 @@ layout: post
 title: "Android Security: The Forgetful Keystore"
 ---
 
-_**Updated 19/05/2016**_
+_**Updated 13/06/2016**_
 
 You've just moved in to a new house and have been given the master key for the front door. You only have one of these so you know you need to keep it safe. Your really paranoid so you hire an armed guard, whose sole job is to protect this key, in fact, this is all he has been trained to do and has a catchy slogan of "need to protect a key, its what I was born to do!". You install an extra lock on your front door as you feel the bodyguard isnt enough, this is a rough area anyway and who's going to make sure no-ones about to break in and steal all your crap. You return to your key guard only to be informed he has thrown the key away. You shout and scream at him but he just blankly says "I dont have it anymore, I didnt think it was important". You can't contain your anger "What the hell, your a jerk! You had one thing to do and you failed, this causes me a lot of problems, why didnt you tell me you might do this?! What do I do now?!"
 
@@ -31,6 +31,8 @@ I think the Nexus 4 was the first device to offer this, with APIs available from
 
 The api method im using to generate the key pair uses `KeyPairGeneratorSpec` which was added in 4.3 (18). There were ways to use this stuff before then (see Nikolays blog links below) but im going to ignore that for now.
 
+_**Post M Edit**_: As far as I can see, the now deprecated `KeyPairGeneratorSpec.setEncryptionRequired(true)` has the same effect on the `KeyStore` in terms of the below bahaviour as the newer `KeyGenParameterSpec.Builder.html.setUserAuthenticationRequired(true)`, as both cause the generated key blob to utilise the keyguard user input with the `KeyStore` KEK (Key-Encryption Key) for blob protection.
+
 # The Problem
 
 "This sounds great" I hear you cry. Well yes it is, until the Keystore-stored-key becomes inaccessible, leaving you with a useless steaming pile-o-bits™.
@@ -39,10 +41,11 @@ Currently this can happen when the device security settings (device-lock) are ch
 
 Reading the [related android bug-tracker list](https://code.google.com/p/android/issues/list?can=1&q=KeyPairGeneratorSpec&colspec=ID+Type+Status+Owner+Summary+Stars&cells=tiles) some cry 'its a bug' and others 'its a feature'. If its a feature documentation is much needed, if a bug then fixes are welcome. From this point the most I can do it outline what I have seen so as to enable others to work around it / be aware.
 
-If you do get into the position of having a wiped keystore I have seen this manifest in two ways (in my initial testing):
+If you do get into the position of having a wiped keystore I have seen this manifest in the below ways (in my initial testing):
 
-1. Most of the time ~98% in my original testing the key data _AND_ alias is wiped - giveng a `InvalidKeyException` at point of use. 
+1. Most of the time ~98% in my original testing the key data _AND_ alias is wiped - giving a `InvalidKeyException` at point of reading the `KeyPair` from the `KeyStore`. 
 2. A small amount of the time ~2% the key data is lost but the alias is _not_ giving `IllegalArgException`
+3. _**Post M Edit:**_ Using the newer apis will now throw a dedicated exception for this, `KeyPermanentlyInvalidatedException` which is a subclass of `InvalidKeyException`. This seems to be thrown at point of use i.e. `Cipher.encrypt` rather than when reading the Key handle.
 
 See below for the `InvalidKeyException` source.
 
