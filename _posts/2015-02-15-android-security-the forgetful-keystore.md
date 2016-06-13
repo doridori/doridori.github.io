@@ -45,7 +45,7 @@ If you do get into the position of having a wiped keystore I have seen this mani
 
 1. Most of the time ~98% in my original testing the key data _AND_ alias is wiped - giving a `InvalidKeyException` at point of reading the `KeyPair` from the `KeyStore`. 
 2. A small amount of the time ~2% the key data is lost but the alias is _not_ giving `IllegalArgException`
-3. _**Post M Edit:**_ Using the newer apis will now throw a dedicated exception for this, `KeyPermanentlyInvalidatedException` which is a subclass of `InvalidKeyException`. This seems to be thrown at point of use i.e. `Cipher.encrypt` rather than when reading the Key handle.
+3. _**Post M Edit:**_ Using the newer apis will now throw a dedicated exception for this, `KeyPermanentlyInvalidatedException` which is a subclass of `InvalidKeyException`. This seems to be thrown at point of use i.e. `Cipher.encrypt`, `Cipher.decrypt` or `Cipher.unwrap` (not with `Cipher.wrap` - assume this is as the public key is not encrypted in the first place) rather than when reading the Key handle.
 
 See below for the `InvalidKeyException` source.
 
