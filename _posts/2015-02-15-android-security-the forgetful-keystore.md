@@ -195,7 +195,7 @@ Knowing the above I see a few potential solutions
 
 3. **Use some PBKDF**. Look at another way of storing key data, for example generating one from a users input. This will not suit all applications of course. Target any platform version. Check out [java-aes-crypto](https://github.com/tozny/java-aes-crypto) for a really sweet and easy to use key generator which can be used with arbritary password input. Its worth nothing that this may be really easy to bruteforce depending on your required password length.
 
-4. **Unencrypted `KeyStore`**. Dont encrypt the `KeyStore` and target 6.0+ and dont support fingerprint. Cross your fingers and hope the behaviour does not change again. Hope (or check for) hardware storage for some extra confidence. Understand the user may have a software store only and may get exploited with keys being obtained by some nefarious character.
+4. **Unencrypted `KeyStore`**. Dont encrypt the `KeyStore` and target 6.0+ and dont support user authentication for `KeyStore` access (via repective API level apis). Cross your fingers and hope the behaviour does not change again. Hope (or check for) hardware storage for some extra confidence. Understand the user may have a software store only and may get exploited with keys being obtained by some nefarious character.
 
 For me 2 and 3 are the only real options. 
 
