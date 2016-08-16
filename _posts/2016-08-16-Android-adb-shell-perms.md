@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Android: A Journey Into ADB shell permissions"
+title: "Android Security: A Journey Into ADB shell permissions"
 ---
 
 I was chatting online about how adb permissions may differ from a shell open on an OEM device by an installed 3rd party application. I realised I did not really know how to quickly verify this so I went on a little journey.
