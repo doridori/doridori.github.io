@@ -25,117 +25,19 @@ What prompted me to look into this was the claim that a shell started from an ap
 
 Starting with an `adb shell` we can see the parent process tree via a cut down `ps` output:
 
-```
-#ps
-USER      PID   PPID  VSIZE  RSS   WCHAN              PC  NAME
-root      1     0     4524   908   SyS_epoll_ 0000000000 S /init
-shell     503   1     9952   700              0000000000 S /sbin/adbd
-shell     17432 29176 5744   1156           0 7f8b5d6c7c R ps
-shell     29176 503   5800   1444  sigsuspend 7f9663f37c S /system/bin/sh
-```
+<div data-gist-id="21ce5f812bd0d9d43d5ff2a3fd28c4b5" data-gist-file="1">1</div>
 
 And using this to look into the GIDs that the shell user has:
 
-```
-shell@angler:/ $ cat /proc/$$/status                                           
-Name:	sh
-State:	R (running)
-Tgid:	29176
-Pid:	29176
-PPid:	503
-TracerPid:	0
-Uid:	2000	2000	2000	2000
-Gid:	2000	2000	2000	2000
-FDSize:	64
-Groups:	1004 1007 1011 1015 1028 3001 3002 3003 3006  //GIDs
-VmPeak:	    5800 kB
-VmSize:	    5800 kB
-VmLck:	       0 kB
-VmPin:	       0 kB
-VmHWM:	    1440 kB
-VmRSS:	    1440 kB
-VmData:	    2956 kB
-VmStk:	     136 kB
-VmExe:	     276 kB
-VmLib:	    2068 kB
-VmPTE:	      24 kB
-VmSwap:	       0 kB
-Threads:	1
-SigQ:	0/9445
-SigPnd:	0000000000000000
-ShdPnd:	0000000000000000
-SigBlk:	0000000000000000
-SigIgn:	0000000000380000
-SigCgt:	000000000801f4ff
-CapInh:	0000000000000000
-CapPrm:	0000000000000000
-CapEff:	0000000000000000
-CapBnd:	00000000000000c0
-Seccomp:	0
-Cpus_allowed:	ff
-Cpus_allowed_list:	0-7
-Mems_allowed:	1
-Mems_allowed_list:	0
-voluntary_ctxt_switches:	163
-nonvoluntary_ctxt_switches:	69
-```
+<div data-gist-id="21ce5f812bd0d9d43d5ff2a3fd28c4b5" data-gist-file="2">2</div>
 
 We can compare this to a shell command from an installed application. Due to quirks with `Runtime.exec()` I found this simplest to do by issuing a slow shell command (`sleep 100`) from an installed app and inspecting from my already open `adb shell`. Below as expected, we see a totally differnt PPID tree
 
-```
-#ps
-USER      PID   PPID  VSIZE  RSS   WCHAN              PC  NAME
-root      1     0     4524   908   SyS_epoll_ 0000000000 S /init
-root      527   1     2098548 62336 poll_sched 0000000000 S zygote64
-u0_a89    13493 527   1457592 57276  pipe_wait 0000000000 S com.mypinpad.shellpermstest
-u0_a89    13515 13493 5920   1164  hrtimer_na 0000000000 S sleep
-```
+<div data-gist-id="21ce5f812bd0d9d43d5ff2a3fd28c4b5" data-gist-file="3">3</div>
 
 And querying for GIDs we have:
 
-```
-shell@angler:/ $ cat /proc/13515/status                                        
-Name:	sleep
-State:	S (sleeping)
-Tgid:	13515
-Pid:	13515
-PPid:	13493
-TracerPid:	0
-Uid:	10089	10089	10089	10089
-Gid:	10089	10089	10089	10089
-FDSize:	64
-Groups:	9997 50089 
-VmPeak:	    5920 kB
-VmSize:	    5920 kB
-VmLck:	       0 kB
-VmPin:	       0 kB
-VmHWM:	    1164 kB
-VmRSS:	    1164 kB
-VmData:	    2716 kB
-VmStk:	     136 kB
-VmExe:	     292 kB
-VmLib:	    2376 kB
-VmPTE:	      24 kB
-VmSwap:	       0 kB
-Threads:	1
-SigQ:	0/9445
-SigPnd:	0000000000000000
-ShdPnd:	0000000000000000
-SigBlk:	0000000000001204
-SigIgn:	0000000000001000
-SigCgt:	00000000000084f8
-CapInh:	0000000000000000
-CapPrm:	0000000000000000
-CapEff:	0000000000000000
-CapBnd:	0000000000000000
-Seccomp:	0
-Cpus_allowed:	ff
-Cpus_allowed_list:	0-7
-Mems_allowed:	1
-Mems_allowed_list:	0
-voluntary_ctxt_switches:	2
-nonvoluntary_ctxt_switches:	6
-```
+<div data-gist-id="21ce5f812bd0d9d43d5ff2a3fd28c4b5" data-gist-file="4">4</div>
 
 Where `10089` is the UID of the application that issues the shell command. 
 
