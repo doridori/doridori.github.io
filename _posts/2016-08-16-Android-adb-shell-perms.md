@@ -11,8 +11,8 @@ This post will mostly talk about how this stuff works with low-level permissions
 
 ## A brief summary of the low-level stuff is:
 
-- Privileges are based upon the processess UID, GID and supplimentry GIDs
-- Like all POSIX systems (clarification needed) access to system resources regualted by the kernel (files, sockets etc) is based on the owner and access mode of the resourse and the UID & GID of accessing process
+- Privileges are based upon the processes UID, GID and supplementary GIDs
+- Like all POSIX systems (clarification needed) access to system resources regulated by the kernel (files, sockets etc) is based on the owner and access mode of the resource and the UID & GID of accessing process
 - Some permissions on Android are mapped to GIDs [data/etc/platform.xml](https://android.googlesource.com/platform/frameworks/base/+/master/data/etc/platform.xml)
   - Other permissions are checked via `pm` and I'm guessing are not checkable by the process outlined in this post.
 - These GIDs are mapped to AIDs [android_filesystem_config.h](https://android.googlesource.com/platform/system/core/+/master/include/private/android_filesystem_config.h)
@@ -21,7 +21,7 @@ This post will mostly talk about how this stuff works with low-level permissions
 
 ## Relative shell permissions
 
-What prompted me to look into this was the claim that a shell started from an application had the same permissions as a shell started via `adb`. This didnt seem right to me, so I had a peak using the above knowledge.
+What prompted me to look into this was the claim that a shell started from an application had the same permissions as a shell started via `adb`. This didn't seem right to me, so I had a peak using the above knowledge.
 
 Starting with an `adb shell` we can see the parent process tree via a cut down `ps` output:
 
@@ -31,7 +31,7 @@ And using this to look into the GIDs that the shell user has:
 
 <div data-gist-id="21ce5f812bd0d9d43d5ff2a3fd28c4b5" data-gist-file="2">2</div>
 
-We can compare this to a shell command from an installed application. Due to quirks with `Runtime.exec()` I found this simplest to do by issuing a slow shell command (`sleep 100`) from an installed app and inspecting from my already open `adb shell`. Below as expected, we see a totally differnt PPID tree
+We can compare this to a shell command from an installed application. Due to quirks with `Runtime.exec()` I found this simplest to do by issuing a slow shell command (`sleep 100`) from an installed app and inspecting from my already open `adb shell`. Below as expected, we see a totally different PPID tree
 
 <div data-gist-id="21ce5f812bd0d9d43d5ff2a3fd28c4b5" data-gist-file="3">3</div>
 
@@ -41,19 +41,19 @@ And querying for GIDs we have:
 
 Where `10089` is the UID of the application that issues the shell command. 
 
-From the above we can see that the GID permissions are not infact identicle, and that the users are also differnt!
+From the above we can see that the GID permissions are not in fact identical, and that the users are also different!
 
 One obvious example of this is that the `adb shell` has GID `3003` which is 
 
 `#define AID_INET          3003  /* can create AF_INET and AF_INET6 sockets */`
 
-so by default it will effectivly have the `INTERNET` permission. 
+so by default it will effectively have the `INTERNET` permission. 
 
 It would be interesting to know what the os resources the `shell` user has access to. I imagine this can be found by a simple command on a rooted / emulated device.
 
 ## Last Word
 
-I found this an interesting poke around kernal permissions (a sentence I never thought I would say!) so thought I would share. If you see anything incorrect here please let me know. 
+I found this an interesting poke around kernel permissions (a sentence I never thought I would say!) so thought I would share. If you see anything incorrect here please let me know. 
 
 ## Appendix: ro.*
 
