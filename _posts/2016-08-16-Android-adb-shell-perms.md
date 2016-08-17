@@ -55,6 +55,8 @@ It would be interesting to know what the os resources the `shell` user has acces
 
 I found this an interesting poke around kernel permissions (a sentence I never thought I would say!) so thought I would share. If you see anything incorrect here please let me know. 
 
+If you find this stuff interesting you may like [doridori/Android-Security-Reference](https://github.com/doridori/Android-Security-Reference).
+
 ## Appendix: ro.*
 
 A side note here. According to [ADB
