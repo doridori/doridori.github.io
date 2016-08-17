@@ -3,9 +3,13 @@ layout: post
 title: "Android Security: A Journey Into ADB shell permissions"
 ---
 
-I was chatting online about how adb permissions may differ from a shell open on an OEM device by an installed 3rd party application. I realised I did not really know how to quickly verify this so I went on a little journey.
+Do all android shells have the same permissions? What a good question!  
 
-First of all I had a flick through the excellent [Android Security Internals: An In-Depth Guide to Android's Security Architecture](https://www.amazon.co.uk/Android-Security-Internals-Depth-Architecture/dp/1593275811) to get an overview about how process permissions worked on android. Most of the overview is just a condensed version of a few pages of this great book.
+> ADB is a shell that you get on a PC with the same permissions as if you were to run a shell/terminal app on the phone itself. 
+
+I came accross [this](I came accross this statement on Reddit which went against my intuition and I had a quick look into it.) statement on Reddit which went against my intuition and I had a quick look into it.
+
+I started by flicking through the excellent [Android Security Internals: An In-Depth Guide to Android's Security Architecture](https://www.amazon.co.uk/Android-Security-Internals-Depth-Architecture/dp/1593275811) to get an overview about how process permissions worked on android. Most of the overview is just a condensed version of a few pages of this great book.
 
 This post will mostly talk about how this stuff works with low-level permissions work in the OS, as opposed to high-level operations that involve the package manager (`pm`). 
 
