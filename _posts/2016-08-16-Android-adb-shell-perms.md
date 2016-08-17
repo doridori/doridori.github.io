@@ -68,3 +68,5 @@ If you find this stuff interesting you may like [doridori/Android-Security-Refer
 A side note here. According to [ADB
 (Android Debug Bridge):
 How it works?](https://events.linuxfoundation.org/images/stories/pdf/lf_abs12_kobayashi.pdf) if the sys prop `ro.secure` = 1 (as it should be with all OEM devices) than `adbd` will run as `shell`, otherwise it will run as `root` i.e. like the emulator, and probably the now defunct dev devices.
+
+[This app](https://play.google.com/store/apps/details?id=eu.chainfire.adbd&hl=en_GB) will extend root to `adbd`. I presume by temp setting `ro.secure` and restarting `adbd`.
