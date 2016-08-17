@@ -3,11 +3,11 @@ layout: post
 title: "Android Security: A Journey Into ADB shell permissions"
 ---
 
-Do all android shells have the same permissions? What a good question!  
+Does a shell started from an application have the same permissions as a shell started via `adb`? What a good question!  
 
 > ADB is a shell that you get on a PC with the same permissions as if you were to run a shell/terminal app on the phone itself. 
 
-I came accross [this](I came accross this statement on Reddit which went against my intuition and I had a quick look into it.) statement on Reddit which went against my intuition and I had a quick look into it.
+I came across [this](I came accross this statement on Reddit which went against my intuition and I had a quick look into it.) statement on Reddit which went against my intuition and I had a quick look into it.
 
 I started by flicking through the excellent [Android Security Internals: An In-Depth Guide to Android's Security Architecture](https://www.amazon.co.uk/Android-Security-Internals-Depth-Architecture/dp/1593275811) to get an overview about how process permissions worked on android. Most of the overview is just a condensed version of a few pages of this great book.
 
@@ -25,7 +25,7 @@ This post will mostly talk about how this stuff works with low-level permissions
 
 ## Relative shell permissions
 
-What prompted me to look into this was the claim that a shell started from an application had the same permissions as a shell started via `adb`. This didn't seem right to me, so I had a peak using the above knowledge.
+So, does a shell started from an application have the same permissions as a shell started via `adb`? Lets see.
 
 Starting with an `adb shell` we can see the parent process tree via a cut down `ps` output:
 
@@ -55,7 +55,9 @@ so by default it will effectively have the `INTERNET` permission.
 
 It would be interesting to know what the os resources the `shell` user has access to. I imagine this can be found by a simple command on a rooted / emulated device.
 
-## Last Word
+## Conclusion
+
+In a word, yes. An open shells permissions are granted depending on its processes Owner and Group(s). Depending where the shell is initiated these can be different.
 
 I found this an interesting poke around kernel permissions (a sentence I never thought I would say!) so thought I would share. If you see anything incorrect here please let me know. 
 
