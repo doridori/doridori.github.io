@@ -7,7 +7,7 @@ I was chatting online about how adb permissions may differ from a shell open on 
 
 First of all I had a flick through the excellent [Android Security Internals: An In-Depth Guide to Android's Security Architecture](https://www.amazon.co.uk/Android-Security-Internals-Depth-Architecture/dp/1593275811) to get an overview about how process permissions worked on android. Most of the overview is just a condensed version of a few pages of this great book.
 
-This post will mostly talk about low how this stuff works with low-level permissions work in the OS, as opposed to high-level operations that involve the package manager (`pm`). 
+This post will mostly talk about how this stuff works with low-level permissions work in the OS, as opposed to high-level operations that involve the package manager (`pm`). 
 
 ## A brief summary of the low-level stuff is:
 
