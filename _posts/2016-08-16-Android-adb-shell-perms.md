@@ -7,7 +7,7 @@ Does a shell started from an application have the same permissions as a shell st
 
 > ADB is a shell that you get on a PC with the same permissions as if you were to run a shell/terminal app on the phone itself. 
 
-I came across [this](I came accross this statement on Reddit which went against my intuition and I had a quick look into it.) statement on Reddit which went against my intuition and I had a quick look into it.
+I came across [this](https://www.reddit.com/r/computerforensics/comments/4xrz86/forensics_tool_nabs_data_from_signal_telegram/d6ir97g) statement on Reddit which went against my intuition and I had a quick look into it. It was important for me so I can understand the differnce in potential attack vectors surrounding open shells.
 
 I started by flicking through the excellent [Android Security Internals: An In-Depth Guide to Android's Security Architecture](https://www.amazon.co.uk/Android-Security-Internals-Depth-Architecture/dp/1593275811) to get an overview about how process permissions worked on android. Most of the overview is just a condensed version of a few pages of this great book.
 
