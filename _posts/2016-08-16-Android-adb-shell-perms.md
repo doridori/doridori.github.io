@@ -9,7 +9,7 @@ Does a shell started from an application have the same permissions as a shell st
 
 I came across [this](https://www.reddit.com/r/computerforensics/comments/4xrz86/forensics_tool_nabs_data_from_signal_telegram/d6ir97g) statement on Reddit which went against my intuition and I had a quick look into it. It was important for me so I can understand the differnce in potential attack vectors surrounding open shells.
 
-I started by flicking through the excellent [Android Security Internals: An In-Depth Guide to Android's Security Architecture](https://www.amazon.co.uk/Android-Security-Internals-Depth-Architecture/dp/1593275811) to get an overview about how process permissions worked on android. Most of the overview is just a condensed version of a few pages of this great book.
+I started by flicking through the excellent [Android Security Internals: An In-Depth Guide to Android's Security Architecture](https://www.amazon.co.uk/Android-Security-Internals-Depth-Architecture/dp/1593275811) to get an overview about how process permissions worked on android. Most of the overview is just a condensed version of a few pages of this great book. 
 
 This post will mostly talk about how this stuff works with low-level permissions work in the OS, as opposed to high-level operations that involve the package manager (`pm`). 
 
