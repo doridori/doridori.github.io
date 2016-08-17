@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Android Security: A Journey Into shell permissions"
+title: "Android Security: A Journey Into Shell Permissions"
 ---
 
 Does a shell started from an application have the same permissions as a shell started via `adb`? What a good question!  
