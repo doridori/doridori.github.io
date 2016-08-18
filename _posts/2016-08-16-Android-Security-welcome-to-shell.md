@@ -53,7 +53,7 @@ One obvious example of this is that the `adb shell` has GID `3003` which is
 
 so by default it will effectively have the `INTERNET` permission. 
 
-##Further Research
+## Further Research
 
 It would be interesting to know what the os resources the `shell` user has access to. I imagine this can be found by a simple command on a rooted / emulated device.
 
