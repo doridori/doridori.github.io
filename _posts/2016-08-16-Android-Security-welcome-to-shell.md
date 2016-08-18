@@ -11,7 +11,7 @@ I came across [this](https://www.reddit.com/r/computerforensics/comments/4xrz86/
 
 I started by flicking through the excellent [Android Security Internals: An In-Depth Guide to Android's Security Architecture](https://www.amazon.co.uk/Android-Security-Internals-Depth-Architecture/dp/1593275811) to get an overview about how process permissions worked on android. Most of the overview is just a condensed version of a few pages of this great book. 
 
-This post will mostly talk about how this stuff works with low-level permissions work in the OS, as opposed to high-level operations that involve the package manager (`pm`). 
+This post will mostly talk about how this stuff works with low-level kernel permissions work in the OS, as opposed to high-level operations that involve the package manager (`pm`). 
 
 ## A brief summary of the low-level stuff is:
 
