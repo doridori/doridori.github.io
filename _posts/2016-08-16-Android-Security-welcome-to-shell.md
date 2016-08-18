@@ -16,7 +16,7 @@ This post will mostly talk about how this stuff works with low-level kernel perm
 ## A brief summary of the low-level stuff is:
 
 - Privileges are based upon the processes [UID](https://en.wikipedia.org/wiki/User_identifier), [GID](https://en.wikipedia.org/wiki/Group_identifier) and supplementary GIDs
-- Like all POSIX systems (clarification needed) access to system resources regulated by the kernel (files, sockets etc) is based on the owner and access mode of the resource and the UID & GID of accessing process
+- Like all POSIX systems [clarification needed] access to system resources regulated by the kernel (files, sockets etc) is based on the owner and access mode of the resource and the UID & GID of accessing process
 - Some permissions on Android are mapped to GIDs [data/etc/platform.xml](https://android.googlesource.com/platform/frameworks/base/+/master/data/etc/platform.xml)
   - Other permissions are checked via `pm` and I'm guessing are not checkable by the process outlined in this post.
 - These GIDs are mapped to AIDs [android_filesystem_config.h](https://android.googlesource.com/platform/system/core/+/master/include/private/android_filesystem_config.h)
