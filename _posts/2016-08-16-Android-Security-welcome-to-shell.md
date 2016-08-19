@@ -57,6 +57,8 @@ so by default it will effectively have the `INTERNET` permission.
 
 It would be interesting to know what the os resources the `shell` user has access to. I imagine this can be found by a simple command on a rooted / emulated device.
 
+_EDIT:_ [Should also look into this from CopperheadOS](https://twitter.com/CopperheadOS/status/766363947066941441)
+
 ## Conclusion
 
 In a word, yes. An open shells permissions are granted depending on its processes Owner and Group(s). Depending where the shell is initiated these can be different.
