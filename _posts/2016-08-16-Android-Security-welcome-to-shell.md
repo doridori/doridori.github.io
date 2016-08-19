@@ -57,7 +57,7 @@ so by default it will effectively have the `INTERNET` permission.
 
 It would be interesting to know what the os resources the `shell` user has access to. I imagine this can be found by a simple command on a rooted / emulated device.
 
-_EDIT:_ [Should also look into this from CopperheadOS](https://twitter.com/CopperheadOS/status/766363947066941441)
+_EDIT: [Should also look into this from CopperheadOS](https://twitter.com/CopperheadOS/status/766363947066941441)_
 
 ## Conclusion
 
