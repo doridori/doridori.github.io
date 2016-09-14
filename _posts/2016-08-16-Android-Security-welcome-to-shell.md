@@ -53,6 +53,8 @@ One obvious example of this is that the `adb shell` has GID `3003` which is
 
 so by default it will effectively have the `INTERNET` permission. 
 
+# Other Shell Permissions
+
 To see what other permissions the `shell` user has check out the below:
 
 <div data-gist-id="21ce5f812bd0d9d43d5ff2a3fd28c4b5" data-gist-file="packages.xml">packages.xml</div>
