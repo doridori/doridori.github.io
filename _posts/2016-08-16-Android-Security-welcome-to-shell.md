@@ -39,6 +39,8 @@ We can compare this to a shell command from an installed application. Due to qui
 
 <div data-gist-id="21ce5f812bd0d9d43d5ff2a3fd28c4b5" data-gist-file="3">3</div>
 
+_Note: `u0_a89` is User 0 (UID 100000) started app (UID 10089)_
+
 And querying for GIDs we have:
 
 <div data-gist-id="21ce5f812bd0d9d43d5ff2a3fd28c4b5" data-gist-file="4">4</div>
