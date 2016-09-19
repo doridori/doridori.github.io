@@ -65,8 +65,8 @@ To see what other permissions the `shell` user has check out the below from `/da
 
 It would be interesting to know what the os resources the `shell` user has access to. I imagine this can be found by a simple command on a rooted / emulated device.
 
-_EDIT: [init.rc](https://android.googlesource.com/platform/system/core/+/master/rootdir/init.rc) has some interesting info on folder owners and permissions
-_EDIT: [Should also look into this from CopperheadOS](https://twitter.com/CopperheadOS/status/766363947066941441)_
+- _EDIT: [init.rc](https://android.googlesource.com/platform/system/core/+/master/rootdir/init.rc) has some interesting info on folder owners and permissions_
+- _EDIT: [Should also look into this from CopperheadOS](https://twitter.com/CopperheadOS/status/766363947066941441)_
 
 ## Conclusion
 
