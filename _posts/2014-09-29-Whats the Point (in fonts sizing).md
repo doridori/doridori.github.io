@@ -60,7 +60,7 @@ Android has a nice way of abstracting over density by using __DPs__ / __DiPs__ (
 
 #### 6) Mobile Hardware DPI baselines
 
-iOS and Android baseline original devices have ~150-160 dpi known as Medium-Density (Android) and 
+iOS and Android baseline original devices have ~150-160 dpi known as Medium-Density (Android).
 
 ## The Problem
 
