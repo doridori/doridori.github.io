@@ -131,6 +131,8 @@ This is a dangerous assumption to have and it muddies the water in some ways as 
 
 A more accurate rule would be __1pt = 1px IF docDensity = 72dpi__ and in addition __1pt = 1dp IF docDensity = 72dpi AND docResolution = 320x480px__
 
+Example: A 320x480px 72dpi doc has some text at size 72pts. This would be an inch wide when viewed at 100%, but when the doc is scaled so it has a virtual density of ~160dp, 72pts would be 72/160th (~1/2.22) of an inch. This text would then equate to 72dps. 
+
 For practical purposes 1pt = 1px when the photoshop doc is using 72dpi and the dimensions of the doc are equal to the dimensions of the screen you are coding for, but this does NOT take into account any density-independence, hence the above solutions will need to also be taken into account if any density-indendent dimension is to be used. You _could_ use the density-dependent `px` size directly but this will only display at the right size when your output device exactly matches the dimensions of the PS doc.
 
 #### Emulated Dpi
