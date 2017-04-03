@@ -80,19 +80,19 @@ See the tests below. T = Pass, F = Fail. Some cells are blank as I didn't test t
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
 |--------------------|------|-----|------|---------|
-| NONE               | N/A  |  T  |  T   |  T      |
-| PIN                |  T   | N/A |  T   |  T      |
-| PASS               |  T   |  T  | N/A  |  T      |
-| PATTERN            |  T   |  T  |  T   | N/A     |
+| NONE               |  T   |  T  |  T   |  T      |
+| PIN                |  T   |  T  |  T   |  T      |
+| PASS               |  T   |  T  |  T   |  T      |
+| PATTERN            |  T   |  T  |  T   |  T      |
 
 **`.setEncryptionRequired()`**
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
 |--------------------|------|-----|------|---------|
-| NONE               | N/A  | *F* | *F*  |  *F*    |
-| PIN                | N/A  | N/A |  T   |   T     |
-| PASS               | N/A  |  T  | N/A  |   T     |
-| PATTERN            | N/A  |  T  |  T   | N/A     |
+| NONE               | N/A  |**F**|**F** | **F**   |
+| PIN                | N/A  |  T  |  T   |   T     |
+| PASS               | N/A  |  T  |  T   |   T     |
+| PATTERN            | N/A  |  T  |  T   |   T     |
 
 If device lock is NONE you cannot create a keystore entry with `setEncryptionRequired()`. If you try you'll see an  IllegalStateException.
 
