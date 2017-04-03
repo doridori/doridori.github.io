@@ -94,10 +94,7 @@ See the tests below. T = Pass, F = Fail. Some cells are blank as I didn't test t
 | PASS               | N/A  |  T  | N/A  |   T     |
 | PATTERN            | N/A  |  T  |  T   | N/A     |
 
-If device lock is None you cannot create a keystore entry with `setEncryptionRequired()`. If you try you'll see an  IllegalStateException.
-
-
-**EDIT 16/05/16:** _It will be interesting to run the below tests on the N preview._
+If device lock is NONE you cannot create a keystore entry with `setEncryptionRequired()`. If you try you'll see an  IllegalStateException.
 
 ## N Preview 3 | qemu-system-x86_64 (Emulator 2.0)
 
