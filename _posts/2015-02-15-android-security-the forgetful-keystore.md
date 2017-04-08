@@ -72,9 +72,29 @@ As mentioned above different OSs and differnt transitions between device-lock st
 
 I have written a small test app and run this on a few devices and emulator to see what results I get. This test app will be using the [`SecretKeyWrapper`](https://android.googlesource.com/platform/development/+/master/samples/Vault/src/com/example/android/vault/SecretKeyWrapper.java) from the Android `Vault` package examples. I have added two methods to this to enable testing. See the full (dirty) source on [github](https://github.com/doridori/AndroidKeystoreWipeTest/tree/master).
 
-See the tests below. T = Pass, F = Fail. Some cells are blank as I didnt test that combo - but there is enough there too see the pattern in each case :)
+See the tests below. T = Pass, F = Fail. Some cells are blank as I didn't test that combo - but there is enough there too see the pattern in each case :)
 
-**EDIT 16/05/16:** _It will be interesting to run the below tests on the N preview._
+**Edit 03/04/2017**
+
+# O preview 1 - Nexus 5X  
+
+| to ↓        from > | NONE | PIN | PASS | PATTERN |
+|--------------------|------|-----|------|---------|
+| NONE               |  T   |  T  |  T   |  T      |
+| PIN                |  T   |  T  |  T   |  T      |
+| PASS               |  T   |  T  |  T   |  T      |
+| PATTERN            |  T   |  T  |  T   |  T      |
+
+**`.setEncryptionRequired()`**
+
+| to ↓        from > | NONE | PIN | PASS | PATTERN |
+|--------------------|------|-----|------|---------|
+| NONE               | N/A  |**F**|**F** | **F**   |
+| PIN                | N/A  |  T  |  T   |   T     |
+| PASS               | N/A  |  T  |  T   |   T     |
+| PATTERN            | N/A  |  T  |  T   |   T     |
+
+If device lock is NONE you cannot create a keystore entry with `setEncryptionRequired()`. If you try you'll see an  IllegalStateException.
 
 
 ## Android 7.1 - API 25 - Nexus 5X with `setEncryptionRequired()`
