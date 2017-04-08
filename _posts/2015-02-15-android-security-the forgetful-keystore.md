@@ -7,15 +7,15 @@ _**Updated 13/06/2016**_
 
 You've just moved in to a new house and have been given the master key for the front door. You only have one of these so you know you need to keep it safe. Your really paranoid so you hire an armed guard, whose sole job is to protect this key, in fact, this is all he has been trained to do and has a catchy slogan of "need to protect a key, its what I was born to do!". You install an extra lock on your front door as you feel the bodyguard isnt enough, this is a rough area anyway and who's going to make sure no-ones about to break in and steal all your crap. You return to your key guard only to be informed he has thrown the key away. You shout and scream at him but he just blankly says "I dont have it anymore, I didnt think it was important". You can't contain your anger "What the hell, your a jerk! You had one thing to do and you failed, this causes me a lot of problems, why didnt you tell me you might do this?! What do I do now?!"
 
-Ok, stories arnt my strong point. The point is, this is how I feel when using the Android `Keystore` to protect my private encryption key, it drives me a bit nuts. I really appreciate the effort thats gone into it but its still frustrating when your on a deadline, documentation is lacking, and something isn't working as it should 
+Ok, stories arnt my strong point. The point is, this is how I feel when using the Android `Keystore` to protect my private encryption key, it drives me a bit nuts. I really appreciate the effort thats gone into it but its still frustrating when your on a deadline, documentation is lacking, and something isn't working as it should
 
-I have been working on some apps with a high security requirement, and one of the requirements is to take advantage of the best level of security offered by the platform. For our case this includes utilising the system `Keystore` to store an asymmetric key pair. One can then use this for encryption/decryption directly or use it to encrypt an symettric key (like AES) which can then be used directly to encrypt your plaintext (or fed into something like [java-aes-crypto](https://github.com/tozny/java-aes-crypto)), which is much faster than using the asymmetric directly. 
+I have been working on some apps with a high security requirement, and one of the requirements is to take advantage of the best level of security offered by the platform. For our case this includes utilising the system `Keystore` to store an asymmetric key pair. One can then use this for encryption/decryption directly or use it to encrypt an symettric key (like AES) which can then be used directly to encrypt your plaintext (or fed into something like [java-aes-crypto](https://github.com/tozny/java-aes-crypto)), which is much faster than using the asymmetric directly.
 
 Lots of people seem to use encryption in the wild but they hard code the key or store is as plaintext or obfuscated. None of which are recommended.
 
 # Why is the `Keystore` good for storing keys?
 
-Good question! The Keystore can hold its keys is two ways. 
+Good question! The Keystore can hold its keys is two ways.
 
 ## Software
 
@@ -37,13 +37,13 @@ _**Post M Edit**_: As far as I can see, the now deprecated `KeyPairGeneratorSpec
 
 "This sounds great" I hear you cry. Well yes it is, until the Keystore-stored-key becomes inaccessible, leaving you with a useless steaming pile-o-bits™.
 
-Currently this can happen when the device security settings (device-lock) are changed by the user, namely switching between `None`, `Swipe`, `Pattern`, `Pin` and `Password` but also OS versions will behave differntly. 
+Currently this can happen when the device security settings (device-lock) are changed by the user, namely switching between `None`, `Swipe`, `Pattern`, `Pin` and `Password` but also OS versions will behave differntly.
 
 Reading the [related android bug-tracker list](https://code.google.com/p/android/issues/list?can=1&q=KeyPairGeneratorSpec&colspec=ID+Type+Status+Owner+Summary+Stars&cells=tiles) some cry 'its a bug' and others 'its a feature'. If its a feature documentation is much needed, if a bug then fixes are welcome. From this point the most I can do it outline what I have seen so as to enable others to work around it / be aware.
 
 If you do get into the position of having a wiped keystore I have seen this manifest in the below ways (in my initial testing):
 
-1. Most of the time ~98% in my original testing the key data _AND_ alias is wiped - giving a `InvalidKeyException` at point of reading the `KeyPair` from the `KeyStore`. 
+1. Most of the time ~98% in my original testing the key data _AND_ alias is wiped - giving a `InvalidKeyException` at point of reading the `KeyPair` from the `KeyStore`.
 2. A small amount of the time ~2% the key data is lost but the alias is _not_ giving `IllegalArgException`
 3. _**Post M Edit:**_ Using the newer apis will now throw a dedicated exception for this, `KeyPermanentlyInvalidatedException` which is a subclass of `InvalidKeyException`. This seems to be thrown at point of use i.e. `Cipher.encrypt`, `Cipher.decrypt` or `Cipher.unwrap` (not with `Cipher.wrap` - assume this is as the public key is not encrypted in the first place) rather than when reading the Key handle.
 
@@ -57,24 +57,55 @@ From the above you can see it's not just a silent fail yielding an empty keystor
 
 Its worth noting that when creating a key with [`KeyPairGeneratorSpec.Builder.setEncryptionRequired()`](http://developer.android.com/reference/android/security/KeyPairGeneratorSpec.Builder.html#setEncryptionRequired()) its required that the device have a device-lock set (as this is used as part of the keying material). If you do `setEncryptionRequired()` and one isnt, you get a friendly
 
-- Pre M-6-23 `java.lang.IllegalStateException: Android keystore must be in initialized and unlocked state if encryption is required` 
+- Pre M-6-23 `java.lang.IllegalStateException: Android keystore must be in initialized and unlocked state if encryption is required`
 - Post M-6-23 `java.lang.IllegalStateException: Encryption at rest using secure lock screen credential requested for key pair, but the user has not yet entered the credential`
 
 so you need to manually ensure that something is set. Check out [my SO answer](http://stackoverflow.com/a/27801128/236743) for an approach to use here :). The great [Android Security Cookbook](https://www.packtpub.com/application-development/android-security-cookbook) has a recipie for using the Device Admin Policy.
 
-## `allowBackups=true` 
+## `allowBackups=true`
 
 It's interesting that `allowBackups=true` (which it is by default) does not delete `KeyStore` backed keys on app uninstall. This led to me reinstalling an application with had fingerprint auth backed keys, which I could no longer access. Need to research this one a bit more. I recommend setting  `allowBackups=false` anyhow if your working with this stuff.
 
 # Behaviour Matrix
 
-As mentioned above different OSs and differnt transitions between device-lock states can wipe the keystore. 
+As mentioned above different OSs and differnt transitions between device-lock states can wipe the keystore.
 
 I have written a small test app and run this on a few devices and emulator to see what results I get. This test app will be using the [`SecretKeyWrapper`](https://android.googlesource.com/platform/development/+/master/samples/Vault/src/com/example/android/vault/SecretKeyWrapper.java) from the Android `Vault` package examples. I have added two methods to this to enable testing. See the full (dirty) source on [github](https://github.com/doridori/AndroidKeystoreWipeTest/tree/master).
 
 See the tests below. T = Pass, F = Fail. Some cells are blank as I didnt test that combo - but there is enough there too see the pattern in each case :)
 
 **EDIT 16/05/16:** _It will be interesting to run the below tests on the N preview._
+
+
+## Android 7.1 - API 25 - Nexus 5X with `setEncryptionRequired()`
+
+| to ↓        from > | NONE | PIN | PASS | PATTERN |
+|--------------------|------|-----|------|---------|
+| NONE               | N/A  |**F**|**F** | **F**   |
+| PIN                | N/A  |  T  |  T   |   T     |
+| PASS               | N/A  |  T  |  T   |   T     |
+| PATTERN            | N/A  |  T  |  T   |   T     |
+
+
+## Android 7.0 - API 25 - Nexus 5X
+
+| to ↓        from > | NONE | PIN | PASS | PATTERN |
+|--------------------|------|-----|------|---------|
+| NONE               |  T   |  T  |  T   |   T     |
+| PIN                |  T   |  T  |  T   |   T     |
+| PASS               |  T   |  T  |  T   |   T     |
+| PATTERN            |  T   |  T  |  T   |   T     |
+
+**`.setEncryptionRequired()`**
+
+| to ↓        from > | NONE | PIN | PASS | PATTERN |
+|--------------------|------|-----|------|---------|
+| NONE               | N/A  |**F**|**F** | **F**   |
+| PIN                | N/A  |  T  |  T   |   T     |
+| PASS               | N/A  |  T  |  T   |   T     |
+| PATTERN            | N/A  |  T  |  T   |   T     |
+
+
 
 ## N Preview 3 | qemu-system-x86_64 (Emulator 2.0)
 
@@ -133,7 +164,7 @@ More N/As on this one as `.setEncryptionRequired()` will throw if you try to cre
 | PASS               | **F**|     | T    | T       |
 | PATTERN            | T    | T   |      |         |
 
-Once a keypair has been generated the system will not let you revert to NONE (regardless of if the `KeyStore` is encrypted or not) unless the app has been deleted / the pair removed hence the N/A. This looks like 
+Once a keypair has been generated the system will not let you revert to NONE (regardless of if the `KeyStore` is encrypted or not) unless the app has been deleted / the pair removed hence the N/A. This looks like
 
 [![Disabled NONE options](https://raw.githubusercontent.com/doridori/doridori.github.io/master/images/blog/keystore_lock_disabled.jpg)]
 
@@ -145,8 +176,8 @@ Once a keypair has been generated the system will not let you revert to NONE (re
 | PIN                | N/A  | T   | T    | T       |
 | PASS               | N/A  | T   | T    | T       |
 | PATTERN            | N/A  | T   | T    | T       |
- 
-More N/As on this one as `.setEncryptionRequired()` will throw if you try to create a keypair with a NONE state. 
+
+More N/As on this one as `.setEncryptionRequired()` will throw if you try to create a keypair with a NONE state.
 
 The user will not be able to revert to NONE until selecting 'Clear Credentials' from the security menu. On my N5 uninstalling the test app did not allow setting to NONE until a manual clear.
 
@@ -162,7 +193,7 @@ The user will not be able to revert to NONE until selecting 'Clear Credentials' 
 | PATTERN            | T    | T   | T    | T       |
 
 4.4 Does seem to allow you to switch back to NONE unlike 5 above
- 
+
 **`.setEncryptionRequired()`**
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
@@ -173,8 +204,8 @@ The user will not be able to revert to NONE until selecting 'Clear Credentials' 
 | PATTERN            | N/A  | T   |      |         |
 
 Like 5.* generating the key pair with NONE set will just throw
- 
-## JB-4.3-18 | Genymotion Emulator 
+
+## JB-4.3-18 | Genymotion Emulator
 
 | to ↓        from > | SLIDE | PIN | PASS | PATTERN |
 |--------------------|-------|-----|------|---------|
@@ -184,12 +215,12 @@ Like 5.* generating the key pair with NONE set will just throw
 | PATTERN            |       |     | T    | T       |
 
 Sad face.
- 
+
 # Conclusion
 
 Knowing the above I see a few potential solutions
 
-1. <del>**Target 5+** If your requirement is to have strong encryption using the keystore and losing the encrypted data is a no-no - targeting L+ (5+) seems like the only choice, using `.setEncryptionRequired()`. However be warned that this is no guarentee that it will always work as this seems to still be broken for non-primary user accounts.</del> This is no longer true due to the regression mentioned above in M-6-23. 
+1. <del>**Target 5+** If your requirement is to have strong encryption using the keystore and losing the encrypted data is a no-no - targeting L+ (5+) seems like the only choice, using `.setEncryptionRequired()`. However be warned that this is no guarentee that it will always work as this seems to still be broken for non-primary user accounts.</del> This is no longer true due to the regression mentioned above in M-6-23.
 
 2. **Encrypted `KeyStore` and OK to lose Keys**. If your requirement is to have strong encryption using the keystore and losing the encrypted data is ok - then you can detect the above exceptions mentioned and have some form of re-inititialisation for those cases. Target 4.3+. Remember to check the device has the required lock-screen security settings (as mentioned above) before generating the keyPair. Checking for the exceptions at point of key unwrap and notifing the user whilst clearing any key aliases is a simple enough approach for most. Keep in mind if supporting the fingerprint sensor to auth access to your keys you will lose them when a new finger is enrolled anyway. Put some thought into the UX for key loss.
 
@@ -197,7 +228,7 @@ Knowing the above I see a few potential solutions
 
 4. **Unencrypted `KeyStore`**. Dont encrypt the `KeyStore` and target 6.0+ and dont support user authentication for `KeyStore` access (via repective API level apis). Cross your fingers and hope the behaviour does not change again. Hope (or check for) hardware storage for some extra confidence. Understand the user may have a software store only and may get exploited with keys being obtained by some nefarious character.
 
-For me 2 and 3 are the only real options. 
+For me 2 and 3 are the only real options.
 
 I hope that this sheds some light on this slightly confusing behaviour! As always, any thoughts / comments welcome.
 
@@ -221,6 +252,6 @@ Since Android M-6-23 keys can be stored which require authentication via fingerp
 > The key will become irreversibly invalidated once the secure lock screen is disabled (reconfigured to None, Swipe or other mode which does not authenticate the user) or when the secure lock screen is forcibly reset (e.g., by a Device Administrator). Additionally, if the key requires that user authentication takes place for every use of the key, it is also irreversibly invalidated once a new fingerprint is enrolled or once\ no more fingerprints are enrolled. Attempts to initialize cryptographic operations using such keys will throw KeyPermanentlyInvalidatedException.
 This authorization applies only to secret key and private key operations. Public key operations are not restricted.
 
-Taken from [KeyGenParameterSpec.Builder.setUserAuthenticationRequired(...)](http://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder.html#setUserAuthenticationRequired(boolean)). 
+Taken from [KeyGenParameterSpec.Builder.setUserAuthenticationRequired(...)](http://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder.html#setUserAuthenticationRequired(boolean)).
 
-This means that losing keys will always be an inevitabilty if using Fingerprint on 6. 
+This means that losing keys will always be an inevitabilty if using Fingerprint on 6.
