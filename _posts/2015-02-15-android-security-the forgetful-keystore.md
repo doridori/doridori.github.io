@@ -94,6 +94,37 @@ See the tests below. T = Pass, F = Fail. Some cells are blank as I didn't test t
 
 If device lock is NONE you cannot create a keystore entry with `setEncryptionRequired()`. If you try you'll see an  IllegalStateException.
 
+
+## Android 7.1 - API 25 - Nexus 5X with `setEncryptionRequired()`
+
+| to ↓        from > | NONE | PIN | PASS | PATTERN |
+|--------------------|------|-----|------|---------|
+| NONE               | N/A  |**F**|**F** | **F**   |
+| PIN                | N/A  |  T  |  T   |   T     |
+| PASS               | N/A  |  T  |  T   |   T     |
+| PATTERN            | N/A  |  T  |  T   |   T     |
+
+
+## Android 7.0 - API 25 - Nexus 5X
+
+| to ↓        from > | NONE | PIN | PASS | PATTERN |
+|--------------------|------|-----|------|---------|
+| NONE               |  T   |  T  |  T   |   T     |
+| PIN                |  T   |  T  |  T   |   T     |
+| PASS               |  T   |  T  |  T   |   T     |
+| PATTERN            |  T   |  T  |  T   |   T     |
+
+**`.setEncryptionRequired()`**
+
+| to ↓        from > | NONE | PIN | PASS | PATTERN |
+|--------------------|------|-----|------|---------|
+| NONE               | N/A  |**F**|**F** | **F**   |
+| PIN                | N/A  |  T  |  T   |   T     |
+| PASS               | N/A  |  T  |  T   |   T     |
+| PATTERN            | N/A  |  T  |  T   |   T     |
+
+
+
 ## N Preview 3 | qemu-system-x86_64 (Emulator 2.0)
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
