@@ -72,8 +72,6 @@ I have written a small test app and run this on a few devices and emulator to se
 
 See the tests below. T = Pass, F = Fail. Some cells are blank as I didn't test that combo - but there is enough there too see the pattern in each case :)
 
-**Edit 03/04/2017**
-
 # O preview 1 - Nexus 5X  
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
@@ -95,7 +93,11 @@ See the tests below. T = Pass, F = Fail. Some cells are blank as I didn't test t
 If device lock is NONE you cannot create a keystore entry with `setEncryptionRequired()`. If you try you'll see an  IllegalStateException.
 
 
-## Android 7.1 - API 25 - Nexus 5X with `setEncryptionRequired()`
+## Android 7.1 - API 25 - Nexus 5X 
+
+_//todo no encryption required_
+
+**`setEncryptionRequired()`**
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
 |--------------------|------|-----|------|---------|
