@@ -269,10 +269,6 @@ With the above we can see that:
 - Using the old pre-M `KeyPairGeneratorSpec` api and not setting `.setEncryptionRequired()` from `L-6-23`+ seems to be safe from keyloss for the above scenarios.
 - Using the new post-M `KeyGenParameterSpec` api and not setting `setUserAuthenticationRequired` (or _also_ setting `setInvalidatedByBiometricEnrollment(false)`) should be safe from keyloss
 
-Feedback from the below comments tell us:
-
-//TODO
-
 I hope that this sheds some light on this slightly confusing behaviour! As always, any thoughts / comments welcome.
 
 # What key management choices you have
