@@ -27,23 +27,28 @@ I think the Nexus 4 was the first device to offer this, with APIs available from
 
 ## API
 
-The api method I'm using to generate the key pair uses `KeyPairGeneratorSpec` which was added in 4.3 (18). There were ways to use this stuff before then (see Nikolays blog links below) but I'm going to ignore that for now.
+_The first draft of this post (early 2015) used the (deprecated in `L-6-23`) `KeyPairGeneratorSpec` class for key generation, and the original behaviour matrices were generated using this API. I have updated some areas of the post to include information about the post-M `KeyGenParameterSpec` API._
 
-_**Post M Edit**_: As far as I can see, the now deprecated `KeyPairGeneratorSpec.setEncryptionRequired(true)` has the same effect on the `KeyStore` in terms of the below bahaviour as the newer `KeyGenParameterSpec.Builder.html.setUserAuthenticationRequired(true)`, as both cause the generated key blob to utilize the keyguard user input with the `KeyStore` KEK (Key-Encryption Key) for blob protection.
+The api method I used to generate the key-pair was `KeyPairGeneratorSpec` which was added in 4.3 (18). There were ways to use this stuff before then (see Nikolays blog links below) but I'm going to ignore that for now.
+
+_Some additional notes of mine on the `KeyStore` APIs and OS changes can be found [here](https://github.com/doridori/Android-Security-Reference/blob/master/framework/keystore.md)_
 
 # The Problem
 
 "This sounds great" I hear you cry. Well yes it is, until the Keystore-stored-key becomes inaccessible, leaving you with a useless steaming pile-o-bits™.
 
-Currently this can happen when the device security settings (device-lock) are changed by the user, namely switching between `None`, `Swipe`, `Pattern`, `Pin` and `Password` but also OS versions will behave differently.
+Previously this could happen when the device security settings (device-lock) are changed by the user, namely switching between `None`, `Swipe`, `Pattern`, `Pin` and `Password` but also OS versions will behave differently.
 
 Reading the [related android bug-tracker list](https://code.google.com/p/android/issues/list?can=1&q=KeyPairGeneratorSpec&colspec=ID+Type+Status+Owner+Summary+Stars&cells=tiles) some cry 'its a bug' and others 'its a feature'. If its a feature documentation is much needed, if a bug then fixes are welcome. From this point the most I can do it outline what I have seen so as to enable others to work around it / be aware.
 
-If you do get into the position of having a wiped keystore I have seen this manifest in the below ways (in my initial testing):
+If you do get into the position of having a wiped `KeyStore` I have seen this manifest in the below ways (in my initial testing):
 
-1. Most of the time ~98% in my original testing the key data _AND_ alias is wiped - giving a `InvalidKeyException` at point of reading the `KeyPair` from the `KeyStore`.
-2. A small amount of the time ~2% the key data is lost but the alias is _not_ giving `IllegalArgException`
-3. _**Post M Edit:**_ Using the newer apis will now throw a dedicated exception for this, `KeyPermanentlyInvalidatedException` which is a subclass of `InvalidKeyException`. This seems to be thrown at point of use i.e. `Cipher.encrypt`, `Cipher.decrypt` or `Cipher.unwrap` (not with `Cipher.wrap` - assume this is as the public key is not encrypted in the first place) rather than when reading the Key handle.
+## `KeyPairGeneratorSpec`
+
+_Deprecated in M_
+
+- Most of the time ~98% in my original testing the key data _AND_ alias is wiped - giving a `InvalidKeyException` at point of reading the `KeyPair` from the `KeyStore`.
+- A small amount of the time ~2% the key data is lost but the alias is _not_ giving `IllegalArgException`
 
 See below for the `InvalidKeyException` source.
 
@@ -51,9 +56,15 @@ See below for the `InvalidKeyException` source.
 
 From the above you can see it's not just a silent fail yielding an empty keystore but an undocumented-exception-throwing fail which requires you to reset the alias ([Keystore.deleteEntry()](https://developer.android.com/reference/java/security/KeyStore.html#deleteEntry(java.lang.String))).
 
+## `KeyGenParameterSpec`
+
+_Added in M_
+
+- Using the newer `KeyGenParameterSpec` api will now throw a dedicated exception for this, `KeyPermanentlyInvalidatedException` which is a subclass of `InvalidKeyException`. This seems to be thrown at point of use i.e. `Cipher.encrypt`, `Cipher.decrypt` or `Cipher.unwrap` (not with `Cipher.wrap` - assume this is as the public key is not encrypted in the first place) rather than when reading the Key handle.
+
 ## Device locks & `.setEncryptionRequired()`
 
-Its worth noting that when creating a key with [`KeyPairGeneratorSpec.Builder.setEncryptionRequired()`](http://developer.android.com/reference/android/security/KeyPairGeneratorSpec.Builder.html#setEncryptionRequired()) its required that the device have a device-lock set (as this is used as part of the keying material). If you do `setEncryptionRequired()` and one isn't, you get a friendly
+Its worth noting that when creating a key with [`KeyPairGeneratorSpec.Builder.setEncryptionRequired()`](http://developer.android.com/reference/android/security/KeyPairGeneratorSpec.Builder.html#setEncryptionRequired()) its required that the device have a device-lock set (as this is used as part of the keying material _when the KeyStore is software backed_). If you do `setEncryptionRequired()` and one isn't, you get a friendly
 
 - Pre M-6-23 `java.lang.IllegalStateException: Android keystore must be in initialized and unlocked state if encryption is required`
 - Post M-6-23 `java.lang.IllegalStateException: Encryption at rest using secure lock screen credential requested for key pair, but the user has not yet entered the credential`
@@ -62,9 +73,13 @@ so you need to manually ensure that something is set. Check out [my SO answer](h
 
 ## `allowBackups=true`
 
-It's interesting that `allowBackups=true` (which it is by default) does not delete `KeyStore` backed keys on app uninstall. This led to me reinstalling an application with had fingerprint auth backed keys, which I could no longer access. Need to research this one a bit more. I recommend setting  `allowBackups=false` anyhow if your working with this stuff.
+I observed an interesting issue, which I need to revisit and verify.
+
+I found that having `allowBackups=true` (which it is by default) was not deleting `KeyStore` backed keys on app uninstall (or was restoring the aliases on re-install). This led to me re-installing an application with had fingerprint auth backed keys, which I could no longer access, i.e. the aliases were present but keys unusable. Need to research this one a bit more. I recommend setting  `allowBackups=false` anyhow if your working with this stuff.
 
 # Behaviour Matrix
+
+_These were created using the now deprecated `KeyPairGeneratorSpec` API_
 
 As mentioned above different OSs and different transitions between device-lock states can wipe the keystore.
 
@@ -242,13 +257,11 @@ Knowing the above I see a few potential solutions
 
 1. <del>**Target 5+** If your requirement is to have strong encryption using the keystore and losing the encrypted data is a no-no - targeting L+ (5+) seems like the only choice, using `.setEncryptionRequired()`. However be warned that this is no guarantee that it will always work as this seems to still be broken for non-primary user accounts.</del> This is no longer true due to the regression mentioned above in M-6-23.
 
-2. **Encrypted `KeyStore` and OK to lose Keys**. If your requirement is to have strong encryption using the keystore and losing the encrypted data is ok - then you can detect the above exceptions mentioned and have some form of re-initialization for those cases. Target 4.3+. Remember to check the device has the required lock-screen security settings (as mentioned above) before generating the keyPair. Checking for the exceptions at point of key unwrap and notifying the user whilst clearing any key aliases is a simple enough approach for most. Keep in mind if supporting the fingerprint sensor to auth access to your keys you will lose them when a new finger is enrolled anyway (_EDIT: This is now optional via [setInvalidatedByBiometricEnrollment](https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder.html#setInvalidatedByBiometricEnrollment(boolean))_). Put some thought into the UX for key loss.
+2. **`.setEncryptionRequired()` `KeyStore` and OK to lose Keys**. If your requirement is software keys encrypted by the keyguard and losing the encrypted data is ok - then you can detect the above exceptions mentioned and have some form of re-initialization for those cases. Target 4.3+. Remember to check the device has the required lock-screen security settings (as mentioned above) before generating the keyPair. Checking for the exceptions at point of key unwrap and notifying the user whilst clearing any key aliases is a simple enough approach for most. Keep in mind if supporting the fingerprint sensor to auth access to your keys you will lose them when a new finger is enrolled anyway (_EDIT: This is now optional with the M+ key generation API via an N+ method  [setInvalidatedByBiometricEnrollment](https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder.html#setInvalidatedByBiometricEnrollment(boolean))_). Put some thought into the UX for key loss.
 
 3. **Use some PBKDF**. Look at another way of storing key data, for example generating one from a users input. This will not suit all applications of course. Target any platform version. Check out [java-aes-crypto](https://github.com/tozny/java-aes-crypto) for a really sweet and easy to use key generator which can be used with arbitrary password input. Its worth nothing that this may be really easy to brute-force depending on your required password length.
 
-4. **Unencrypted `KeyStore`**. Don't encrypt the `KeyStore` and target 6.0+ and don't support user authentication for `KeyStore` access (via respective API level apis). Cross your fingers and hope the behaviour does not change again. Hope (or check for) hardware storage for some extra confidence. Understand the user may have a software store only and may get exploited with keys being obtained by some nefarious character.
-
-For me 2 and 3 are the only real options.
+4. **NON `.setEncryptionRequired()` `KeyStore`**. Don't require the software `KeyStore` to be encrypted under the keyguard and target 6.0+ and don't support user authentication for `KeyStore` access (via respective API level apis). Cross your fingers and hope the behaviour does not change again. Hope (or check for) hardware storage for some extra confidence. Understand the user may have a software store only and may have a slightly higher chance of being exploited with keys being obtained by some nefarious character.
 
 I hope that this sheds some light on this slightly confusing behaviour! As always, any thoughts / comments welcome.
 
