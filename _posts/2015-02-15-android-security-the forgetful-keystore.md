@@ -251,9 +251,31 @@ Like 5.* generating the key pair with NONE set will just throw
 
 Sad face.
 
+# Post `M-6-23` `KeyGenParameterSpec` Fingerprint APIs
+
+Since Android M-6-23 keys can be stored which require authentication via fingerprint before they can be used. Note the below in regards to lifetime of such keys.
+
+> The key will become irreversibly invalidated once the secure lock screen is disabled (reconfigured to None, Swipe or other mode which does not authenticate the user) or when the secure lock screen is forcibly reset (e.g., by a Device Administrator). Additionally, if the key requires that user authentication takes place for every use of the key, it is also irreversibly invalidated once a new fingerprint is enrolled or once\ no more fingerprints are enrolled. Attempts to initialize cryptographic operations using such keys will throw KeyPermanentlyInvalidatedException.
+This authorization applies only to secret key and private key operations. Public key operations are not restricted.
+
+Taken from [KeyGenParameterSpec.Builder.setUserAuthenticationRequired(...)](http://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder.html#setUserAuthenticationRequired(boolean)).
+
+This means that losing keys will always be an inevitability if using Fingerprint on 6.
+
 # Conclusion
 
-Knowing the above I see a few potential solutions
+With the above we can see that:
+
+- Using the old pre-M `KeyPairGeneratorSpec` api and not setting `.setEncryptionRequired()` from `L-6-23`+ seems to be safe from keyloss for the above scenarios.
+- Using the new post-M `KeyGenParameterSpec` api and not setting `setUserAuthenticationRequired` (or _also_ setting `setInvalidatedByBiometricEnrollment(false)`) should be safe from keyloss
+
+Feedback from the below comments tell us:
+
+//TODO
+
+I hope that this sheds some light on this slightly confusing behaviour! As always, any thoughts / comments welcome.
+
+# What key management choices you have
 
 1. <del>**Target 5+** If your requirement is to have strong encryption using the keystore and losing the encrypted data is a no-no - targeting L+ (5+) seems like the only choice, using `.setEncryptionRequired()`. However be warned that this is no guarantee that it will always work as this seems to still be broken for non-primary user accounts.</del> This is no longer true due to the regression mentioned above in M-6-23.
 
@@ -263,7 +285,13 @@ Knowing the above I see a few potential solutions
 
 4. **NON `.setEncryptionRequired()` `KeyStore`**. Don't require the software `KeyStore` to be encrypted under the keyguard and target 6.0+ and don't support user authentication for `KeyStore` access (via respective API level apis). Cross your fingers and hope the behaviour does not change again. Hope (or check for) hardware storage for some extra confidence. Understand the user may have a software store only and may have a slightly higher chance of being exploited with keys being obtained by some nefarious character.
 
-I hope that this sheds some light on this slightly confusing behaviour! As always, any thoughts / comments welcome.
+
+# `TODO!` Coming blog amendments
+
+- Add feedback from comments above
+- Do tests with finger enrollment also (see below appendix for more notes)
+- Add email feedback
+- Redo key mgmt choices
 
 # Further reading on the `Keystore` (& `KeyChain`)
 
@@ -277,14 +305,3 @@ I hope that this sheds some light on this slightly confusing behaviour! As alway
 - [Android keystore key leakage between security domains](http://jbp.io/2014/04/07/android-keystore-leak/)
 - [Android Keystore System](https://developer.android.com/training/articles/keystore.html) _EDIT: (29/05/15)_
 - [Android `Vault` Example](https://github.com/android/platform_development/tree/master/samples/Vault)
-
-# Appendix: Fingerprint api
-
-Since Android M-6-23 keys can be stored which require authentication via fingerprint before they can be used. Note the below in regards to lifetime of such keys.
-
-> The key will become irreversibly invalidated once the secure lock screen is disabled (reconfigured to None, Swipe or other mode which does not authenticate the user) or when the secure lock screen is forcibly reset (e.g., by a Device Administrator). Additionally, if the key requires that user authentication takes place for every use of the key, it is also irreversibly invalidated once a new fingerprint is enrolled or once\ no more fingerprints are enrolled. Attempts to initialize cryptographic operations using such keys will throw KeyPermanentlyInvalidatedException.
-This authorization applies only to secret key and private key operations. Public key operations are not restricted.
-
-Taken from [KeyGenParameterSpec.Builder.setUserAuthenticationRequired(...)](http://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder.html#setUserAuthenticationRequired(boolean)).
-
-This means that losing keys will always be an inevitability if using Fingerprint on 6.
