@@ -158,11 +158,19 @@ More N/As on this one as `.setEncryptionRequired()` will throw if you try to cre
 
 ## M-6.0-23 | Nexus 5
 
+### Changes
+
 M introduced some changes here explicitly:
 
 > "Keys which do not require encryption at rest will no longer be deleted when secure lock screen is disabled or reset (for example, by the user or a Device Administrator). Keys which require encryption at rest will be deleted during these events.
 
 From [http://developer.android.com/about/versions/marshmallow/android-6.0-changes.html#behavior-keystore](http://developer.android.com/about/versions/marshmallow/android-6.0-changes.html#behavior-keystore)
+
+Also, the screen-lock settings screen will now warn the user if they try to revert to **NONE**. This looks like:
+
+![Keyguard removed](https://raw.githubusercontent.com/doridori/doridori.github.io/master/images/blog/O_keyguard_removed.png)
+
+### Tests
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
 |--------------------|------|-----|------|---------|
@@ -184,9 +192,15 @@ From [http://developer.android.com/about/versions/marshmallow/android-6.0-change
 
 More N/As on this one as `.setEncryptionRequired()` will throw if you try to create a keypair with a NONE state.
 
-![Keyguard removed](https://raw.githubusercontent.com/doridori/doridori.github.io/master/images/blog/O_keyguard_removed.png)
-
 ## L-5.0.1-21 | Nexus 4
+
+### Changes
+
+Once a keypair has been generated the system will not let you revert to NONE (regardless of if the `KeyStore` is encrypted or not) unless the app has been deleted / the pair removed hence the N/A. This looks like:
+
+[![Disabled NONE options](https://raw.githubusercontent.com/doridori/doridori.github.io/master/images/blog/keystore_lock_disabled.jpg)
+
+### Tests
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
 |--------------------|------|-----|------|---------|
@@ -195,9 +209,9 @@ More N/As on this one as `.setEncryptionRequired()` will throw if you try to cre
 | PASS               | **F**|     | T    | T       |
 | PATTERN            | T    | T   |      |         |
 
-Once a keypair has been generated the system will not let you revert to NONE (regardless of if the `KeyStore` is encrypted or not) unless the app has been deleted / the pair removed hence the N/A. This looks like
 
-[![Disabled NONE options](https://raw.githubusercontent.com/doridori/doridori.github.io/master/images/blog/keystore_lock_disabled.jpg)
+
+
 
 **`.setEncryptionRequired()`**
 
