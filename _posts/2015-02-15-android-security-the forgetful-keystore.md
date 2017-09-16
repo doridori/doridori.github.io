@@ -81,7 +81,7 @@ I have written a small test app and run this on a few devices and emulator to se
 
 See the tests below. T = Pass, F = Fail. Some cells are blank as I didn't test that combo - but there is enough there too see the pattern in each case :)
 
-# O preview 1 - Nexus 5X
+## O preview 1 - Nexus 5X
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
 |--------------------|------|-----|------|---------|
@@ -99,7 +99,7 @@ See the tests below. T = Pass, F = Fail. Some cells are blank as I didn't test t
 | PASS               | N/A  |  T  |  T   |   T     |
 | PATTERN            | N/A  |  T  |  T   |   T     |
 
-If device lock is NONE you cannot create a keystore entry with `setEncryptionRequired()`. If you try you'll see an  IllegalStateException.
+If device lock is **NONE** you cannot create a keystore entry with `setEncryptionRequired()`. If you try you'll see an  `IllegalStateException`.
 
 
 ## Android 7.1 - API 25 - Nexus 5X
@@ -154,7 +154,7 @@ _//todo no encryption required_
 | PASS               |  N/A |  T  |      |         |
 | PATTERN            |  N/A |     |  T   |         |
 
-More N/As on this one as `.setEncryptionRequired()` will throw if you try to create a keypair with a NONE state.
+More N/As on this one as `.setEncryptionRequired()` will throw if you try to create a keypair with a **NONE** state.
 
 ## M-6.0-23 | Nexus 5
 
@@ -183,6 +183,8 @@ From [http://developer.android.com/about/versions/marshmallow/android-6.0-change
 | PATTERN            |  N/A | T   |  T   |         |
 
 More N/As on this one as `.setEncryptionRequired()` will throw if you try to create a keypair with a NONE state.
+
+[![Disabled NONE options](https://raw.githubusercontent.com/doridori/doridori.github.io/master/images/blog/O_keyguard_removed.png))]
 
 ## L-5.0.1-21 | Nexus 4
 
@@ -256,12 +258,26 @@ Taken from [KeyGenParameterSpec.Builder.setUserAuthenticationRequired(...)](http
 
 This means that losing keys will always be an inevitability if using Fingerprint on 6.
 
+On N-7-24 however, there is now a `setInvalidatedByBiometricEnrollment(false)` method, which will persist the keys when a new finger is enrolled.
+
+Its worth noting that the new KeyGenParameterSpec.Builder.setUserAuthenticationRequired(true) method does not use encryption with a password-derived key, performed in keystore. It encrypts blobs with a TEE-based key. Password checking is done by a TEE-based component called "Gatekeeper", which implements brute force mitigation by forcing increasing delays after repeated failures. After a success, Gatekeeper generates an "authentication token", which is a data structure MACed with a key shared between Keymaster (the TEE-based key management component) and Gatekeeper. That token provides information about which user authenticated, how they authenticated (e.g. password or fingerprint; there's a TEE-based fingerprint component that can also produce these tokens) and when they authenticated. Keymaster uses that information to determine whether access to a particular key should be granted (see setUserAuthenticationValidityDurationSeconds, setInvalidatedByBiometricEnrollment and setUserAuthenticationVAlidWhileOnBody). Keymaster will only decrypt and use a key if it has received an appropriate auth token. All of this happens in the TEE (well, not on-body checking), so even an attacker that has completely compromised the Android kernel is unable to manipulate it.
+
+See [source.android.com/security/authentication/](https://source.android.com/security/authentication/) for more info on the above.
+
+The new API is similar in that removing your password will invalidate all authentication-bound keys. This is because if the password is removed, anyone can pick up the device and use it, and the security guarantee provided to app developers is that they can have confidence that if they create an auth-bound key, it can only be used if the user has authenticated in the way specified at key creation time.
+
 # Conclusion
 
 With the above we can see that:
 
-- Using the old pre-M `KeyPairGeneratorSpec` api and not setting `.setEncryptionRequired()` from `L-6-23`+ seems to be safe from key-loss for the above scenarios.
-- Using the new post-M `KeyGenParameterSpec` api and not setting `setUserAuthenticationRequired` (or _also_ setting `setInvalidatedByBiometricEnrollment(false)`) should be safe from key-loss.
+- Using the old pre-M `KeyPairGeneratorSpec` api and **not** setting `.setEncryptionRequired()` from `L-6-23`+ seems to be safe from key-loss for the above scenarios.
+  - Quoting Shawn from the comments "Without `setEncryptionRequired()` your keys should never disappear (except on app uninstall or factory reset)"
+  - If you **do** use `setEncryptionRequired(true)`, since M it will no longer be the case that changing the screen lock type will cause keys to be deleted. _Removing_ the screen lock will, but that's by design; if there's no password to use to encrypt they keys, the keys cannot be encrypted.
+  - However, `setEncryptionRequired()` is now deprecated, and developers shouldn't use it.
+
+- Using the new post-M `KeyGenParameterSpec` api and not setting `setUserAuthenticationRequired` should be safe from key loss in all scenarios
+  - Setting `setUserAuthenticationRequired(true)` will wipe the keys if the user removes the screen-lock entirely, but they will be warned about this, and a specific exception will be thrown when key usage is attempted.
+  - Setting `setUserAuthenticationRequired(true)` will cause the keys to be wiped when a new finger is enrolled, _unless_ `setInvalidatedByBiometricEnrollment(false)` is also set.
 
 I hope that this sheds some light on this slightly confusing behaviour! As always, any thoughts / comments welcome.
 
@@ -274,13 +290,6 @@ I hope that this sheds some light on this slightly confusing behaviour! As alway
 3. Use some [**PBKDF**](https://en.wikipedia.org/wiki/PBKDF2). Look at another way of storing key data, for example generating one from a users input. This will not suit all applications of course. Target any platform version. Check out [java-aes-crypto](https://github.com/tozny/java-aes-crypto) for a really sweet and easy to use key generator which can be used with arbitrary password input. Its worth nothing that this may be really easy to brute-force depending on your required password length.
 
 4. Re-designing your solution so client side keys are not required (easier said than done in many cases!)
-
-# `TODO!` Coming blog amendments
-
-- Add feedback from comments above
-- Do tests with finger enrollment also (see below appendix for more notes)
-- Add email feedback
-- Redo key mgmt choices and have as appendix
 
 # Further reading on the `Keystore` (& `KeyChain`)
 
