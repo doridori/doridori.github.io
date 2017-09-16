@@ -181,7 +181,7 @@ Also, the screen-lock settings screen will now warn the user if they try to reve
 
 **`.setEncryptionRequired()`**
 
-<b>It seems there has actually been a regression from the improvements made in L regarding not allowing the user to corrupt the `KeyStore` contents by not allowing lock screen removal when using `.setEncryptionRequired()`.</b> ε(´סּ︵סּ\`)
+It seems there has actually been a **regression** from the improvements made in L regarding not allowing the user to corrupt the `KeyStore` contents by not allowing lock screen removal when using `.setEncryptionRequired()`. ε(´סּ︵סּ\`)
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
 |--------------------|------|-----|------|---------|
