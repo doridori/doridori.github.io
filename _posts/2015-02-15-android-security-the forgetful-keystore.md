@@ -289,6 +289,7 @@ With the above we can see that:
   - If you **do** use `setEncryptionRequired(true)`, since M it will no longer be the case that changing the screen lock type will cause keys to be deleted. _Removing_ the screen lock will, but that's by design; if there's no password to use to encrypt they keys, the keys cannot be encrypted.
   - However, `setEncryptionRequired()` is now deprecated, and developers shouldn't use it.
 
+
 - Using the new post-M `KeyGenParameterSpec` api and not setting `setUserAuthenticationRequired` should be safe from key loss in all scenarios
   - Setting `setUserAuthenticationRequired(true)` will wipe the keys if the user removes the screen-lock entirely, but they will be warned about this, and a specific exception will be thrown when key usage is attempted.
   - Setting `setUserAuthenticationRequired(true)` will cause the keys to be wiped when a new finger is enrolled, _unless_ `setInvalidatedByBiometricEnrollment(false)` is also set.
