@@ -184,7 +184,7 @@ From [http://developer.android.com/about/versions/marshmallow/android-6.0-change
 
 More N/As on this one as `.setEncryptionRequired()` will throw if you try to create a keypair with a NONE state.
 
-[![Disabled NONE options](https://raw.githubusercontent.com/doridori/doridori.github.io/master/images/blog/O_keyguard_removed.png))]
+![Keyguard removed](https://raw.githubusercontent.com/doridori/doridori.github.io/master/images/blog/O_keyguard_removed.png)
 
 ## L-5.0.1-21 | Nexus 4
 
@@ -197,7 +197,7 @@ More N/As on this one as `.setEncryptionRequired()` will throw if you try to cre
 
 Once a keypair has been generated the system will not let you revert to NONE (regardless of if the `KeyStore` is encrypted or not) unless the app has been deleted / the pair removed hence the N/A. This looks like
 
-[![Disabled NONE options](https://raw.githubusercontent.com/doridori/doridori.github.io/master/images/blog/keystore_lock_disabled.jpg)]
+[![Disabled NONE options](https://raw.githubusercontent.com/doridori/doridori.github.io/master/images/blog/keystore_lock_disabled.jpg)
 
 **`.setEncryptionRequired()`**
 
