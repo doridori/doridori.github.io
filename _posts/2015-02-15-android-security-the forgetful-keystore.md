@@ -319,10 +319,3 @@ I hope that this sheds some light on this slightly confusing behaviour! As alway
 - [Android Keystore System](https://developer.android.com/training/articles/keystore.html) _EDIT: (29/05/15)_
 - [Android `Vault` Example](https://github.com/android/platform_development/tree/master/samples/Vault)
 
-# Appendix A
-
-## `allowBackups=true`
-
-I observed an interesting issue, which I need to revisit and verify.
-
-I found that having `allowBackups=true` (which it is by default) was not deleting `KeyStore` backed keys on app uninstall (or was restoring the aliases on re-install). This led to me re-installing an application with had fingerprint auth backed keys, which I could no longer access, i.e. the aliases were present but keys unusable. Need to research this one a bit more. I recommend setting  `allowBackups=false` anyhow if your working with this stuff.
