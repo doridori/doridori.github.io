@@ -3,13 +3,13 @@ layout: post
 title: "Android Security: The Forgetful Keystore"
 ---
 
-You've just moved in to a new house and have been given the master key for the front door. You only have one of these so you know you need to keep it safe. Your really paranoid so you hire an armed guard, whose sole job is to protect this key, in fact, this is all he has been trained to do and has a catchy slogan of "need to protect a key, its what I was born to do!". You install an extra lock on your front door as you feel the bodyguard isn't enough, this is a rough area anyway and who's going to make sure no-ones about to break in and steal all your crap. You return to your key guard only to be informed he has thrown the key away. You shout and scream at him but he just blankly says "I don't have it anymore, I didn't think it was important". You can't contain your anger "What the hell, your a jerk! You had one thing to do and you failed, this causes me a lot of problems, why didn't you tell me you might do this?! What do I do now?!"
+_You've just moved in to a new house and have been given the master key for the front door. You only have one of these so you know you need to keep it safe. Your really paranoid so you hire an armed guard, whose sole job is to protect this key, in fact, this is all he has been trained to do and has a catchy slogan of "need to protect a key, its what I was born to do!". You install an extra lock on your front door as you feel the bodyguard isn't enough, this is a rough area anyway and who's going to make sure no-ones about to break in and steal all your crap. You return to your key guard only to be informed he has thrown the key away. You shout and scream at him but he just blankly says "I don't have it anymore, I didn't think it was important". You can't contain your anger "What the hell, your a jerk! You had one thing to do and you failed, this causes me a lot of problems, why didn't you tell me you might do this?! What do I do now?!"_
 
-Ok, stories arnt my strong point. The point is, this is how I feel when using the Android `Keystore` to protect my private encryption key, it drives me a bit nuts. I really appreciate the effort thats gone into it but its still frustrating when your on a deadline, documentation is lacking, and something isn't working as it should
+Ok, stories arnt my strong point. The point is, this is how I feel when using the Android `Keystore` to protect my private encryption key, it drives me a bit nuts. I really appreciate the effort thats gone into it but its still frustrating when your on a deadline, documentation is lacking, and something isn't working as it should.
 
-I have been working on some apps with a high security requirement, and one of the requirements is to take advantage of the best level of security offered by the platform. For our case this includes utilizing the system `Keystore` to store an asymmetric key pair. One can then use this for encryption/decryption directly or use it to encrypt an symmetric key (like AES) which can then be used directly to encrypt your plaintext (or fed into something like [java-aes-crypto](https://github.com/tozny/java-aes-crypto)), which is much faster than using the asymmetric directly.
+I have been working on some apps with a high security requirement, and one of the requirements is to take advantage of the best level of security offered by the platform for key management. For us this includes utilizing the system `Keystore` to store an asymmetric key pair. One can then use this for encryption/decryption directly or use it to encrypt an symmetric key (like AES) _(EDIT: AES keys can be stored in the Keystore directly since [M-6-23](https://github.com/doridori/Android-Security-Reference/blob/master/framework/keystore.md#version-changes))_ which can then be used directly to encrypt your plaintext (or fed into something like [java-aes-crypto](https://github.com/tozny/java-aes-crypto)), which is much faster than using the asymmetric directly.
 
-Lots of people seem to use encryption in the wild but they hard code the key or store is as plaintext or obfuscated. None of which are recommended.
+Lots of people seem to use encryption in the wild but they often hard-code the key, storing it as plaintext or obfuscated, in Java or the NDK. None of which are recommended as key-lifting becomes a purely static analysis based exercise.
 
 # Why is the `Keystore` good for storing keys?
 
@@ -29,7 +29,7 @@ I think the Nexus 4 was the first device to offer this, with APIs available from
 
 _The first draft of this post (early 2015) used the (deprecated in `L-6-23`) `KeyPairGeneratorSpec` class for key generation, and the original behaviour matrices were generated using this API. I have updated some areas of the post to include information about the post-M `KeyGenParameterSpec` API._
 
-The api method I used to generate the key-pair was `KeyPairGeneratorSpec` which was added in 4.3 (18). There were ways to use this stuff before then (see Nikolays blog links below) but I'm going to ignore that for now.
+The api method I used to generate the key-pair was `KeyPairGeneratorSpec` which was added in `J-4.3-18`. There were ways to use this stuff before then (see Nikolays blog links at the end of this post) but I'm going to ignore that for now.
 
 _Some additional notes of mine on the `KeyStore` APIs and OS changes can be found [here](https://github.com/doridori/Android-Security-Reference/blob/master/framework/keystore.md)_
 
@@ -37,7 +37,7 @@ _Some additional notes of mine on the `KeyStore` APIs and OS changes can be foun
 
 "This sounds great" I hear you cry. Well yes it is, until the Keystore-stored-key becomes inaccessible, leaving you with a useless steaming pile-o-bits™.
 
-Previously this could happen when the device security settings (device-lock) are changed by the user, namely switching between `None`, `Swipe`, `Pattern`, `Pin` and `Password` but also OS versions will behave differently.
+When the KeyStore api was introduced, this could happen when the device security settings (device-lock) are changed by the user, namely switching between `None`, `Swipe`, `Pattern`, `Pin` and `Password`. Subsequent OS versions will behave differently however. Outlining these differences is the purpose of this post.
 
 Reading the [related android bug-tracker list](https://code.google.com/p/android/issues/list?can=1&q=KeyPairGeneratorSpec&colspec=ID+Type+Status+Owner+Summary+Stars&cells=tiles) some cry 'its a bug' and others 'its a feature'. If its a feature documentation is much needed, if a bug then fixes are welcome. From this point the most I can do it outline what I have seen so as to enable others to work around it / be aware.
 
@@ -45,7 +45,7 @@ If you do get into the position of having a wiped `KeyStore` I have seen this ma
 
 ## `KeyPairGeneratorSpec`
 
-_Deprecated in M_
+_Deprecated in M, this method was the focus of the original blog post_
 
 - Most of the time ~98% in my original testing the key data _AND_ alias is wiped - giving a `InvalidKeyException` at point of reading the `KeyPair` from the `KeyStore`.
 - A small amount of the time ~2% the key data is lost but the alias is _not_ giving `IllegalArgException`
@@ -54,15 +54,9 @@ See below for the `InvalidKeyException` source.
 
 <div data-gist-id="cfe0fca74a9c05fc6a57" data-gist-file="InvalidKeyException">InvalidKeyException Example</div>
 
-From the above you can see it's not just a silent fail yielding an empty keystore but an undocumented-exception-throwing fail which requires you to reset the alias ([Keystore.deleteEntry()](https://developer.android.com/reference/java/security/KeyStore.html#deleteEntry(java.lang.String))).
+From the above you can see it's not just a silent fail yielding an empty KeyStore but an undocumented-exception-throwing fail which requires you to reset the alias ([Keystore.deleteEntry()](https://developer.android.com/reference/java/security/KeyStore.html#deleteEntry(java.lang.String))).
 
-## `KeyGenParameterSpec`
-
-_Added in M_
-
-- Using the newer `KeyGenParameterSpec` api will now throw a dedicated exception for this, `KeyPermanentlyInvalidatedException` which is a subclass of `InvalidKeyException`. This seems to be thrown at point of use i.e. `Cipher.encrypt`, `Cipher.decrypt` or `Cipher.unwrap` (not with `Cipher.wrap` - assume this is as the public key is not encrypted in the first place) rather than when reading the Key handle.
-
-## Device locks & `.setEncryptionRequired()`
+## Device locks & `KeyPairGeneratorSpec.Builder.setEncryptionRequired()`
 
 Its worth noting that when creating a key with [`KeyPairGeneratorSpec.Builder.setEncryptionRequired()`](http://developer.android.com/reference/android/security/KeyPairGeneratorSpec.Builder.html#setEncryptionRequired()) its required that the device have a device-lock set (as this is used as part of the keying material _when the KeyStore is software backed_). If you do `setEncryptionRequired()` and one isn't, you get a friendly
 
@@ -71,13 +65,13 @@ Its worth noting that when creating a key with [`KeyPairGeneratorSpec.Builder.se
 
 so you need to manually ensure that something is set. Check out [my SO answer](http://stackoverflow.com/a/27801128/236743) for an approach to use here :). The great [Android Security Cookbook](https://www.packtpub.com/application-development/android-security-cookbook) has a recipe for using the Device Admin Policy.
 
-## `allowBackups=true`
+## `KeyGenParameterSpec`
 
-I observed an interesting issue, which I need to revisit and verify.
+_Added in M_
 
-I found that having `allowBackups=true` (which it is by default) was not deleting `KeyStore` backed keys on app uninstall (or was restoring the aliases on re-install). This led to me re-installing an application with had fingerprint auth backed keys, which I could no longer access, i.e. the aliases were present but keys unusable. Need to research this one a bit more. I recommend setting  `allowBackups=false` anyhow if your working with this stuff.
+- Using the newer `KeyGenParameterSpec` api will now throw a dedicated exception for this, `KeyPermanentlyInvalidatedException` which is a subclass of `InvalidKeyException`. This seems to be thrown at point of use i.e. `Cipher.encrypt`, `Cipher.decrypt` or `Cipher.unwrap` (not with `Cipher.wrap` - assume this is as the public key is not encrypted in the first place) rather than when reading the Key handle.
 
-# Behaviour Matrix
+# `KeyPairGeneratorSpec` Behaviour Matrix
 
 _These were created using the now deprecated `KeyPairGeneratorSpec` API_
 
@@ -179,7 +173,7 @@ From [http://developer.android.com/about/versions/marshmallow/android-6.0-change
 
 **`.setEncryptionRequired()`**
 
-<b>It seems there has actually been a regression from the improvements made in L regarding not allowing the user to corrupt the `KeyStore` contents by not allowing lock screen removal when using `.setEncryptionRequired()`.</b> ε(´סּ︵סּ`)з
+<b>It seems there has actually been a regression from the improvements made in L regarding not allowing the user to corrupt the `KeyStore` contents by not allowing lock screen removal when using `.setEncryptionRequired()`.</b> ε(´סּ︵סּ\`)
 
 | to ↓        from > | NONE | PIN | PASS | PATTERN |
 |--------------------|------|-----|------|---------|
@@ -266,28 +260,27 @@ This means that losing keys will always be an inevitability if using Fingerprint
 
 With the above we can see that:
 
-- Using the old pre-M `KeyPairGeneratorSpec` api and not setting `.setEncryptionRequired()` from `L-6-23`+ seems to be safe from keyloss for the above scenarios.
-- Using the new post-M `KeyGenParameterSpec` api and not setting `setUserAuthenticationRequired` (or _also_ setting `setInvalidatedByBiometricEnrollment(false)`) should be safe from keyloss
+- Using the old pre-M `KeyPairGeneratorSpec` api and not setting `.setEncryptionRequired()` from `L-6-23`+ seems to be safe from key-loss for the above scenarios.
+- Using the new post-M `KeyGenParameterSpec` api and not setting `setUserAuthenticationRequired` (or _also_ setting `setInvalidatedByBiometricEnrollment(false)`) should be safe from key-loss.
 
 I hope that this sheds some light on this slightly confusing behaviour! As always, any thoughts / comments welcome.
 
 # What key management choices you have
 
-1. <del>**Target 5+** If your requirement is to have strong encryption using the keystore and losing the encrypted data is a no-no - targeting L+ (5+) seems like the only choice, using `.setEncryptionRequired()`. However be warned that this is no guarantee that it will always work as this seems to still be broken for non-primary user accounts.</del> This is no longer true due to the regression mentioned above in M-6-23.
+1. Use the KeyStore in `L-6-23`+ in one the above configurations which seem to be "safe" from key loss and have a relative degree of confidence your keys are not going anywhere. I personally would still handle the key-loss scenario by triggering some re-onboarding UX, but maybe thats me being paranoid.
 
-2. **`.setEncryptionRequired()` `KeyStore` and OK to lose Keys**. If your requirement is software keys encrypted by the keyguard and losing the encrypted data is ok - then you can detect the above exceptions mentioned and have some form of re-initialization for those cases. Target 4.3+. Remember to check the device has the required lock-screen security settings (as mentioned above) before generating the keyPair. Checking for the exceptions at point of key unwrap and notifying the user whilst clearing any key aliases is a simple enough approach for most. Keep in mind if supporting the fingerprint sensor to auth access to your keys you will lose them when a new finger is enrolled anyway (_EDIT: This is now optional with the M+ key generation API via an N+ method  [setInvalidatedByBiometricEnrollment](https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.Builder.html#setInvalidatedByBiometricEnrollment(boolean))_). Put some thought into the UX for key loss.
+2. Use the KeyStore on lower than `L-6-23`, or in a "lossy" configuration, and handle the re-onbaording UX, and expect this will not be some rare edge case path.
 
-3. **Use some PBKDF**. Look at another way of storing key data, for example generating one from a users input. This will not suit all applications of course. Target any platform version. Check out [java-aes-crypto](https://github.com/tozny/java-aes-crypto) for a really sweet and easy to use key generator which can be used with arbitrary password input. Its worth nothing that this may be really easy to brute-force depending on your required password length.
+3. Use some [**PBKDF**](https://en.wikipedia.org/wiki/PBKDF2). Look at another way of storing key data, for example generating one from a users input. This will not suit all applications of course. Target any platform version. Check out [java-aes-crypto](https://github.com/tozny/java-aes-crypto) for a really sweet and easy to use key generator which can be used with arbitrary password input. Its worth nothing that this may be really easy to brute-force depending on your required password length.
 
-4. **NON `.setEncryptionRequired()` `KeyStore`**. Don't require the software `KeyStore` to be encrypted under the keyguard and target 6.0+ and don't support user authentication for `KeyStore` access (via respective API level apis). Cross your fingers and hope the behaviour does not change again. Hope (or check for) hardware storage for some extra confidence. Understand the user may have a software store only and may have a slightly higher chance of being exploited with keys being obtained by some nefarious character.
-
+4. Re-designing your solution so client side keys are not required (easier said than done in many cases!)
 
 # `TODO!` Coming blog amendments
 
 - Add feedback from comments above
 - Do tests with finger enrollment also (see below appendix for more notes)
 - Add email feedback
-- Redo key mgmt choices
+- Redo key mgmt choices and have as appendix
 
 # Further reading on the `Keystore` (& `KeyChain`)
 
@@ -301,3 +294,11 @@ I hope that this sheds some light on this slightly confusing behaviour! As alway
 - [Android keystore key leakage between security domains](http://jbp.io/2014/04/07/android-keystore-leak/)
 - [Android Keystore System](https://developer.android.com/training/articles/keystore.html) _EDIT: (29/05/15)_
 - [Android `Vault` Example](https://github.com/android/platform_development/tree/master/samples/Vault)
+
+# Appendix A
+
+## `allowBackups=true`
+
+I observed an interesting issue, which I need to revisit and verify.
+
+I found that having `allowBackups=true` (which it is by default) was not deleting `KeyStore` backed keys on app uninstall (or was restoring the aliases on re-install). This led to me re-installing an application with had fingerprint auth backed keys, which I could no longer access, i.e. the aliases were present but keys unusable. Need to research this one a bit more. I recommend setting  `allowBackups=false` anyhow if your working with this stuff.
