@@ -302,7 +302,7 @@ I hope that this sheds some light on this slightly confusing behaviour! As alway
 
 2. Use the KeyStore on lower than `L-6-23`, or in a "lossy" configuration, and handle the re-onbaording UX, and expect this will not be some rare edge case path.
 
-3. Use some [**PBKDF**](https://en.wikipedia.org/wiki/PBKDF2). Look at another way of storing key data, for example generating one from a users input. This will not suit all applications of course. Target any platform version. Check out [java-aes-crypto](https://github.com/tozny/java-aes-crypto) for a really sweet and easy to use key generator which can be used with arbitrary password input. Its worth nothing that this may be really easy to brute-force depending on your required password length.
+3. Use some [**PBKDF**](https://en.wikipedia.org/wiki/PBKDF2). Look at another way of storing key data, for example generating one from a users input. This will not suit all applications of course. Target any platform version. ~Check out [java-aes-crypto](https://github.com/tozny/java-aes-crypto) for a really sweet and easy to use key generator which can be used with arbitrary password input. Its worth nothing that this may be really easy to brute-force depending on your required password length.~ If going the PBKDF route, its worth using an approach which utilises a relatively brute-force resistant hasher like bcrypt/scrypt as a password transformation step before inputting into some `Cipher`.
 
 4. Re-designing your solution so client side keys are not required (easier said than done in many cases!)
 
