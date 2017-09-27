@@ -20,7 +20,7 @@ The unawareness seems to fall into two camps:
 
 ## Enforcing a random IV
 
-Its worth explicitly declaring an IV to avoid the vulns introduced with either of the above two approaches. This can be as simple as:
+It's worth explicitly declaring an IV to avoid the vulns introduced with either of the above two approaches. This can be as simple as:
 
 ```
 public byte[] encrypt(byte[] in)
