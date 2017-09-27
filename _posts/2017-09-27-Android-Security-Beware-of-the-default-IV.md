@@ -21,25 +21,7 @@ The unawareness seems to fall into two camps:
 ## Enforcing a random IV
 
 It's worth explicitly declaring an IV to avoid the vulns introduced with either of the above two approaches. This can be as simple as:
-
-```
-public byte[] encrypt(byte[] in)
-{
-    ...
-    byte[] iv = new byte[IV_LENGTH];
-    new SecureRandom().nextBytes(iv);
-    cipher.init(Cipher.ENCRYPT_MODE, key, new IvParameterSpec(iv));
-    byte[] encrypted = cipher.doFinal(s.getBytes("UTF-8"));
-    return concat(encrypted, iv);
-}
-
-public byte[] decrypt(byte[] in) throws SecurityException
-{
-    ...
-    cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(bytes, bytes.length-IV_LENGTH, IV_LENGTH));
-    return new cipher.doFinal(bytes, 0, bytes.length-IV_LENGTH);
-}
-```
+<div data-gist-id="2ce511580419cdcec7ec2ef886e91e4f" data-gist-file="1">code sample</div>
 
 [Some](https://developer.android.com/reference/javax/crypto/Cipher.html) of the Android examples do now suggest this, but I find it can be easy to forget when looking at [other](https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.html) example code.
 
