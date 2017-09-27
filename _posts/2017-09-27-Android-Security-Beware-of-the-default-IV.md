@@ -26,7 +26,7 @@ It's worth explicitly declaring an IV to avoid the vulns introduced with either 
 
 [Some](https://developer.android.com/reference/javax/crypto/Cipher.html) of the Android examples do now suggest this, but I find it can be easy to forget when looking at [other](https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.html) example code.
 
-_If interested in Android security I have been collecting some notes on the subject at [doridori/Android-Security-Reference](https://github.com/doridori/Android-Security-Reference)_
+_If interested in Android security take a look at [doridori/Android-Security-Reference](https://github.com/doridori/Android-Security-Reference)_
 
 
 
