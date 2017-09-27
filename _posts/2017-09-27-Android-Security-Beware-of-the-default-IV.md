@@ -21,7 +21,7 @@ The unawareness seems to fall into two camps:
 ## Enforcing a random IV
 
 It's worth explicitly declaring an IV to avoid the vulns introduced with either of the above two approaches. This can be as simple as:
-<div data-gist-id="2ce511580419cdcec7ec2ef886e91e4f" data-gist-file="1">code sample</div>
+<div data-gist-id="2ce511580419cdcec7ec2ef886e91e4f" data-gist-file="1">1</div>
 
 [Some](https://developer.android.com/reference/javax/crypto/Cipher.html) of the Android examples do now suggest this, but I find it can be easy to forget when looking at [other](https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.html) example code.
 
