@@ -33,7 +33,7 @@ Using the newer `KeyGenParameterSpec` APIs and the `AndroidKeyStore` Provider se
 
 ## Enforcing a random IV
 
-It may be worth _explicitly_ declaring an IV to avoid the potential of the default one zero-ing out, which from the above depends on the providers implementation in use. This can be as simple as:
+It _may_ be worth _explicitly_ declaring an IV to avoid the potential of the default one zero-ing out, which from the above depends on the providers implementation in use. This can be as simple as:
 
 <div data-gist-id="2ce511580419cdcec7ec2ef886e91e4f" data-hist-file="explicit_iv.java">explicit_iv.java</div>
 
