@@ -7,7 +7,7 @@ A quick one today.
 
 A couple of people I have spoken to recently have been unaware of the need to ensure a random IV is being used when performing AES encryption on Android.
 
-What is an IV?
+_What is an IV?_
 
 > In cryptography, an initialization vector (IV) or starting variable (SV)[1] is a fixed-size input to a cryptographic primitive that is typically required to be random or pseudorandom. Randomization is crucial for encryption schemes to achieve semantic security, a property whereby repeated usage of the scheme under the same key does not allow an attacker to infer relationships between segments of the encrypted message. For block ciphers, the use of an IV is described by the modes of operation. _[Wikipedia](https://en.wikipedia.org/wiki/Initialization_vector)_
 
