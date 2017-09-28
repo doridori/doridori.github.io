@@ -37,7 +37,7 @@ It _may_ be worth _explicitly_ declaring an IV to avoid the potential of the def
 
 <div data-gist-id="2ce511580419cdcec7ec2ef886e91e4f" data-gist-file="explicit_iv.java">explicit_iv.java</div>
 
-Worth being aware of [`isRandomizedEncryptionRequired()`](https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.html#isRandomizedEncryptionRequired()) exists if you want to menually ensure the IV is randomised, otherwise `cipher.init` will throw if an IV is supplied.
+Worth being aware of [`isRandomizedEncryptionRequired()`](https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.html#isRandomizedEncryptionRequired()) exists if you want to manually ensure the IV is randomised, otherwise `cipher.init` will throw if an IV is supplied.
 
 [Some](https://developer.android.com/reference/javax/crypto/Cipher.html) of the Android examples do now suggest this, but I find it can be easy to forget when looking at [other](https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.html) example code.
 
