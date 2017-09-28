@@ -36,7 +36,9 @@ byte[] cipherBytes = cipher.doFinal(s.getBytes("UTF-8"));
 byte[] iv = cipher.getIV();
 ```
 
-Using the newer `KeyGenParameterSpec` APIs and the `AndroidKeyStore` Provider seems to be fine regarding this issue from the small amount of testing I have done.
+Using the newer `KeyGenParameterSpec` APIs and the `AndroidKeyStore` Provider seems to be fine regarding this issue from the small amount of testing I have done. The IV is prepended to the ciphered output `bytes[]` by default.
+
+[`isRandomizedEncryptionRequired()`](https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.html#isRandomizedEncryptionRequired()) exists if you want to menually ensure the IV is randomised, otherwise `cipher.init` will throw if an IV is supplied.
 
 ## Enforcing a random IV
 
