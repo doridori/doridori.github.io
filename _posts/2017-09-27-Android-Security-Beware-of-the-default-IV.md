@@ -26,15 +26,7 @@ Potentially an [Uh oh!](https://stackoverflow.com/questions/31036780/android-cry
 
 Poking around a little, I can see that on old versions of Android (tested 4.3) the `AndroidOpenSSL` provider can return an all `0` IV with the below, whereas the same code on 7 will spit out seemingly-random IVs.
 
-```
-byte[] key = new byte[16];
-new SecureRandom().nextBytes(key);
-SecretKeySpec skeySpec = new SecretKeySpec(key, "AES");
-Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding", "AndroidOpenSSL");
-cipher.init(Cipher.ENCRYPT_MODE, key);
-byte[] cipherBytes = cipher.doFinal(s.getBytes("UTF-8"));
-byte[] iv = cipher.getIV();
-```
+<div data-gist-id="2ce511580419cdcec7ec2ef886e91e4f" data-gist-file="secret_key_iv.java">secret_key_iv.java</div>
 
 Using the newer `KeyGenParameterSpec` APIs and the `AndroidKeyStore` Provider seems to be fine regarding this issue from the small amount of testing I have done. The IV is prepended to the ciphered output `bytes[]` by default.
 
@@ -43,7 +35,7 @@ Using the newer `KeyGenParameterSpec` APIs and the `AndroidKeyStore` Provider se
 
 It may be worth _explicitly_ declaring an IV to avoid the potential of the default one zero-ing out, which from the above depends on the providers implementation in use. This can be as simple as:
 
-<div data-gist-id="2ce511580419cdcec7ec2ef886e91e4f">1</div>
+<div data-gist-id="2ce511580419cdcec7ec2ef886e91e4f" data-hist-file="explicit_iv.java">explicit_iv.java</div>
 
 Worth being aware of [`isRandomizedEncryptionRequired()`](https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec.html#isRandomizedEncryptionRequired()) exists if you want to menually ensure the IV is randomised, otherwise `cipher.init` will throw if an IV is supplied.
 
