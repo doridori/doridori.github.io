@@ -24,7 +24,7 @@ The unawareness seems to fall into two camps:
 
 Potentially an [Uh oh!](https://stackoverflow.com/questions/31036780/android-cryptography-api-not-generating-safe-iv-for-aes)
 
-Poking around a little, I can see that on old versions of Android (tested 4.3) the `AndroidOpenSSL` provider can return an all `0` IV with the below, whereas the same code on 7 will spit our seemingly-random IVs.
+Poking around a little, I can see that on old versions of Android (tested 4.3) the `AndroidOpenSSL` provider can return an all `0` IV with the below, whereas the same code on 7 will spit out seemingly-random IVs.
 
 ```
 byte[] key = new byte[16];
