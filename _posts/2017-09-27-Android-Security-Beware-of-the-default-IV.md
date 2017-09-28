@@ -36,7 +36,7 @@ byte[] cipherBytes = cipher.doFinal(s.getBytes("UTF-8"));
 byte[] iv = cipher.getIV();
 ```
 
-Using the newer `KeyGenParameterSpec` APIs and the `AndroidKeyStore` Provider seems to be fine regarding this issue from the small amount of testing U have done.
+Using the newer `KeyGenParameterSpec` APIs and the `AndroidKeyStore` Provider seems to be fine regarding this issue from the small amount of testing I have done.
 
 ## Enforcing a random IV
 
