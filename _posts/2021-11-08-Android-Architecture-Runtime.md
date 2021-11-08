@@ -26,7 +26,7 @@ In the 12 years I have been a professional Android developer I have seen some co
 
 I found that there were often common solutions to common problems but which often came with an additional baggage of increased run / build / test time complexity. Instead of thinking in terms of surface level solutions my mind kept wondering back to thinking about what a headless application _runtime_ would work, and how it could potentially solve a lot the day to day issues with clean simple code. This of course is a radical departure from most Android applications, and certainly from how I was structuring my own.
 
-For the kind of applications we were building, relatively simple backstacks, multiple application level event emitters, lots of platform agnostic domain logic, I suspected we could do better by approaching application architecture from the ground up. 
+For the kind of applications we were building, relatively simple backstacks, multiple application level event emitters, lots of platform agnostic domain logic, I suspected we could do better by re-evaluating our approach to application architecture from first principles. 
 
 Some of the specific requirements within the domain I was working and the development practises I wanted to adopt included:
 
