@@ -61,7 +61,7 @@ FSMs are really useful constructs to:
 3. Perform set operations when states or state-groups are entered / exited
 4. Facilitate technical design and visualisation via UML state charts
 
-For me, FSMs sometimes can encapsulate logic around the above points with a conciseness & clarity that nothing else comes close to. Point 2 regarding sensitive data clearing was really where a lot of my architectural thinking came from and then my subsequent realisation that it's quite painful to put an FSM at the heart of a traditional Android application architecure. Trying to solve this problem led me to a lot of the below principles which in practise work nicely with an FSM centric application.
+For me, FSMs sometimes can encapsulate logic around the above points with a conciseness & clarity that nothing else comes close to. Sensitive data clearing (point 2 above) was really where a lot of my architectural thinking originated from and then my subsequent realisation that it's quite painful to put an FSM at the heart of a traditional Android application architecture. Trying to solve this problem led me to a lot of the below principles which in practice work nicely with an FSM centric application.
 
 
 ## Unidirectional Data Flow
