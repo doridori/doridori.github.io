@@ -126,27 +126,12 @@ At the center of this Runtime centric architecure we need something responsible 
 
 This encapsulation is named the `RuntimeKernel` as it's the core of the Runtime. Psudocode can be found below.
 
-```kotlin
-val commandHandler: CommandHandler
-var runtimeData: RuntimeData
-
-fun RuntimeKernel.receive(action) {
-  marshallToMainThread {
-    val transition = reduce(action)
-    runtimeData = transition.runtimeData
-    //effect system, describes commands and runtimeData state change operations
-    val transitionOperations = describe(transition)
-    perform(transitionOperations)
-  }
-}
-```
-
+<div data-gist-id="762d6b813a7395506922421913cc9023" data-gist-file="RuntimeKernel.kt">RuntimeKernel.kt</div>
 
 ## Visual overview
 
 Hopefully a lot of the concepts shown in the below visual representation make sense in terms of the context provided above. As always let me know in the comments if something is unclear. 
 
-![runtime-implementation](./runtime-implementation.png)
 <img src="/images/blog/post-runtime-implementation.png" alt="Runtime Implementation" />
 
 
