@@ -109,7 +109,7 @@ Note: instead of `DataStore` or similar redux-like naming, we use the term `Runt
 
 ## Serial Event Processing
 
-Processing application events serially (or `Actions` in Redux terms) removes many potentially race conditions.
+Processing application events serially (or `Actions` in Redux terms) removes many potential race conditions.
 
 # The Concept Of A Standalone "Runtime"
 
