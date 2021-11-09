@@ -79,7 +79,7 @@ Immutable Data removes the possibility of state based bugs where multiple object
 Thin views and single Activity architectures have been spoken about for many years. The motivations were stronger years ago due to developers often wanting to manage their own backstacks outside of using the `FragmentManager`, but also as it was [just plain simpler](https://developer.squareup.com/blog/advocating-against-android-fragments/). For me, I found simple "thin views" i.e. very little logic apart from rendering some immutable object was generally all that was required.
 
 
-## Thread Confinement
+## Concurrency Abstraction
 
 I find concurrency really interesting within the Android domain as we have loads of choices, standard Java primitives, Android abstractions, 3rd party libraries like RxJava, Kotlin's Coroutines. Each has its own set of pitfalls, each valuable in its own way, none a silver bullet or panacea. It's safe to say that it's a complicated area, and one which is easy to introduce tricky race-like hard-to-debug [Heisenbugs](https://en.wikipedia.org/wiki/Heisenbug). On top of that it's easy to turn out complex code in this area due to an allegiance to a certain approach or when trying to mush together concurrent & asynchronous code with the Android lifecycle.
 
