@@ -107,6 +107,10 @@ Additionally to the above, the following concepts from [Redux](https://redux.js.
 
 Note: instead of `DataStore` or similar redux-like naming, we use the term `RuntimeData` is the rest of this post.
 
+## Serial Event Processing
+
+Processing application events serially (or `Actions` in Redux terms) removes many potentially race conditions.
+
 # The Concept Of A Standalone "Runtime"
 
 When thinking about an application which has a state model at the center, and a single entry point to effect changes to that data and pluggable platform agnostic UI or framework level observers for me the term _"Runtime"_ fits well. 
