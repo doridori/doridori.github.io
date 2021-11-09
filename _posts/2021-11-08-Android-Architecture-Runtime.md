@@ -124,7 +124,7 @@ This is the core of the application that codifies all the buisness logic and the
 
 At the center of this Runtime centric architecure we need something responsible for:
 
-- serial processing of incoming `Actions`
+- serial processing of incoming `Actions`¹
 - the calling of a core `reducer()`
 - handing off of `Commands`
 - Holding of the core application state
@@ -132,6 +132,8 @@ At the center of this Runtime centric architecure we need something responsible 
 This encapsulation is named the `RuntimeKernel` as it's the core of the Runtime. Psudocode can be found below.
 
 <div data-gist-id="762d6b813a7395506922421913cc9023" data-gist-file="RuntimeKernel.kt">RuntimeKernel.kt</div>
+
+¹ As can be seen in the above code snippit, all incoming `Actions` are marshalled to a main thread in the context of the Runtime. The Runtime maintains it's own main loop so it behaves the same regardless of the execution environment i.e. JVM vs Androids ART, and therefore aids the reliability of JVM based automated testing.
 
 ## Visual overview
 
