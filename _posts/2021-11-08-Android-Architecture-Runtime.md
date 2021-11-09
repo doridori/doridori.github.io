@@ -20,7 +20,7 @@ My original motivation to think about alternative Android architectures was due 
 In the 12 years I have been a professional Android developer I have seen some common examples of where complexity has been layered on top of some of these areas in the aim of making them easier to deal with on a day to day basis when often an _arguably_ simpler divergent approach has been overlooked. For some quick fire examples I would include here:
 
 - Test time OS level faking frameworks vs OS abstraction at build time
-- Complex lifecycle aware asyncronous view-level listeners as opposed to rendering immutable states
+- Complex lifecycle aware asynchronous view-level listeners as opposed to rendering immutable states
 - Complex 3rd party dependencies utilised for threading purposes as opposed to thread abstraction
 - Fragments vs thin views *cough*
 
@@ -41,9 +41,9 @@ Additionally some of the areas I felt the architecture could be simplified ease 
 - Concurrency
 - Dependency instantiation and resolution 
 
-I should note I / we were putting effort into finding out what architecture would work well _with our specific applications and requirements in mind_. This blog post is not trying to suggest this is a good general architecture to use for day to day applications, but it is trying to suggest it's a good fit for some and has some originally unintended benifits. 
+I should note I / we were putting effort into finding out what architecture would work well _with our specific applications and requirements in mind_. This blog post is not trying to suggest this is a good general architecture to use for day to day applications, but it is trying to suggest it's a good fit for some and has some originally unintended benefits. 
 
-Note: You will probably notice that there are similar concepts spoken about in this post as there are in [MVI](https://www.raywenderlich.com/817602-mvi-architecture-for-android-tutorial-getting-started) architecture. MVI as a concept did not exist 7 years ago when we were thinking about what approach to take, and it's always facinating when different parts of a community come up with similar solutions to similar problems around the same time. This this is also testament to the architectual principles shared by both MVI and Redux (more on that later) for simplifying architectural thinking. This posts talks at a high level about other principles that also worked well for us in practise with these kind of architectures. 
+Note: You will probably notice that there are similar concepts spoken about in this post as there are in [MVI](https://www.raywenderlich.com/817602-mvi-architecture-for-android-tutorial-getting-started) architecture. MVI as a concept did not exist 7 years ago when we were thinking about what approach to take, and it's always fascinating when different parts of a community come up with similar solutions to similar problems around the same time. This this is also testament to the architectural principles shared by both MVI and Redux (more on that later) for simplifying architectural thinking. This posts talks at a high level about other principles that also worked well for us in practise with these kind of architectures. 
 
 # Building Blocks / Principles
 
@@ -94,7 +94,7 @@ This also allows us to:
 
 - Set a project convention for how we encapsulate core use-cases and therefore aid in the automated-test writing process
 - Isolate the code which perform the instantiation of the most complex highly-dependant objects in our application and therefore give us more choices around how we perform DI
-- Encapusulate the threading strategy for the application
+- Encapsulate the threading strategy for the application
 
 
 ## Inspiration from Redux 
@@ -115,14 +115,14 @@ Processing application events serially (or `Actions` in Redux terms) removes man
 
 When thinking about an application which has a state model at the center, and a single entry point to effect changes to that data and pluggable platform agnostic UI or framework level observers for me the term _"Runtime"_ fits well. 
 
-This is the core of the application that codifies all the buisness logic and the abstract UI representation, but generally does not care what's executing it or interfacing with it but just how it behaves in various Event driven scenarios. This is in contrast to an application architecture that is driven by UI or system components i.e. `Activity` transitions which kick of loading via `ViewModels` with similar lifecycles. 
+This is the core of the application that codifies all the business logic and the abstract UI representation, but generally does not care what's executing it or interfacing with it but just how it behaves in various Event driven scenarios. This is in contrast to an application architecture that is driven by UI or system components i.e. `Activity` transitions which kick of loading via `ViewModels` with similar lifecycles. 
 
 
 # Implementation Overview
 
 ## `RuntimeKernel`
 
-At the center of this Runtime centric architecure we need something responsible for:
+At the center of this Runtime centric architecture we need something responsible for:
 
 - serial processing of incoming `Actions`¹
 - the calling of a core `reducer()`
