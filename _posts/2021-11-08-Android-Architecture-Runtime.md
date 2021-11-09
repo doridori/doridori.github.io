@@ -172,3 +172,5 @@ For me, the pros significantly outweigh the cons so I am really excited about ha
 An unintended positive side effect of the above was the simplification of general code due to the threading confinement, I really found myself not thinking about concurrency much at all in day to day development.
 
 Hopefully this blog post has some thought provoking aspects, please let me know if you have any questions or comments below!
+
+[Link to Reddit post](https://www.reddit.com/r/androiddev/comments/qq3oum/android_architecture_runtime_centric_thinking/)
