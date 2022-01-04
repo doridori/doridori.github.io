@@ -43,7 +43,11 @@ Additionally some of the areas I felt the architecture could be simplified ease 
 
 I should note I / we were putting effort into finding out what architecture would work well _with our specific applications and requirements in mind_. This blog post is not trying to suggest this is a good general architecture to use for day to day applications, but it is trying to suggest it's a good fit for some and has some originally unintended benefits. 
 
-Note: You will probably notice that there are similar concepts spoken about in this post as there are in [MVI](https://www.raywenderlich.com/817602-mvi-architecture-for-android-tutorial-getting-started) architecture. MVI as a concept did not exist 7 years ago when we were thinking about what approach to take, and it's always fascinating when different parts of a community come up with similar solutions to similar problems around the same time. This this is also testament to the architectural principles shared by both MVI and Redux (more on that later) for simplifying architectural thinking. This posts talks at a high level about other principles that also worked well for us in practise with these kind of architectures. 
+## Re: MVI
+
+Note: You will probably notice that there are similar concepts spoken about in this post as there are in [MVI](https://www.raywenderlich.com/817602-mvi-architecture-for-android-tutorial-getting-started) architecture. MVI as a concept did not exist 7 years ago when we were thinking about what approach to take, and it's always fascinating when different parts of a community come up with similar solutions to similar problems around the same time. This this is also testament to the architectural principles shared by both MVI and Redux (more on that later) for simplifying architectural thinking. This posts talks at a high level about other principles that also worked well for us in practise with these kind of architectures.  
+
+It's interesting to note that MVI as an approach is inter-operable with popular architectures such as MVP and MVVM (as excellently described in the talk [MVWTF: Demystifying Architecture Patterns](https://www.youtube.com/watch?v=T7A-JbJBjyg&t=1331s) by Adam McNeilly as it essentually takes similar root principles from Flux / Redux and applies them at the feature level. This blog posts however talks more about a wider _application level_ architecture.
 
 # Building Blocks / Principles
 
