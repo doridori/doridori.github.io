@@ -34,7 +34,7 @@ Some of the specific requirements within the domain I was working and the develo
 - Clear event handling logic for a number of event sources (background services, external hardware, internal sensors, remote services) 
 - Clear logging, and a record of application flow and related event handling resolution
 
-Additionally some of the areas I felt the architecture could be simplified ease of development included:
+Additionally some of the areas I felt the architecture could aid in simplifing development included:
 
 - Writing and execution of Test Driven Development acceptance tests
 - Having to think about the Android application component lifecycle
