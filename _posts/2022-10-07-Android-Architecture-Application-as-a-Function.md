@@ -57,7 +57,7 @@ An `Action` represents something which has _happened_ (past tense) in the system
 
 ### A Simple Architectural View
 
-![application-as-a-function.drawio](images/application-as-a-function.drawio.png)
+<img src="/images/blog/application-as-a-function.png" alt="Runtime Implementation" />
 
 The above is probably the simplest representation of this style of architecture I can think of.
 
