@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Application As A Function Thinking"
+title: "Application-as-a-Function Thinking"
 ---
 
 **TL;DR** Architecting an application with a pure function at it's core can be a first step towards the "functional-core imperative shell" ideal which can facilitate simplification of a codebase and associated automated testing.
