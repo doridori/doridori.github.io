@@ -5,7 +5,7 @@ title: "Application As A Function Thinking"
 
 **TL;DR** Architecting an application with a pure function at it's core can be a first step towards the "functional-core imperative shell" ideal which can facilitate simplification of a codebase and associated automated testing.
 
-## WHY
+# WHY
 
 Simplification.
 
@@ -36,7 +36,7 @@ In addition if your application is highly event driven (user input / network / O
 
 I find having a single function at the center of an application can help to address all the above pain points.
 
-## HOW
+# HOW
 
 Fundamentally an **_application_** can be written to have at it's core, a single, stateless [**pure** function](https://en.wikipedia.org/wiki/Pure_function), behold!
 
@@ -55,7 +55,7 @@ An `Action` represents something which has _happened_ (past tense) in the system
 
 `Command` represents something which _needs to happen_ (future tense), probably in an imperitive fashion and likely interfacing with the real world, like IO  e.g. `AttemptLoginToRemoteServer(userName: String) : Command`. Note that a `Command` could easily represent a _"side-effect"_ in functional parlance.
 
-### A Simple Architectural View
+## A Simple Architectural View
 
 <img src="/images/blog/application-as-a-function.png" alt="Runtime Implementation" />
 
@@ -63,7 +63,7 @@ The above is probably the simplest representation of this style of architecture 
 
 The left side of the diagram realises the fundamental UDF [¹](https://en.wikipedia.org/wiki/Unidirectional_Data_Flow_(computer_science)) [²](https://developer.android.com/topic/architecture/ui-layer#udf) principles.
 
-### An Example Test
+## An Example Test
 
 Regardless of the specifics of how you choose to define `State`, keeping the core `reduce()` function pure allows us to write lightning fast automated functional [unit tests](https://martinfowler.com/bliki/UnitTest.html) which run on the JVM. These tests could potentially cover a large chunk of your applications functional requirements. For example a requirement such as:
 
@@ -89,13 +89,13 @@ For me a healthy test suite == a healthy application and the above test is at th
 - Stable: No concurrency
 - Simple: No mocking or integration testing possible as its a pure function
 
-### Android specifics
+## Android specifics
 
 On a system such as Android, when following this approach I have found I have little use for anything more than a single `Activity` and a bunch of thin `Views`. `ViewModels` become a little redundant and the UI layer of the application becomes pretty simple as really it just needs to render state and map user inputs to `Actions`. More details can be found in my previous post [Android Architecture: Runtime Centric Thinking](https://doridori.github.io/Android-Architecture-Runtime/).
 
-## A Note On Functional Programming
+# A Note On Functional Programming
 
-### Is this functional programming?
+## Is this functional programming?
 
 Well, not really. However, this post does introduce the concepts of pure-functions and modelling side-effects as  `Effect` (or `Command`) value types both of which are [functional programming](https://en.wikipedia.org/wiki/Functional_programming) concepts. However, there is no talk here about the more esoteric functional concepts like referencial transparency, monoids, currying and monads. We are lucky that Kotlin has allowed us work with functions as first class citizens and we as developers _could_ get much deeper into the functional world than I am proposing in this post, but we can can see some easy but tangible benefits by pulling in some of the simpler & more approchable functional concepts as outlined in this post.
 
@@ -127,9 +127,9 @@ Application-as-a-function is a simple realisation of similar ideas, but with an 
 
 I hope this post has provided some food for thought and introduced to some readers the notion of application design from a functional-core imperative-shell mindset, and one idea of what a manifestation of this principle can look like on a mobile platform like Android.
 
-## Links
+# Links
 
-### Functional Core Imperative Shell
+## Functional Core Imperative Shell
 
 - [The Functional Core, Imperative Shell Pattern]([https://www.kennethlange.com/functional-core-imperative-shell/])
 - [Boundaries - Gary Bernhardt](https://www.destroyallsoftware.com/talks/boundaries)
@@ -137,11 +137,11 @@ I hope this post has provided some food for thought and introduced to some reade
   - https://news.ycombinator.com/item?id=18043058
 - [Test Doubles Are A Scam – Matt Diephouse](https://www.youtube.com/watch?app=desktop&v=7AGQ9dhWCX0)
 
-### Books
+## Books
 
 - [Domain Modelling Made Functional](https://pragprog.com/titles/swdddf/domain-modeling-made-functional/)
 - [Functional Programming in Kotlin](https://www.manning.com/books/functional-programming-in-kotlin)
 
-### My related posts
+## My related posts
 
 - [Android Architecture: Runtime Centric Thinking](https://doridori.github.io/Android-Architecture-Runtime/)
