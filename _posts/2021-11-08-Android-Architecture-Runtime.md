@@ -51,14 +51,14 @@ For myself a fast, clean and comprehensive test suite was a must and I feel runt
 
 It's interesting to note that MVI as an approach is inter-operable with popular architectures such as MVP and MVVM (as excellently described in the talk [MVWTF: Demystifying Architecture Patterns](https://www.youtube.com/watch?v=T7A-JbJBjyg&t=1331s) by Adam McNeilly) as it essentually takes similar root principles from Flux / Redux and applies them at the _feature_ level. This blog posts however talks more about a wider _application level_ architecture. The application level approach introduced in this post may be a better fit for applications which are best / well suited to being modelled by a finite-state-machine, more below.
 
-# Building Blocks / Principles
+## Building Blocks / Principles
 
 As mentioned above, for brevity I am opting to not talk about each of the below architectural concepts / building blocks in depth. If there is any desire for me to I can expand on any particular area in a subsequent post. 
 
 From previous experience I had the following tools in my logical tool-box which I felt could add value in this architectual design process:
 
 
-## Finite State Machines (FSM)
+### Finite State Machines (FSM)
 
 FSMs are really useful constructs to:
 
@@ -70,29 +70,29 @@ FSMs are really useful constructs to:
 For me, FSMs sometimes can encapsulate logic around the above points with a conciseness & clarity that nothing else comes close to. Sensitive data clearing (point 2 above) was really where a lot of my architectural thinking originated from and then my subsequent realisation that it's quite painful to put an FSM at the heart of a traditional Android application architecture. Trying to solve this problem led me to a lot of the below principles which in practice work nicely with an FSM centric application.
 
 
-## Unidirectional Data Flow
+### Unidirectional Data Flow
 
 Unidirectional data flow makes life pretty simple in many ways. Fundamentally it's about formalising how data flows through an architecture, which for us means the View layer emits Actions / Events, processed by the core of the application, which emits states / presentation-models for the View to render. For a brief high level intro check out [The Case for Unidirectional Data Flow](https://www.exclamationlabs.com/blog/the-case-for-unidirectional-data-flow/).
 
 
-## Immutable Data
+### Immutable Data
 
 Immutable Data removes the possibility of state based bugs where multiple objects hold references to shared immutable data and therefore also reduces the possibility for concurrency issues also. Both of these are huge wins for me.
 
 
-## Thin Views
+### Thin Views
 
 Thin views and single Activity architectures have been spoken about for many years. The motivations were stronger years ago due to developers often wanting to manage their own backstacks outside of using the `FragmentManager`, but also as it was [just plain simpler](https://developer.squareup.com/blog/advocating-against-android-fragments/). For me, I found simple "thin views" i.e. very little logic apart from rendering some immutable object was generally all that was required.
 
 
-## Concurrency Abstraction
+### Concurrency Abstraction
 
 I find concurrency really interesting within the Android domain as we have loads of choices, standard Java primitives, Android abstractions, 3rd party libraries like RxJava, Kotlin's Coroutines. Each has its own set of pitfalls, each valuable in its own way, none a silver bullet or panacea. It's safe to say that it's a complicated area, and one which is easy to introduce tricky race-like hard-to-debug [Heisenbugs](https://en.wikipedia.org/wiki/Heisenbug). On top of that it's easy to turn out complex code in this area due to an allegiance to a certain approach or when trying to mush together concurrent & asynchronous code with the Android lifecycle.
 
 I have recently found it useful to experiment with architectures which allow us to isolate the concept of concurrency so developers do not really need to even think about it on a day to day basis, and this is something I wanted to further explore. The below `Command Abstraction` allows us to do just this.
 
 
-## Command Abstraction
+### Command Abstraction
 
 To decouple the trigger of execution of a core chunk of biz logic from the creation, dependency resolution & scheduling of the object that will perform it, I find the Command pattern can be really useful. 
 
@@ -103,7 +103,7 @@ This also allows us to:
 - Encapsulate the threading strategy for the application
 
 
-## Inspiration from Redux 
+### Inspiration from Redux 
 
 Additionally to the above, the following concepts from [Redux](https://redux.js.org/understanding/thinking-in-redux/motivation) are valuable mainly due to increased testability, behaviour reproducibility and transparency of execution.
 
@@ -113,20 +113,20 @@ Additionally to the above, the following concepts from [Redux](https://redux.js.
 
 Note: instead of `DataStore` or similar redux-like naming, we use the term `RuntimeData` is the rest of this post.
 
-## Serial Event Processing
+### Serial Event Processing
 
 Processing application events serially (or `Actions` in Redux terms) removes many potential race conditions.
 
-# The Concept Of A Standalone "Runtime"
+## The Concept Of A Standalone "Runtime"
 
 When thinking about an application which has a state model at the center, and a single entry point to effect changes to that data and pluggable platform agnostic UI or framework level observers for me the term _"Runtime"_ fits well. 
 
 This is the core of the application that codifies all the business logic and the abstract UI representation, but generally does not care what's executing it or interfacing with it but just how it behaves in various Event driven scenarios. This is in contrast to an application architecture that is driven by UI or system components i.e. `Activity` transitions which kick of loading via `ViewModels` with similar lifecycles. 
 
 
-# Implementation Overview
+## Implementation Overview
 
-## `RuntimeKernel`
+### `RuntimeKernel`
 
 At the center of this Runtime centric architecture we need something responsible for:
 
@@ -141,14 +141,14 @@ This encapsulation is named the `RuntimeKernel` as it's the core of the Runtime.
 
 ¹ As can be seen in the above code snippit, all incoming `Actions` are marshalled to a main thread in the context of the Runtime. The Runtime maintains it's own main loop so it behaves the same regardless of the execution environment i.e. JVM vs Androids ART, and therefore aids the reliability of JVM based automated testing.
 
-## Visual overview
+### Visual overview
 
 Hopefully a lot of the concepts shown in the below visual representation make sense in terms of the context provided above. As always let me know in the comments if something is unclear. 
 
 <img src="/images/blog/post-runtime-implementation.png" alt="Runtime Implementation" />
 
 
-## A note on depedency resoution 
+### A note on depedency resoution 
 
 I have been using Dagger (and Dagger 2) for several years. It can be a real valuable tool and also it can be pretty confusing at times. I have found most developers are comfortable with some aspects of it and not with others (me included). For junior developers I have found it can be a bit of a learning hurdle also which I completely sympathise with as even as an experienced developer I often find myself wrangling with it. 
 
@@ -159,7 +159,7 @@ In practise, the class instantiation and dependency resolution all happened insi
 This code was super simple to understand, super simple to provide test fakes for (via `RuntimeFactory.build` parameterisation) and super easy to debug, and therefore I was super happy :)
 
 
-# Reflection on usability
+## Reflection on usability
 
 Reflecting on pros and cons post implementation, I feel it's been a very successful experiment. In practise the pros include:
 
