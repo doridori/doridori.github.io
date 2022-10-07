@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Application-as-a-Function Thinking"
+title: "Application As A Function Thinking"
 ---
 
 ## TL;DR
