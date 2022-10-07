@@ -19,8 +19,6 @@ And for completeness:
 
 > Complexity: a measure of how difficult it is to understand how a system will behave or to predict the consequences of changing it
 
-[_Definition_](https://www.sebokwiki.org/wiki/Complexity) & [_Further Reading_](https://complexityexplained.github.io/)
-
 For many applications the challenge is how to simply & correctly represent a corpus of domain requirements in code, and how to raise the complexity-bar sufficently to enable a high degree of engineer productivity & runtime stability .
 
 A _low_ complexity-bar reduces the amount of time it takes for a developer to get to the brain-meltdown-event-horizon-like state after which completion of new work slows down expontentially due to sheer codebase and test suite complexity which results in low grokability, an increasing degree of emergent behaviour, a higher probability of introducing regressions and generally, just _slow_ developement.
