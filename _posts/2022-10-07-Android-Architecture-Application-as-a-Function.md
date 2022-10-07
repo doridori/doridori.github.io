@@ -3,9 +3,7 @@ layout: post
 title: "Application As A Function Thinking"
 ---
 
-## TL;DR
-
-Architecting an application with a pure function at it's core can be a first step towards the "functional-core imperative shell" ideal which can facilitate simplification of a codebase and associated automated testing.
+**TL;DR** Architecting an application with a pure function at it's core can be a first step towards the "functional-core imperative shell" ideal which can facilitate simplification of a codebase and associated automated testing.
 
 ## WHY
 
@@ -28,8 +26,8 @@ A _high_ complexity-bar conversely allows a desired order and serenity to take h
 I have observed different reasons for a low complexity bar, including:
 
 - Domain requirements being spread throughout all codebase components
-- Non-existent | incomplete | disorganised domain requirements documentation
-- A non-existent | disorganised | bloated | poorly performing test suite
+- Non-existent / incomplete / disorganised domain requirements documentation
+- A non-existent / disorganised / bloated / poorly performing test suite
 - Poor naming
 - OOP state based edge case explosions
 - Low architectural cohesion across a codebase / team
