@@ -40,9 +40,7 @@ I find having a single function at the center of an application can help to addr
 
 Fundamentally an **_application_** can be written to have at it's core, a single, stateless [**pure** function](https://en.wikipedia.org/wiki/Pure_function), behold!
 
-```kotlin
-fun reduce(action: Action, state: State): Effect
-```
+<div data-gist-id="4acb19b6ac4e965552ba6961e1bc9054" data-gist-file="reduce.kt">reduce.kt</div>
 
 An `Action` represents something which has _happened_ (past tense) in the system, e.g.
 
