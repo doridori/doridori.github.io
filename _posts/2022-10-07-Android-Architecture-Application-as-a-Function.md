@@ -51,7 +51,7 @@ An `Action` represents something which has _happened_ (past tense) in the system
 
 `State` fundamentally represents the state of the application, which can be implemented as an immutable flattened data hierarchy, in a fashion similar to [Redux](https://redux.js.org/introduction/core-concepts).
 
-`Effect` at it'itss simplest could represent the new applications immutable `State` and optionally any `Commands` which need to be handled e.g. `Effect(State, Command)`.
+`Effect` at its simplest could represent the new applications immutable `State` and optionally any `Commands` which need to be handled e.g. `Effect(State, Command)`.
 
 `Command` represents something which _needs to happen_ (future tense), probably in an imperitive fashion and likely interfacing with the real world, like IO  e.g. `AttemptLoginToRemoteServer(userName: String) : Command`. Note that a `Command` could easily represent a _"side-effect"_ in functional parlance.
 
