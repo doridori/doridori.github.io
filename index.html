@@ -2,10 +2,12 @@
 layout: default
 ---
 <div class="posts">
+  <ul>
   {% for post in site.posts %}
-    <article class="post">
-      <h3><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h3>
-      <p>{{ post.date | date_to_string }}</p>
-    </article>
+    <li>
+      <p>{{ post.date | date_to_string }} » <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+      </p>
+    </li>
   {% endfor %}
+  </ul>
 </div>
