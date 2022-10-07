@@ -67,9 +67,9 @@ The left side of the diagram realises the fundamental UDF [¹](https://en.wikipe
 
 Regardless of the specifics of how you choose to define `State`, keeping the core `reduce()` function pure allows us to write lightning fast automated functional [unit tests](https://martinfowler.com/bliki/UnitTest.html) which run on the JVM. These tests could potentially cover a large chunk of your applications functional requirements. For example a requirement such as:
 
-> GIVEN the user is logged in
-> WHEN the application moves to the background
-> THEN the user should be logged out
+**GIVEN** the user is logged in  
+**WHEN** the application moves to the background  
+**THEN** the user should be logged out  
 
 Can be expressed at test time like:
 
@@ -80,9 +80,7 @@ It's worth noting tests of this form are often very simple to read, and also ser
 An a professional Android developer for over 12 years, I have myself written and seen others write tests over more traditional Android architectures which try to express a flow such as the above which end up being:
 
 - Slow: due to a combination of instrumention and integration complexity
-
 - Flakey: due to concurrency being involved in the code under test
-
 - Complicated & brittle: due to excessive mocking or integration
 
 For me a healthy test suite == a healthy application and the above test is at the other end of the simplicity spectrum as it's:
@@ -95,7 +93,7 @@ For me a healthy test suite == a healthy application and the above test is at th
 
 On a system such as Android, when following this approach I have found I have little use for anything more than a single `Activity` and a bunch of thin `Views`. `ViewModels` become a little redundant and the UI layer of the application becomes pretty simple as really it just needs to render state and map user inputs to `Actions`. More details can be found in my previous post [Android Architecture: Runtime Centric Thinking](https://doridori.github.io/Android-Architecture-Runtime/).
 
-## A Note On Functional Programming
+## A Note On Functional Programming
 
 ### Is this functional programming?
 
@@ -103,14 +101,13 @@ Well, not really. However, this post does introduce the concepts of pure-functio
 
 Also this approach is a first step towards the functional ideal of **seperating _decisions_ from _dependencies_** and harvesting the rewards of such an approach.
 
-### Functional Core, Imperative Shell
+## Functional Core, Imperative Shell
 
 The concept of a **_functional-core, imperative-shell_** is a powerful one and a pragmatic way to start gaining some of the benefits of functional approaches which includes seperation of concerns and high maintainability / testability.
 
 > A core principle in purely functional programming is to separate effects and data as much as possible. This naturally leads to applications with a [functional core](https://www.destroyallsoftware.com/talks/boundaries) and [imperative shell](https://www.destroyallsoftware.com/screencasts/catalog/functional-core-imperative-shell). The vast majority of code is written as side-effect-free functions and data and only at the boundaries of the application do the effects show up. The boundaries of the application are where our core logic meets the outside world, whether via API requests, outside input, components rendering to the page, and so on. [¹](https://thomashoneyman.com/guides/real-world-halogen/push-effects-to-the-edges/)
 
 The application-as-a-function approach is one of many possible interpretations of the functional-core, imperative-shell idea and there are many facinating resources to dig deeper into this subject (links at end of the post).
-
 
 # Paradigm Shift
 
@@ -129,8 +126,6 @@ Application-as-a-function is a simple realisation of similar ideas, but with an 
 # Conclusion
 
 I hope this post has provided some food for thought and introduced to some readers the notion of application design from a functional-core imperative-shell mindset, and one idea of what a manifestation of this principle can look like on a mobile platform like Android.
-
-
 
 ## Links
 
