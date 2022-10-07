@@ -67,25 +67,13 @@ The left side of the diagram realises the fundamental UDF [¹](https://en.wikipe
 
 Regardless of the specifics of how you choose to define `State`, keeping the core `reduce()` function pure allows us to write lightning fast automated functional [unit tests](https://martinfowler.com/bliki/UnitTest.html) which run on the JVM. These tests could potentially cover a large chunk of your applications functional requirements. For example a requirement such as:
 
-```
-GIVEN the user is logged in
-WHEN the application moves to the background
-THEN the user should be logged out
-```
+> GIVEN the user is logged in
+> WHEN the application moves to the background
+> THEN the user should be logged out
 
 Can be expressed at test time like:
 
-```kotlin
-@Test
-fun `GIVEN user is logged in WHEN app moves to the background THEN user is logged out`(){
-	//GIVEN
-  val inState = State(user = LoggedInUser(username = "Dori"))
-  //WHEN
-  val outState = reduce(ApplicationBackgrounded, inState)
-  //THEN
-  assertThat(outState.user).isOfType(AnonomousUser)
-}
-```
+<div data-gist-id="4acb19b6ac4e965552ba6961e1bc9054" data-gist-file="test.kt">test.kt</div>
 
 It's worth noting tests of this form are often very simple to read, and also serve as living documentation for a given application and therefore describing the current set of supporting features / functions / requirements. This is something I have often seen organisations and test suites struggle to achieve, much to the detriment of productivity.
 
