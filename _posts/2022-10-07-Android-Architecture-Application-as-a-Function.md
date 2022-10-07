@@ -7,7 +7,7 @@ title: "Application As A Function Thinking"
 
 Architecting an application with a pure function at it's core can be a first step towards the "functional-core imperative shell" ideal which can facilitate simplification of a codebase and associated automated testing.
 
-## Why
+## Why?
 
 Simplification.
 
@@ -38,7 +38,7 @@ In addition if your application is highly event driven (user input / network / O
 
 I find having a single function at the center of an application can help to address all the above pain points.
 
-## How
+## How?
 
 Fundamentally an **_application_** can be written to have at it's core, a single, stateless [**pure** function](https://en.wikipedia.org/wiki/Pure_function), behold!
 
