@@ -17,7 +17,7 @@ And for completeness:
 
 > Complexity: a measure of how difficult it is to understand how a system will behave or to predict the consequences of changing it
 
-For many applications the challenge is how to simply & correctly represent a corpus of domain requirements in code, and how to raise the complexity-bar sufficently to enable a high degree of engineer productivity & runtime stability .
+For many applications the challenge is how to simply & correctly represent a large number of domain requirements in code, and how to raise the complexity-bar sufficently to enable a high degree of engineer productivity & runtime stability .
 
 A _low_ complexity-bar reduces the amount of time it takes for a developer to get to the brain-meltdown-event-horizon-like state after which completion of new work slows down expontentially due to sheer codebase and test suite complexity which results in low grokability (i.e. hard to grok), an increasing degree of emergent behaviour, a higher probability of introducing regressions and generally, just _slow_ developement.
 
@@ -29,7 +29,7 @@ I have observed different reasons for a low complexity bar, including:
 - Non-existent / incomplete / disorganised domain requirements documentation
 - A non-existent / disorganised / bloated / poorly performing test suite
 - Poor naming
-- OOP state based edge case explosions
+- Race condition rich OOP state manipulations
 - Low architectural cohesion across a codebase / team
 
 In addition if your application is highly event driven (user input / network / OS / peripherals / sensors) not having a simple approach to process incoming events can lead to chaotic code. Multiply this if you are working within a sensitive domain which has strict requirements around runtime data retention.
@@ -113,7 +113,7 @@ The application-as-a-function approach is one of many possible interpretations o
 
 Architecture is so subjecitve, what fits one developers mindset and ethos may be totally alien or disagreeable to another. Additionally, an architecture that may be a perfect fit for one project may be terrible for another, plus if you have a large team with a high amount of churn you would need to carefully weight up the pros and cons of a more esoteric architecture which slows onboarding time vs more mainstream architecture which may be slower in terms of general development for onboarded team members.
 
-For _me_, and the way my mind works, thinking of application design from an application-as-a-function / functional-core imperative-shell perspective simplifies Android application development & testing **massively**. Development can be fast, truely self-documenting and has a high complexity bar. It enables side-stepping common pain points around the Android framework and tooling, including test time tooling, its fits well into UDF thinking, which is also useful for enabling a clean UI implementation (Compose or otherwise). Its potential excites me and it so far feels like a intoxicating gateway into the functional world.
+For _me_, and the way my mind works, thinking of application design from an application-as-a-function / functional-core imperative-shell perspective simplifies Android application development & testing **massively**. Development can be fast, truely self-documenting and has a high complexity bar. It enables side-stepping common pain points around the Android framework and tooling, including test time tooling, its fits well into UDF thinking, which is useful for enabling a clean UI implementation (Compose or otherwise). It also takes a step away from a variety of race-condiftions commonly found in OOP style state-mutations when combined with concurrent code.  Logging core application events becomes a just a single line of code in front of the reduce function. Its potential excites me and it so far feels like a intoxicating gateway into the functional world. 
 
 ## Related Thinking
 
