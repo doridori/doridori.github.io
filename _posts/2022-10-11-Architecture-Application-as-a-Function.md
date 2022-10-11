@@ -157,3 +157,5 @@ I hope this post has provided some food for thought and introduced to some reade
 ## Thanks
 
 Thanks to [@scottyab](https://twitter.com/scottyab) and [@andyb129](https://twitter.com/andyb129) for the proof read :)
+
+[Reddit link](https://www.reddit.com/r/androiddev/comments/y1hpwa/applicationasafunction_thinking/)
