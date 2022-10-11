@@ -9,7 +9,7 @@ title: "Application-as-a-Function Thinking"
 
 Simplification.
 
-To start with a quote from [grugbrain.dev](https://grugbrain.dev/):
+As a novel alternative to [KISS](https://en.wikipedia.org/wiki/KISS_principle), we start with a quote from [The Grug Brained Developer](https://grugbrain.dev/):
 
 > complexity *very*, *very* bad
 
