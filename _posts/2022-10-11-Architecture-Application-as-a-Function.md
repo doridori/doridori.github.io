@@ -115,7 +115,7 @@ Architecture is so subjecitve, what fits one developers mindset and ethos may be
 
 For _me_, and the way my mind works, thinking of application design from an application-as-a-function / functional-core imperative-shell perspective simplifies Android application development & testing **massively**. Development can:
 
-- Be fast, truely self-documenting and has a high complexity bar
+- Be fast, truely self-documenting and have a high complexity bar
 - Be free from common pain points around the Android framework and tooling, including test time tooling
 - Fit well into UDF thinking, which is useful for enabling a clean UI implementation (Compose or otherwise)
 - Takes a step away from a variety of race-condiftions commonly found in OOP style state-mutations when combined with concurrent code
