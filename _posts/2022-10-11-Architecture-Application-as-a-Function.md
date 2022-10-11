@@ -19,7 +19,7 @@ And for completeness:
 
 For many applications the challenge is how to simply & correctly represent a large number of domain requirements in code, and how to raise the complexity-bar sufficently to enable a high degree of engineer productivity & runtime stability .
 
-A _low_ complexity-bar reduces the amount of time it takes for a developer to get to the brain-meltdown-event-horizon-like state after which completion of new work slows down expontentially due to sheer codebase and test suite complexity which results in low grokability (i.e. hard to grok), an increasing degree of emergent behaviour, a higher probability of introducing regressions and generally, just _slow_ developement.
+A _low_ complexity-bar reduces the amount of time it takes for a developer to get to the brain-meltdown-event-horizon-like state after which completion of new work slows down expontentially due to sheer codebase and test suite complexity which results in low grokability (i.e. code which is hard to understand or follow), an increasing degree of emergent behaviour, a higher probability of introducing regressions and generally, just _slow_ developement.
 
 A _high_ complexity-bar conversely allows a desired order and serenity to take hold and more time spent on adding value as opposed to fire-fighting.
 
