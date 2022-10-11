@@ -113,7 +113,15 @@ The application-as-a-function approach is one of many possible interpretations o
 
 Architecture is so subjecitve, what fits one developers mindset and ethos may be totally alien or disagreeable to another. Additionally, an architecture that may be a perfect fit for one project may be terrible for another, plus if you have a large team with a high amount of churn you would need to carefully weight up the pros and cons of a more esoteric architecture which slows onboarding time vs more mainstream architecture which may be slower in terms of general development for onboarded team members.
 
-For _me_, and the way my mind works, thinking of application design from an application-as-a-function / functional-core imperative-shell perspective simplifies Android application development & testing **massively**. Development can be fast, truely self-documenting and has a high complexity bar. It enables side-stepping common pain points around the Android framework and tooling, including test time tooling, its fits well into UDF thinking, which is useful for enabling a clean UI implementation (Compose or otherwise). It also takes a step away from a variety of race-condiftions commonly found in OOP style state-mutations when combined with concurrent code.  Logging core application events becomes a just a single line of code in front of the reduce function. Its potential excites me and it so far feels like a intoxicating gateway into the functional world. 
+For _me_, and the way my mind works, thinking of application design from an application-as-a-function / functional-core imperative-shell perspective simplifies Android application development & testing **massively**. Development can:
+
+- Be fast, truely self-documenting and has a high complexity bar
+- Be free from common pain points around the Android framework and tooling, including test time tooling
+- Fit well into UDF thinking, which is useful for enabling a clean UI implementation (Compose or otherwise)
+- Takes a step away from a variety of race-condiftions commonly found in OOP style state-mutations when combined with concurrent code
+- Include core application events logging using just a single line of code in front of the reduce function 
+
+Its potential excites me and it so far feels like a intoxicating gateway into the functional world 
 
 ## Related Thinking
 
