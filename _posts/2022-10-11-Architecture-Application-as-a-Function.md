@@ -113,7 +113,7 @@ The application-as-a-function approach is one of many possible interpretations o
 
 Architecture is so subjecitve, what fits one developers mindset and ethos may be totally alien or disagreeable to another. Additionally, an architecture that may be a perfect fit for one project may be terrible for another, plus if you have a large team with a high amount of churn you would need to carefully weight up the pros and cons of a more esoteric architecture which slows onboarding time vs more mainstream architecture which may be slower in terms of general development for onboarded team members.
 
-For _me_, and the way my mind works, thinking of application design from an application-as-a-function / functional-core imperative-shell perspective simplifies Android application development & testing **massively**. Development can:
+For _me_, and the way my mind works, thinking of application design from an application-as-a-function / functional-core imperative-shell perspective simplifies development & testing **massively** for many kinds of Android application. Development can:
 
 - Be fast, truely self-documenting and have a high complexity bar
 - Be free from common pain points around the Android framework and tooling, including test time tooling
