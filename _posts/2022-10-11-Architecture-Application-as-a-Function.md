@@ -118,7 +118,7 @@ For _me_, and the way my mind works, thinking of application design from an appl
 - Be fast, truely self-documenting and have a high complexity bar
 - Be free from common pain points around the Android framework and tooling, including test time tooling
 - Fit well into UDF thinking, which is useful for enabling a clean UI implementation (Compose or otherwise)
-- Takes a step away from a variety of race-condiftions commonly found in OOP style state-mutations when combined with concurrent code
+- Take a step away from a variety of race-condiftions commonly found in OOP style state-mutations when combined with concurrent code
 - Include core application events logging using just a single line of code in front of the reduce function 
 
 Its potential excites me and it so far feels like a intoxicating gateway into the functional world 
