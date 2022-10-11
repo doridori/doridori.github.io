@@ -38,7 +38,7 @@ I find having a single function at the center of an application can help to addr
 
 ## How?
 
-Fundamentally an _application_ can be written to have at it's core, a single, stateless [**pure** function](https://en.wikipedia.org/wiki/Pure_function), behold!
+Fundamentally an _application_ can be written to have at it's core, a single, stateless _[pure function](https://en.wikipedia.org/wiki/Pure_function)_, behold!
 
 <div data-gist-id="4acb19b6ac4e965552ba6961e1bc9054" data-gist-file="reduce.kt">reduce.kt</div>
 
