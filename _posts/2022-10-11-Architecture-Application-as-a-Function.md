@@ -59,7 +59,7 @@ An `Action` represents something which has _happened_ (past tense) in the system
 
 <img src="/images/blog/application-as-a-function.png" alt="Runtime Implementation" />
 
-The above is probably the simplest representation of this style of architecture I can think of.
+The above is probably the simplest representation of this style of architecture I can think of. **It's important to reiterate this represents the _entire application_**. 
 
 The left side of the diagram realises the fundamental Unidirectional Data Flow (UDF) [¹](https://en.wikipedia.org/wiki/Unidirectional_Data_Flow_(computer_science)) [²](https://developer.android.com/topic/architecture/ui-layer#udf) principles.
 
