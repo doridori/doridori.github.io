@@ -127,7 +127,7 @@ Its potential excites me and it so far feels like a intoxicating gateway into th
 
 The above concepts are not new to software architecure. UDF thinking has been around a while, as has functional programming (~1950s) and [Flux / Elm / Redux](https://staltz.com/unidirectional-user-interface-architectures.html) inspired architectures. We can find similar concepts in [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), Hexagonal Architecture / [Ports & Adapters](https://www.kennethlange.com/ports-and-adapters/) and [Onion Architecture](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/).
 
-On Android somewhat similar concepts may surface in Model-View-Intent (MVI) thinking for _feature_ level implementation, but with less of an emphasis on functional thinking and testability.
+On Android somewhat similar concepts may surface in Model-View-Intent (MVI) thinking for _feature_ level implementation, but with less of an emphasis on functional thinking, testability & simplicity.
 
 Application-as-a-function is a simple realisation of similar ideas, but with an emphasis on **_application-wide functional-core imperitive-shell_** thinking.
 
