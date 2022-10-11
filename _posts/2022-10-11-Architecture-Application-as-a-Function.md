@@ -145,3 +145,7 @@ I hope this post has provided some food for thought and introduced to some reade
 ### My related posts
 
 - [Android Architecture: Runtime Centric Thinking](https://doridori.github.io/Android-Architecture-Runtime/)
+
+## Thanks
+
+Thanks to [scottyab](https://twitter.com/scottyab) for the proof read :)
