@@ -148,4 +148,4 @@ I hope this post has provided some food for thought and introduced to some reade
 
 ## Thanks
 
-Thanks to [scottyab](https://twitter.com/scottyab) for the proof read :)
+Thanks to [@scottyab](https://twitter.com/scottyab) and [@andyb129](https://twitter.com/andyb129) for the proof read :)
