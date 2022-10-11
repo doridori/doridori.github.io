@@ -19,7 +19,7 @@ And for completeness:
 
 For many applications the challenge is how to simply & correctly represent a corpus of domain requirements in code, and how to raise the complexity-bar sufficently to enable a high degree of engineer productivity & runtime stability .
 
-A _low_ complexity-bar reduces the amount of time it takes for a developer to get to the brain-meltdown-event-horizon-like state after which completion of new work slows down expontentially due to sheer codebase and test suite complexity which results in low grokability, an increasing degree of emergent behaviour, a higher probability of introducing regressions and generally, just _slow_ developement.
+A _low_ complexity-bar reduces the amount of time it takes for a developer to get to the brain-meltdown-event-horizon-like state after which completion of new work slows down expontentially due to sheer codebase and test suite complexity which results in low grokability (i.e. hard to grok), an increasing degree of emergent behaviour, a higher probability of introducing regressions and generally, just _slow_ developement.
 
 A _high_ complexity-bar conversely allows a desired order and serenity to take hold and more time spent on adding value as opposed to fire-fighting.
 
@@ -113,7 +113,7 @@ The application-as-a-function approach is one of many possible interpretations o
 
 Architecture is so subjecitve, what fits one developers mindset and ethos may be totally alien or disagreeable to another. Additionally, an architecture that may be a perfect fit for one project may be terrible for another, plus if you have a large team with a high amount of churn you would need to carefully weight up the pros and cons of a more esoteric architecture which slows onboarding time vs more mainstream architecture which may be slower in terms of general development for onboarded team members.
 
-For _me_, and the way my mind works, thinking of application design from an application-as-a-function / functional-core imperative-shell perspective simplifies Android application development & testing **massively**. Development can be fast, truely self-documenting and has a high complexity bar. It enables side-stepping common pain points around the Android framework and tooling, including test time tooling, its fits well into UDF thinking, which is also useful for enabling a clean UI implementation (Compose or otherwise). It potential excites me and it so far feels like a intoxicating gateway into the functional world.
+For _me_, and the way my mind works, thinking of application design from an application-as-a-function / functional-core imperative-shell perspective simplifies Android application development & testing **massively**. Development can be fast, truely self-documenting and has a high complexity bar. It enables side-stepping common pain points around the Android framework and tooling, including test time tooling, its fits well into UDF thinking, which is also useful for enabling a clean UI implementation (Compose or otherwise). Its potential excites me and it so far feels like a intoxicating gateway into the functional world.
 
 ## Related Thinking
 
