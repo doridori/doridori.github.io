@@ -19,7 +19,7 @@ And for completeness:
 
 For many applications the challenge is how to simply & correctly represent a large number of domain requirements in code, and how to raise the complexity-bar sufficently to enable a high degree of engineer productivity & runtime stability .
 
-A _low_ complexity-bar reduces the amount of time it takes for a developer to get to the brain-meltdown-event-horizon-like state after which completion of new work slows down expontentially due to sheer codebase and test suite complexity which results in low grokability (i.e. code which is hard to understand or follow), an increasing degree of emergent behaviour, a higher probability of introducing regressions and generally, just _slow_ developement.
+A _low_ complexity-bar reduces the amount of time it takes for a developer to get to the brain-meltdown-event-horizon-like state after which completion of new work slows down expontentially due to sheer codebase and test suite complexity which results in low grokability (i.e. code which is hard to understand or follow), an increasing degree of emergent behaviour, a higher probability of introducing regressions and generally, just _slow_ development.
 
 A _high_ complexity-bar conversely allows a desired order and serenity to take hold and more time spent on adding value as opposed to fire-fighting.
 
@@ -79,7 +79,7 @@ It's worth noting tests of this form are often very simple to read, and also ser
 
 An a professional Android developer for over 12 years, I have myself written and seen others write tests over more traditional Android architectures which try to express a flow such as the above which end up being:
 
-- Slow: due to a combination of instrumention and integration complexity
+- Slow: due to a combination of instrumentation and integration complexity
 - Flakey: due to concurrency being involved in the code under test
 - Complicated & brittle: due to excessive mocking or integration
 
