@@ -161,3 +161,6 @@ I hope this post has provided some food for thought and introduced to some reade
 ## Thanks
 
 Thanks to [@scottyab](https://twitter.com/scottyab) and [@andyb129](https://twitter.com/andyb129) for the proof read :)
+
+![aaaf-aw-featured](https://user-images.githubusercontent.com/1244430/196021578-162e152f-b3b3-4cba-9c23-707aea3100c2.svg)
+
