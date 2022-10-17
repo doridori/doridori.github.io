@@ -156,6 +156,7 @@ I hope this post has provided some food for thought and introduced to some reade
 
 ### Social
 
+- [Hacker News comments](https://news.ycombinator.com/item?id=33221780)
 - [Reddit link](https://www.reddit.com/r/androiddev/comments/y1hpwa/applicationasafunction_thinking/)
 
 ## Thanks
