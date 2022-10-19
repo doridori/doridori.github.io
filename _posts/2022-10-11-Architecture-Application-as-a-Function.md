@@ -139,7 +139,7 @@ I hope this post has provided some food for thought and introduced to some reade
 
 ### Functional Core Imperative Shell
 
-- [The Functional Core, Imperative Shell Pattern]([https://www.kennethlange.com/functional-core-imperative-shell/])
+- [The Functional Core, Imperative Shell Pattern](https://www.kennethlange.com/functional-core-imperative-shell/)
 - [Boundaries - Gary Bernhardt](https://www.destroyallsoftware.com/talks/boundaries)
 - [Functional Core Imperative Shell - Gary Bernhardt](https://www.destroyallsoftware.com/screencasts/catalog/functional-core-imperative-shell) talk
   - https://news.ycombinator.com/item?id=18043058
