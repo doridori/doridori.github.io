@@ -97,7 +97,7 @@ On a system such as Android, when following this approach I have found I have li
 
 ### Is this functional programming?
 
-Well, not really. However, this post does introduce the concepts of pure-functions and modelling side-effects as  `Effect` (or `Command`) value types both of which are [functional programming](https://en.wikipedia.org/wiki/Functional_programming) concepts. However, there is no talk here about the more esoteric functional concepts like referencial transparency, monoids, currying and monads. We are lucky that Kotlin has allowed us work with functions as first class citizens and we as developers _could_ get much deeper into the functional world than I am proposing in this post, but we can can see some easy but tangible benefits by pulling in some of the simpler & more approchable functional concepts as outlined in this post.
+Well, not really. However, this post does introduce the concepts of pure-functions and modelling side-effects as  `Effect` (or `Command`) value types both of which are [functional programming](https://en.wikipedia.org/wiki/Functional_programming) concepts. However, there is no talk here about the more esoteric functional concepts like referencial transparency, monoids, currying and monads. We are lucky that Kotlin has allowed us work with functions as first class citizens and we as developers _could_ get much deeper into the functional world than I am proposing here, but we can can see some easy but tangible benefits by pulling in some of the simpler & more approchable functional concepts as outlined in this post.
 
 Also this approach is a first step towards the functional ideal of **seperating _decisions_ from _dependencies_** and harvesting the rewards of such an approach.
 
