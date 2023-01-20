@@ -53,7 +53,7 @@ An `Action` represents something which has _happened_ (past tense) in the system
 
 `Effect` at its simplest could represent the new applications immutable `State` and optionally any `Commands` which need to be handled e.g. `Effect(State, Command)`.
 
-`Command` represents something which _needs to happen_ (future tense), probably in an imperitive fashion and likely interfacing with the real world, like IO  e.g. `AttemptLoginToRemoteServer(userName: String) : Command`. Note that a `Command` could easily represent a _"side-effect"_ in functional parlance. This is similar to Elm's [Commands](https://elmprogramming.com/commands.html#summary), as opposed to something like Redux's [Middleware](https://redux.js.org/understanding/history-and-design/middleware) or MVI's [preprocessing](https://adambennett.dev/2019/07/mvi-the-good-the-bad-and-the-ugly/).
+`Command` represents something which _needs to happen_ (future tense), probably in an imperitive fashion and likely interfacing with the real world, like IO  e.g. `AttemptLoginToRemoteServer(userName: String) : Command`. Note that a `Command` could easily represent a _"[side-effect](https://en.wikipedia.org/wiki/Side_effect_(computer_science))"_ in functional parlance. This is similar to Elm's [Commands](https://elmprogramming.com/commands.html#summary), as opposed to something like Redux's [Middleware](https://redux.js.org/understanding/history-and-design/middleware) or MVI's [preprocessing](https://adambennett.dev/2019/07/mvi-the-good-the-bad-and-the-ugly/).
 
 ### A Simple Architectural View
 
