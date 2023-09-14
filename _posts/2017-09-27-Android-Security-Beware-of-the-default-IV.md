@@ -28,7 +28,7 @@ Poking around a little, I can see that on old versions of Android (tested 4.3) t
 
 <div data-gist-id="2ce511580419cdcec7ec2ef886e91e4f" data-gist-file="secret_key_iv.java">secret_key_iv.java</div>
 
-Using the newer `KeyGenParameterSpec` APIs and the `AndroidKeyStore` Provider seems to be fine regarding this issue from the small amount of testing I have done. The IV is prepended to the ciphered output `bytes[]` by default.
+Using the newer `KeyGenParameterSpec` APIs and the `AndroidKeyStore` Provider seems to be fine regarding this issue from the small amount of testing I have done.
 
 
 ## Enforcing a random IV
