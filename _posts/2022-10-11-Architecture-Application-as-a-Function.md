@@ -145,6 +145,10 @@ I hope this post has provided some food for thought and introduced to some reade
   - https://news.ycombinator.com/item?id=18043058
 - [Test Doubles Are A Scam – Matt Diephouse](https://www.youtube.com/watch?app=desktop&v=7AGQ9dhWCX0)
 
+### Related Thinking
+
+- [Your Server as a Function: Marius Eriksen](https://monkey.org/~marius/funsrv.pdf)
+
 ### Books
 
 - [Domain Modelling Made Functional](https://pragprog.com/titles/swdddf/domain-modeling-made-functional/)
